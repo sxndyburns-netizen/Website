@@ -4,13 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing site for **Sandbox Languages**, a family-run residential English summer school in the UK (ages 8–17). It's a static site with plain HTML, one CSS file and one vanilla JS file. It has no dependencies, package manager, build step, linter or tests.
+Marketing site for **Sandbox Languages**, a family-run residential English summer school in the UK (ages 8–17). It's a static site with plain HTML, one CSS file and one vanilla JS file. A small Python generator assembles the pages. There are no dependencies, package manager, linter or tests.
 
 ```bash
-python3 -m http.server 8000   # preview at http://localhost:8000 (opening index.html directly also works)
+python3 src/build.py          # regenerate the root *.html pages and credits.html (Python 3.11+, stdlib only)
+python3 -m http.server 8000   # preview at http://localhost:8000
 ```
 
-The branch is deployed as-is, so any static host works (GitHub Pages is the intended option).
+The generated HTML is committed and served as-is, so any static host works (GitHub Pages is the intended option). **Edit `src/`, never the root `*.html` files, then run the build and commit both.** A rebuild with no source changes should produce no git diff, which is a quick way to check the build is sound.
 
 ## Business rules that shape every edit
 
@@ -22,19 +23,17 @@ The branch is deployed as-is, so any static host works (GitHub Pages is the inte
 
 ## Architecture
 
-**Pages repeat their shared markup.** The seven HTML pages were generated from shared templates, but that generator isn't in the repo. So the header/nav, footer, inline SVG icons and the photo and trip-card markup are copied into every page. When you change the nav, the footer or a repeated component, update **all** pages: `index`, `programmes`, `campuses`, `summer-life`, `about`, `consultation` and `credits`. The excursion cards appear in both `index.html` and `summer-life.html`.
+**The generator (`src/build.py`).** Each `src/pages/*.html` file starts with `title:` and `description:` lines, then `---`, then the page body. The build wraps each body with the shared `<head>`, header/nav (`NAV`) and footer (`FOOTER`), so a nav or footer change is made once. It also expands these shortcodes:
+- `{{photo:slug|alt|variant|caption}}` becomes a photo `<figure>`.
+- `{{trips}}` becomes the excursion cards from `TRIPS`. They appear on both the home and summer-life pages, so edit trips there.
+- `{{icon:name}}` becomes an inline SVG from `ICON`.
+- `{{campus:park|uni}}` becomes a campus illustration.
 
-**Photo slots** (`assets/img/photos/<slug>.jpg`) use one pattern everywhere:
-```html
-<figure class="photo photo--wide">            <!-- --wide 16:10, --tall 4:5, default 4:3 -->
-  <div class="photo__placeholder" aria-hidden="true">…icon or SVG…</div>
-  <img src="assets/img/photos/<slug>.jpg" alt="…" loading="lazy" onerror="this.remove()">
-  <figcaption>…</figcaption>                  <!-- optional -->
-</figure>
-```
-If the file is missing, the `<img>` removes itself and the placeholder shows. To add a photo, save a pre-cropped JPG to that aspect ratio at about 1600px wide (1200px for the portrait hero). Write alt text that describes what the photo actually shows.
+`credits.html` is generated from `assets/img/photos/credits.json` (see `credits_page()`).
 
-**Photo credits:** `assets/img/photos/credits.json` records the source and licence of every photo. Pexels photos use the Pexels License. Wikimedia Commons photos are CC BY-SA and require attribution. `credits.html` renders that data as a table, and there is no generator in the repo. If you add, replace or remove a photo, update **both** files by hand.
+**Photo slots** (`assets/img/photos/<slug>.jpg`) render as `<figure class="photo photo--wide|--tall">`. They have a placeholder underneath and an `<img onerror="this.remove()">` on top, so a missing file shows the placeholder instead of a broken image. `PHOTO_FALLBACK` / `PROGRAMME_ART` in the build choose illustrated placeholders for a few slots. Save photos pre-cropped to 16:10 (wide), 4:5 (tall, the hero) or 4:3 (the default), about 1600px wide. Write alt text that describes what the photo actually shows.
+
+**Photo credits:** every photo needs an entry in `credits.json` with its description, artist, licence, licence URL and source. Pexels photos use the Pexels License. Wikimedia Commons photos are CC BY-SA and require attribution. The README's photo table lists every slot; keep it in step when photos change.
 
 **Getting photos in the cloud environment:**
 - **Pexels:** full images download directly from `https://images.pexels.com/photos/<id>/pexels-photo-<id>.jpeg?auto=compress&cs=tinysrgb&w=2000`. The pexels.com site itself is blocked, so find photo IDs with web search.
