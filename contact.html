@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact &amp; Enquiries | Sandbox Languages Summer School</title>
+  <meta name="description" content="Enquire about Sandbox Languages' English summer school in the UK. Ask a question, request a brochure or get a personalised quote.">
+  <meta name="theme-color" content="#14213d">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact &amp; Enquiries | Sandbox Languages Summer School">
+  <meta property="og:description" content="Enquire about Sandbox Languages' English summer school in the UK. Ask a question, request a brochure or get a personalised quote.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&amp;family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..700,0..100,0..1;1,9..144,500..700,0..100,0..1&amp;display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Sandbox Languages home">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#14213d"/><path d="M8 34.5c5-2.2 10.5-2.2 16 0s11 2.2 16 0V40H8z" fill="#e6c98f"/><path d="M13 9h22a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H22l-6 5v-5h-3a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5z" fill="#f2603d"/><circle cx="17" cy="18.5" r="2.3" fill="#fff"/><circle cx="24" cy="18.5" r="2.3" fill="#fff"/><circle cx="31" cy="18.5" r="2.3" fill="#fff"/></svg>
+      <span class="brand-name">Sandbox<small>Languages</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="programmes.html">Programmes</a></li>
+        <li><a href="summer-life.html">Summer life</a></li>
+        <li><a href="dates-fees.html">Dates &amp; fees</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li class="nav-cta"><a class="btn btn--primary btn--sm" href="contact.html" aria-current="page">Enquire now</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Contact</p>
+    <p class="eyebrow">Get in touch</p>
+    <h1>Let's plan an unforgettable summer</h1>
+    <p class="lead">Ask a question, request a brochure or get a personalised quote. A real person from our team will reply within one working day.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container programme-detail">
+    <div class="form-card reveal">
+      <form id="enquiry-form" data-validate data-success="enquiry-success" action="#" method="post">
+        <fieldset class="form-section">
+          <legend>What can we help with?</legend>
+          <div class="choice-group" role="radiogroup" aria-label="Enquiry type">
+            <label class="choice"><input type="radio" name="enquiry-type" value="general" checked><span>General question</span></label>
+            <label class="choice"><input type="radio" name="enquiry-type" value="booking"><span>Quote / booking</span></label>
+            <label class="choice"><input type="radio" name="enquiry-type" value="brochure"><span>Brochure</span></label>
+            <label class="choice"><input type="radio" name="enquiry-type" value="group"><span>Group / agent</span></label>
+            <label class="choice"><input type="radio" name="enquiry-type" value="safeguarding"><span>Policies</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Your details</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="parent-name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="parent-name" name="name" type="text" autocomplete="name" required data-error="Please tell us your name.">
+              <p class="field-error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+              <p class="field-error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="phone">Phone / WhatsApp</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel">
+              <p class="field-error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="country">Country of residence</label>
+              <input id="country" name="country" type="text" autocomplete="country-name">
+              <p class="field-error" aria-live="polite"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>About the student</legend>
+          <div class="form-grid">
+            <div class="field">
+              <label for="student-age">Student's age this summer</label>
+              <input id="student-age" name="student-age" type="number" min="8" max="17" inputmode="numeric" data-error="Our programmes are for ages 8–17.">
+              <p class="field-error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="programme">Programme of interest</label>
+              <select id="programme" name="programme">
+                <option value="">Not sure yet</option>
+                <option value="juniors">Junior Explorers (8–12)</option>
+                <option value="teens">Teen Discovery (13–15)</option>
+                <option value="leaders">Young Leaders (16–17)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="arrival">Preferred arrival week</label>
+              <select id="arrival" name="arrival">
+                <option value="">Flexible</option>
+                <option>4 July 2027</option>
+                <option>11 July 2027</option>
+                <option>18 July 2027</option>
+                <option>25 July 2027</option>
+                <option>1 August 2027</option>
+                <option>8 August 2027</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="weeks">Number of weeks</label>
+              <select id="weeks" name="weeks">
+                <option value="">Not sure yet</option>
+                <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+              </select>
+            </div>
+            <div class="field span-2">
+              <label for="message">Your message <span class="req" aria-hidden="true">*</span></label>
+              <p class="hint" id="message-hint">Tell us anything that helps: English level, interests, dietary needs or questions.</p>
+              <textarea id="message" name="message" required aria-describedby="message-hint" data-error="Please add a short message so we know how to help."></textarea>
+              <p class="field-error" aria-live="polite"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-section">
+          <label class="checkbox">
+            <input type="checkbox" name="consent" required>
+            <span>I agree to Sandbox Languages storing my details to respond to this enquiry, as described in the <a href="#">privacy policy</a>. <span class="req" aria-hidden="true">*</span><span class="field-error" aria-live="polite" style="display:block"></span></span>
+          </label>
+          <label class="checkbox" style="margin-top:14px">
+            <input type="checkbox" name="newsletter">
+            <span>Send me occasional news and offers (you can unsubscribe at any time).</span>
+          </label>
+          <div class="btn-row" style="margin-top:28px">
+            <button class="btn btn--primary" type="submit">Send enquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </form>
+
+      <div id="enquiry-success" class="form-success" hidden tabindex="-1" role="status">
+        <span class="icon-tile icon-tile--sea"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span>
+        <h2>Thank you!</h2>
+        <p class="lead">We've received your enquiry and will reply within one working day.</p>
+        <a class="btn btn--ghost" href="programmes.html">Keep exploring</a>
+      </div>
+    </div>
+
+    <aside class="reveal">
+      <div class="card sticky-card">
+        <h3>Contact details</h3>
+        <ul class="contact-list">
+          <li><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><div><strong>Email</strong><a href="mailto:hello@sandboxlanguages.co.uk">hello@sandboxlanguages.co.uk</a></div></li>
+          <li><span class="icon-tile icon-tile--sea"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><div><strong>Phone &amp; WhatsApp</strong><a href="tel:+441234567890">+44 (0)1234 567890</a></div></li>
+          <li><span class="icon-tile icon-tile--sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><strong>Office hours</strong><span>Mon–Fri, 9:00–17:30 (UK time)<br>24/7 emergency line during courses</span></div></li>
+          <li><span class="icon-tile icon-tile--sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><strong>Head office</strong><span>Sandbox Languages<br>United Kingdom</span></div></li>
+        </ul>
+        <div class="notice" style="margin-top:28px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <p><strong>Agents &amp; group leaders:</strong> choose "Group / agent" above to receive our partner pack and commission details.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="Sandbox Languages home">
+          <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#14213d"/><path d="M8 34.5c5-2.2 10.5-2.2 16 0s11 2.2 16 0V40H8z" fill="#e6c98f"/><path d="M13 9h22a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H22l-6 5v-5h-3a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5z" fill="#f2603d"/><circle cx="17" cy="18.5" r="2.3" fill="#fff"/><circle cx="24" cy="18.5" r="2.3" fill="#fff"/><circle cx="31" cy="18.5" r="2.3" fill="#fff"/></svg>
+          <span class="brand-name">Sandbox<small>Languages</small></span>
+        </a>
+        <p class="footer-note">A residential English language summer school in the UK for young people aged 8–17. Where languages are learned by playing, building and exploring.</p>
+        <div class="socials">
+          <a href="#" aria-label="Sandbox Languages on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="Sandbox Languages on Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Sandbox Languages on YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="programmes.html">Programmes</a></li>
+          <li><a href="summer-life.html">Summer life</a></li>
+          <li><a href="dates-fees.html">Dates &amp; fees</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="about.html#faq">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Families</h4>
+        <ul>
+          <li><a href="contact.html">Make an enquiry</a></li>
+          <li><a href="contact.html?type=brochure">Request a brochure</a></li>
+          <li><a href="about.html#safeguarding">Safeguarding</a></li>
+          <li><a href="contact.html?type=group">Group leaders &amp; agents</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Summer 2027 news</h4>
+        <p>Be first to hear when bookings open, plus early-bird offers.</p>
+        <form class="newsletter" novalidate>
+          <label class="visually-hidden" for="newsletter-email">Email address</label>
+          <input id="newsletter-email" type="email" placeholder="Your email" autocomplete="email" required>
+          <button class="btn btn--primary btn--sm" type="submit">Sign up</button>
+        </form>
+        <p class="newsletter-msg" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="mb-0">© <span data-year>2026</span> Sandbox Languages. All rights reserved.</p>
+      <ul>
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Terms &amp; conditions</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
