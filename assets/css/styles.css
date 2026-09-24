@@ -520,6 +520,98 @@ a:hover { color: var(--accent); }
 .link-arrow svg { width: 18px; height: 18px; transition: transform 0.2s; }
 .link-arrow:hover svg { transform: translateX(4px); }
 
+/* Campus cards */
+.campus-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+.campus-card:hover { color: inherit; }
+.campus-card__art { aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; background: var(--campus, var(--sand-200)); }
+.campus-card__art svg { width: 100%; height: 100%; }
+.campus-card__body { padding: 28px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.campus-card__body h3 { margin: 6px 0 0; }
+.campus-card__body p { margin: 0 0 6px; }
+.campus-card:hover .link-arrow svg { transform: translateX(4px); }
+
+/* Campus detail */
+.campus-jump { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.campus-hero {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  max-width: 100%;
+}
+.campus-hero svg { width: 100%; height: auto; }
+.feature-list { display: grid; gap: 28px; margin-top: clamp(40px, 6vw, 64px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.feature { display: flex; flex-direction: column; gap: 6px; }
+.feature .icon-tile { margin-bottom: 10px; }
+.feature h3 { margin: 0; }
+.feature p { color: var(--text-muted); margin: 0; }
+
+.travel-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.travel-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.travel-list li:last-child { border-bottom: 0; }
+.travel-list strong { font-family: var(--font-display); font-size: 1.25rem; white-space: nowrap; color: var(--coral-600); font-variant-numeric: tabular-nums; }
+.travel-list span { color: var(--text-muted); font-size: 0.93rem; display: block; }
+
+/* Photo gallery: shows an illustrated placeholder until the real image loads */
+.photo-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+.photo {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  background: var(--sun-100);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.photo:nth-child(4n+2) { background: var(--coral-100); }
+.photo:nth-child(4n+3) { background: var(--sea-100); }
+.photo:nth-child(4n+4) { background: var(--sky-100); }
+.photo__placeholder { display: grid; place-items: center; gap: 8px; color: var(--navy-600); text-align: center; padding: 16px; }
+.photo__placeholder svg { width: 40px; height: 40px; opacity: 0.7; }
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.photo figcaption {
+  position: absolute;
+  left: 12px; right: 12px; bottom: 12px;
+  z-index: 2;
+  background: rgba(253, 249, 241, 0.94);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Comparison table */
+.compare td, .compare th { min-width: 180px; }
+.compare tbody th { color: var(--text-muted); font-weight: 600; min-width: 140px; }
+
 /* ---------- Checklist ---------- */
 .checklist { list-style: none; padding: 0; margin: 0 0 1em; }
 .checklist li {
@@ -899,6 +991,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 0.95rem;
   transition: all 0.15s;
 }
+.choice span svg { width: 18px; height: 18px; }
 .choice input:hover + span { border-color: var(--sand-300); }
 .choice input:checked + span { background: var(--navy-900); border-color: var(--navy-900); color: #fff; }
 .choice input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
@@ -923,75 +1016,6 @@ input:focus, select:focus, textarea:focus {
 }
 .form-success .icon-tile { width: 72px; height: 72px; border-radius: 50%; }
 .form-success .icon-tile svg { width: 34px; height: 34px; }
-
-/* ---------- Fee calculator ---------- */
-.calc {
-  display: grid;
-  gap: 0;
-  grid-template-columns: 1fr;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-@media (min-width: 900px) { .calc { grid-template-columns: 1.4fr 1fr; } }
-.calc-inputs { padding: clamp(24px, 4vw, 44px); display: grid; gap: 26px; }
-.calc-summary {
-  background: var(--navy-900);
-  color: #f4efe4;
-  padding: clamp(24px, 4vw, 44px);
-  display: flex;
-  flex-direction: column;
-}
-.calc-summary h3 { color: #fff; }
-.calc-lines { list-style: none; margin: 0 0 20px; padding: 0; font-size: 0.97rem; }
-.calc-lines li {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  color: #cfd6e6;
-}
-.calc-lines li span:last-child { color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.calc-total {
-  margin-top: auto;
-  padding-top: 20px;
-}
-.calc-total .label { font-size: 0.9rem; color: #cfd6e6; }
-.calc-total output {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
-  font-weight: 600;
-  color: var(--sun-400);
-  line-height: 1.1;
-  font-variant-numeric: tabular-nums;
-}
-.calc-total small { display: block; color: #9aa6c0; font-size: 0.82rem; margin: 6px 0 22px; line-height: 1.5; }
-
-.stepper {
-  display: inline-flex;
-  align-items: center;
-  border: 1.5px solid var(--border);
-  border-radius: 999px;
-  background: var(--sand-50);
-  width: fit-content;
-}
-.stepper button {
-  width: 46px; height: 46px;
-  border: 0;
-  background: transparent;
-  font-size: 1.4rem;
-  line-height: 1;
-  cursor: pointer;
-  color: var(--navy-900);
-  border-radius: 50%;
-}
-.stepper button:hover:not(:disabled) { background: var(--sand-200); }
-.stepper button:disabled { opacity: 0.3; cursor: not-allowed; }
-.stepper output { min-width: 90px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
 
 /* ---------- Steps ---------- */
 .steps { counter-reset: step; display: grid; gap: 20px; list-style: none; padding: 0; margin: 0; }
@@ -1033,6 +1057,7 @@ input:focus, select:focus, textarea:focus {
   font-weight: 600;
   color: #fff;
 }
+.avatar svg { width: 44px; height: 44px; }
 .team-card .role { color: var(--coral-600); font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
 .team-card p { color: var(--text-muted); font-size: 0.95rem; }
 

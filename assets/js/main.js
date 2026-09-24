@@ -99,70 +99,6 @@
     }
   });
 
-  /* ---------- Fee calculator ---------- */
-  var calc = document.getElementById("fee-calculator");
-  if (calc) {
-    var gbp = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 });
-    var weeksOut = calc.querySelector("[data-weeks]");
-    var minus = calc.querySelector("[data-step='-1']");
-    var plus = calc.querySelector("[data-step='1']");
-    var weeks = 2;
-    var MIN_WEEKS = 1;
-    var MAX_WEEKS = 6;
-
-    var update = function () {
-      var prog = calc.querySelector("input[name='programme']:checked");
-      var rate = Number(prog.dataset.rate);
-      var lines = [];
-      var total = 0;
-
-      var courseCost = rate * weeks;
-      lines.push([prog.dataset.label + " × " + weeks + (weeks === 1 ? " week" : " weeks"), courseCost]);
-      total += courseCost;
-
-      calc.querySelectorAll("input[data-extra]:checked").forEach(function (extra) {
-        var cost = Number(extra.dataset.price) * (extra.dataset.per === "week" ? weeks : 1);
-        lines.push([extra.dataset.label, cost]);
-        total += cost;
-      });
-
-      // Multi-week discount: 5% off tuition for 3+ weeks
-      if (weeks >= 3) {
-        var discount = Math.round(courseCost * 0.05);
-        lines.push(["Stay-longer saving (5%)", -discount]);
-        total -= discount;
-      }
-
-      var registration = Number(calc.dataset.registration || 0);
-      if (registration) {
-        lines.push(["Registration fee", registration]);
-        total += registration;
-      }
-
-      weeksOut.textContent = weeks + (weeks === 1 ? " week" : " weeks");
-      minus.disabled = weeks <= MIN_WEEKS;
-      plus.disabled = weeks >= MAX_WEEKS;
-
-      var list = calc.querySelector(".calc-lines");
-      list.innerHTML = "";
-      lines.forEach(function (l) {
-        var li = document.createElement("li");
-        var a = document.createElement("span");
-        var b = document.createElement("span");
-        a.textContent = l[0];
-        b.textContent = (l[1] < 0 ? "−" : "") + gbp.format(Math.abs(l[1]));
-        li.append(a, b);
-        list.appendChild(li);
-      });
-      calc.querySelector("[data-total]").textContent = gbp.format(total);
-    };
-
-    minus.addEventListener("click", function () { weeks = Math.max(MIN_WEEKS, weeks - 1); update(); });
-    plus.addEventListener("click", function () { weeks = Math.min(MAX_WEEKS, weeks + 1); update(); });
-    calc.addEventListener("change", update);
-    update();
-  }
-
   /* ---------- Form validation ---------- */
   var messages = {
     valueMissing: "Please fill in this field.",
@@ -248,18 +184,17 @@
     });
   });
 
-  /* ---------- Pre-fill programme on contact form from ?programme= ---------- */
+  /* ---------- Pre-fill the consultation form from links, e.g. ?programme=teens&campus=brunel ---------- */
   var params = new URLSearchParams(location.search);
-  var prefill = params.get("programme");
-  var progSelect = document.getElementById("programme");
-  if (prefill && progSelect) {
-    Array.prototype.forEach.call(progSelect.options, function (opt) {
-      if (opt.value === prefill) progSelect.value = prefill;
+  var prefill = function (id, value) {
+    var select = document.getElementById(id);
+    if (!select || !value) return;
+    Array.prototype.forEach.call(select.options, function (opt) {
+      if (opt.value === value) select.value = value;
     });
-  }
-  var typePrefill = params.get("type");
-  if (typePrefill) {
-    var radio = document.querySelector("input[name='enquiry-type'][value='" + CSS.escape(typePrefill) + "']");
-    if (radio) radio.checked = true;
-  }
+  };
+  prefill("programme", params.get("programme"));
+  prefill("campus", params.get("campus"));
+  var type = params.get("type");
+  if (type) prefill("enquirer", type === "group" ? "group" : "other");
 })();
