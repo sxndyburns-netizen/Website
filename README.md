@@ -35,6 +35,10 @@ The header and footer are repeated in each page. If you change navigation, updat
 
 The site is built around real photography. Every photo has a fixed slot: save a JPG at `assets/img/photos/<name>.jpg` and it appears automatically. Until then, a tinted placeholder (or, for a few slots, an illustration) shows instead.
 
+**Current photos** come from [Wikimedia Commons](https://commons.wikimedia.org) under open licences (mostly CC BY-SA and CC0). Those licences require credit, so every photo is listed with its photographer, licence and source in `assets/img/photos/credits.json`. The build turns that file into `credits.html`, linked from the footer. If you replace a photo with your own, delete its entry from `credits.json`.
+
+The Leighton Park **food** photos are representative stock images, not Leighton Park's own dining. Replace them with photos from the school or its caterer (Thomas Franks) when you can.
+
 **Rules for every photo**
 - Children must never be identifiable. Show them from behind, at a distance, as silhouettes, or show hands only.
 - Use only images you're licensed to use: your own photos, images supplied by the venues, or stock photos whose licence allows commercial use (e.g. Unsplash or Pexels). Photos of Warner Bros. Studio Tour and Madame Tussauds are usually licensed for editorial use only, so check the licence or ask the venue for press images.
