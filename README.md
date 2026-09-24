@@ -25,24 +25,52 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 assets/css/styles.css   design tokens + all components
 assets/js/main.js       nav, tabs, scroll reveal, form validation, form pre-fill
-assets/img/campuses/leighton-park/   drop food photos here (see below)
+assets/img/photos/      real photos, one file per slot (see Photos below)
 assets/img/favicon.svg  brand mark
 ```
 
 The header and footer are repeated in each page. If you change navigation, update all six files.
 
-## Leighton Park food photos
+## Photos
 
-The food gallery on `campuses.html` shows illustrated placeholders until real photos are added. Save four images as:
+The site is built around real photography. Every photo has a fixed slot: save a JPG at `assets/img/photos/<name>.jpg` and it appears automatically. Until then, a tinted placeholder (or, for a few slots, an illustration) shows instead.
 
-```
-assets/img/campuses/leighton-park/food-1.jpg   hot meals cooked fresh on site
-assets/img/campuses/leighton-park/food-2.jpg   salad bar & seasonal produce
-assets/img/campuses/leighton-park/food-3.jpg   homemade puddings
-assets/img/campuses/leighton-park/food-4.jpg   mealtimes together
-```
+**Rules for every photo**
+- Children must never be identifiable. Show them from behind, at a distance, as silhouettes, or show hands only.
+- Use only images you're licensed to use: your own photos, images supplied by the venues, or stock photos whose licence allows commercial use (e.g. Unsplash or Pexels). Photos of Warner Bros. Studio Tour and Madame Tussauds are usually licensed for editorial use only, so check the licence or ask the venue for press images.
+- Landscape images around 1600px wide work best (the hero is portrait, around 1200×1500px).
 
-They appear automatically, with no code changes. Landscape images around 1200×900px work best. **Use only photos you have permission to use.** Ask Leighton Park's lettings/summer team or their caterer for marketing images.
+| File | What it should show | Used on |
+| --- | --- | --- |
+| `activities-arts.jpg` | Hands painting at an art table | summer-life.html |
+| `activities-drama.jpg` | Students on a stage facing an audience, seen from behind | summer-life.html |
+| `activities-evening.jpg` | Students gathered around a campfire at dusk, seen from behind | summer-life.html |
+| `activities-sport.jpg` | Students playing football on a sunny playing field, seen from behind | summer-life.html |
+| `brunel-campus.jpg` | Modern buildings on the Brunel University of London campus in Uxbridge | campuses.html, index.html |
+| `brunel-grounds.jpg` | Green spaces between buildings on the Brunel campus | campuses.html |
+| `brunel-halls.jpg` | A modern single en-suite bedroom in Brunel's halls of residence | campuses.html |
+| `brunel-sports.jpg` | Brunel's indoor sports and athletics facilities | campuses.html |
+| `hero-students.jpg` | Students walking together across a sunny school campus, seen from behind | index.html |
+| `leighton-park-classroom.jpg` | A bright classroom at Leighton Park | campuses.html |
+| `leighton-park-fields.jpg` | Open playing fields in the Leighton Park grounds | campuses.html |
+| `leighton-park-food-1.jpg` | A freshly cooked hot lunch served in the Leighton Park dining hall | campuses.html, index.html |
+| `leighton-park-food-2.jpg` | A salad bar with fresh seasonal vegetables | campuses.html, index.html |
+| `leighton-park-food-3.jpg` | Homemade desserts laid out for service | campuses.html, index.html |
+| `leighton-park-food-4.jpg` | Students eating together in the dining hall, seen from behind | campuses.html |
+| `leighton-park-food-5.jpg` | A breakfast spread with fresh fruit, pastries and hot options | campuses.html |
+| `leighton-park-food-6.jpg` | Fresh seasonal fruit ready for students | campuses.html |
+| `leighton-park-grounds.jpg` | Leighton Park School's main building set in green parkland | campuses.html, index.html |
+| `leighton-park-oaks.jpg` | Mature oak trees in the Leighton Park grounds | campuses.html |
+| `leighton-park-pool.jpg` | The covered swimming pool at Leighton Park | campuses.html |
+| `lessons.jpg` | Students raising their hands in a bright classroom, seen from behind | index.html |
+| `programme-juniors.jpg` | Young students working on a craft project at a table, seen from behind | index.html, programmes.html |
+| `programme-leaders.jpg` | Older students in a seminar room facing a presentation screen, seen from behind | index.html, programmes.html |
+| `programme-teens.jpg` | Teenagers sitting on the grass on a sunny day, seen from behind | index.html, programmes.html |
+| `trip-cambridge.jpg` | King's College Chapel and the River Cam in Cambridge | index.html, summer-life.html |
+| `trip-harry-potter.jpg` | The Warner Bros. Studio Tour London, home of the Harry Potter film sets | index.html, summer-life.html |
+| `trip-london.jpg` | Students on a guided walking tour in central London | index.html, summer-life.html |
+| `trip-madame-tussauds.jpg` | The entrance to Madame Tussauds London | index.html, summer-life.html |
+| `trip-oxford.jpg` | Historic college buildings in Oxford | index.html, summer-life.html |
 
 ## Design system
 

@@ -120,6 +120,12 @@
       <h2>Something for everyone, every afternoon</h2>
       <p class="lead">Students choose from a rotating menu of clubs and whole-school events. Our activity leaders make sure quieter students feel just as included as the confident ones.</p>
     </div>
+    <div class="photo-grid reveal" style="margin-bottom:32px">
+      <figure class="photo"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/activities-sport.jpg" alt="Students playing football on a sunny playing field, seen from behind" loading="lazy" decoding="async" onerror="this.remove()"><figcaption>Sport</figcaption></figure>
+      <figure class="photo"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/activities-arts.jpg" alt="Hands painting at an art table" loading="lazy" decoding="async" onerror="this.remove()"><figcaption>Arts &amp; crafts</figcaption></figure>
+      <figure class="photo"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/activities-drama.jpg" alt="Students on a stage facing an audience, seen from behind" loading="lazy" decoding="async" onerror="this.remove()"><figcaption>Drama &amp; music</figcaption></figure>
+      <figure class="photo"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/activities-evening.jpg" alt="Students gathered around a campfire at dusk, seen from behind" loading="lazy" decoding="async" onerror="this.remove()"><figcaption>Evening events</figcaption></figure>
+    </div>
     <div class="grid grid-3">
       <div class="card reveal"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m12 7 4.5 3.3-1.7 5.2H9.2l-1.7-5.2z"/><path d="M12 2v5M21.5 9l-5 1.3M17.8 20l-3-4.5M6.2 20l3-4.5M2.5 9l5 1.3"/></svg></span><h3>Sport</h3><p class="muted">Football, basketball, tennis, swimming, rounders, dodgeball and a very competitive end-of-week Sandbox Cup.</p></div>
       <div class="card reveal"><span class="icon-tile icon-tile--sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg></span><h3>Drama &amp; music</h3><p class="muted">Improv games, musical theatre, band practice, karaoke, and the legendary Friday talent show.</p></div>
@@ -135,16 +141,60 @@
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">Excursions</p>
-      <h2>Weekly adventures across the UK</h2>
-      <p class="lead">Every week includes two full-day excursions and one half-day trip. Each one comes with a fun English task, from photo challenges to interviewing locals.</p>
+      <h2>Weekly excursions to the UK's favourite destinations</h2>
+      <p class="lead">Every week includes two full-day excursions. Each trip is led by our own staff and includes supervised free time and a packed lunch, plus an English task such as a photo challenge or interviewing visitors.</p>
     </div>
-    <div class="place-grid reveal">
-      <div class="place" data-initial="L" style="--place-bg:#14213d"><span class="tag">Full day</span><h3>London</h3><p>Westminster, the South Bank, museums and a West End show (optional)</p></div>
-      <div class="place" data-initial="O" style="--place-bg:#2a9d8f"><span class="tag">Full day</span><h3>Oxford</h3><p>Historic colleges, the Ashmolean and the Covered Market</p></div>
-      <div class="place" data-initial="C" style="--place-bg:#f2603d"><span class="tag">Full day</span><h3>Cambridge</h3><p>King's College, punting and the Fitzwilliam Museum</p></div>
-      <div class="place" data-initial="B" style="--place-bg:#4a7fd6"><span class="tag">Full day</span><h3>Brighton</h3><p>Seaside fun on the pier and the Royal Pavilion</p></div>
-      <div class="place" data-initial="W" style="--place-bg:#1d7268"><span class="tag">Full day</span><h3>Windsor</h3><p>The world's oldest occupied castle</p></div>
-      <div class="place" data-initial="H" style="--place-bg:#b07a06"><span class="tag">Half day</span><h3>Henley-on-Thames</h3><p>A riverside town famous for its rowing regatta</p></div>
+    <div class="trip-grid">
+      <article class="trip reveal">
+        <figure class="photo photo--wide"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/trip-london.jpg" alt="Students on a guided walking tour in central London" loading="lazy" decoding="async" onerror="this.remove()"></figure>
+        <div class="trip__body">
+          <h3>London walking tour</h3>
+          <p>A guided walk past Big Ben, Westminster Abbey, Buckingham Palace and the South Bank.</p>
+          <ul class="trip__tags" aria-label="Included">
+            <li>Free time</li><li>Packed lunch</li><li>Staff-led</li>
+          </ul>
+        </div>
+      </article>
+      <article class="trip reveal">
+        <figure class="photo photo--wide"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/trip-oxford.jpg" alt="Historic college buildings in Oxford" loading="lazy" decoding="async" onerror="this.remove()"></figure>
+        <div class="trip__body">
+          <h3>Oxford tour</h3>
+          <p>Historic colleges, the Radcliffe Camera and the city's famous dreaming spires.</p>
+          <ul class="trip__tags" aria-label="Included">
+            <li>Free time</li><li>Packed lunch</li><li>Staff-led</li>
+          </ul>
+        </div>
+      </article>
+      <article class="trip reveal">
+        <figure class="photo photo--wide"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/trip-cambridge.jpg" alt="King's College Chapel and the River Cam in Cambridge" loading="lazy" decoding="async" onerror="this.remove()"></figure>
+        <div class="trip__body">
+          <h3>Cambridge tour</h3>
+          <p>King's College, the Backs and the riverside of one of the world's great university cities.</p>
+          <ul class="trip__tags" aria-label="Included">
+            <li>Free time</li><li>Packed lunch</li><li>Staff-led</li>
+          </ul>
+        </div>
+      </article>
+      <article class="trip reveal">
+        <figure class="photo photo--wide"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/trip-harry-potter.jpg" alt="The Warner Bros. Studio Tour London, home of the Harry Potter film sets" loading="lazy" decoding="async" onerror="this.remove()"></figure>
+        <div class="trip__body">
+          <h3>Harry Potter Studio Tour</h3>
+          <p>Warner Bros. Studio Tour London: the real sets, costumes and props from the films.</p>
+          <ul class="trip__tags" aria-label="Included">
+            <li>Free time</li><li>Packed lunch</li><li>Staff-led</li>
+          </ul>
+        </div>
+      </article>
+      <article class="trip reveal">
+        <figure class="photo photo--wide"><div class="photo__placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg></div><img src="assets/img/photos/trip-madame-tussauds.jpg" alt="The entrance to Madame Tussauds London" loading="lazy" decoding="async" onerror="this.remove()"></figure>
+        <div class="trip__body">
+          <h3>Madame Tussauds London</h3>
+          <p>The world-famous wax museum, with film stars, sporting heroes and royalty.</p>
+          <ul class="trip__tags" aria-label="Included">
+            <li>Free time</li><li>Packed lunch</li><li>Staff-led</li>
+          </ul>
+        </div>
+      </article>
     </div>
   </div>
 </section>

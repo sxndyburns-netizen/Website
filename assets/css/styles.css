@@ -608,6 +608,52 @@ a:hover { color: var(--accent); }
   line-height: 1.35;
 }
 
+.photo--wide { aspect-ratio: 16 / 10; }
+.photo--tall { aspect-ratio: 4 / 5; }
+.photo--art .photo__placeholder { padding: 0; width: 100%; height: 100%; display: block; }
+.photo--art .photo__placeholder svg { width: 100%; height: 100%; opacity: 1; }
+.photo--art { background: var(--sand-200); }
+
+.hero-photo .photo { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+.hero-photo .photo--art { background: transparent; box-shadow: none; }
+.hero-photo .photo--art .photo__placeholder svg { object-fit: contain; }
+
+.programme-card__art .photo,
+.campus-card__art .photo { border-radius: 0; aspect-ratio: auto; width: 100%; height: 100%; }
+.campus-card__art { aspect-ratio: 16 / 10; }
+
+.photo-stack { display: grid; gap: 16px; }
+.photo-stack > .photo { border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+
+/* Trips */
+.trip-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+.trip {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.trip .photo { border-radius: 0; }
+.trip__body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.trip__body h3 { margin: 0; font-size: 1.3rem; }
+.trip__body p { margin: 0; color: var(--text-muted); font-size: 0.97rem; }
+.trip__tags { list-style: none; padding: 0; margin: auto 0 0; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.trip__tags li {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--sea-100);
+  color: #1d7268;
+}
+
 /* Comparison table */
 .compare td, .compare th { min-width: 180px; }
 .compare tbody th { color: var(--text-muted); font-weight: 600; min-width: 140px; }
