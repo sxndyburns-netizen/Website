@@ -1,6 +1,6 @@
 # Sandbox English Summer School — website
 
-Marketing website for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for young people aged 8–17 in London and the Thames Valley. **The first summer is 2028.** The site will live at **sandboxenglish.co.uk**.
+Marketing website for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for young people aged 8–17 in the area around London, or in London itself on request. **The first summer is 2028.** The site will live at **sandboxenglish.co.uk**.
 
 The site is for **parents, agents and group leaders**. Its job is to get them to **book a free consultation**. No prices are published: every quote is tailored after the consultation.
 
@@ -39,7 +39,7 @@ The site is deliberately small: three main pages, plus legal and utility pages l
 | --- | --- |
 | `index.html` | Everything families need, in sections the nav links to: who we work with, the programme (`#programme`), safety and welfare (`#safety`), a typical day (`#day`), summer life (`#summer-life`), excursions (`#excursions`), food (`#food`), locations (`#locations`), about the founder (`#about`), FAQs (`#faq`) |
 | `agents.html` | For agents (`#agents`) and group leaders (`#groups`), plus an FAQ for partners (`#agent-faq`) |
-| `consultation.html` | Consultation form. It shows extra questions for agents and group leaders, and needs a phone number when phone or WhatsApp is chosen. Pre-fills from `?type=parent\|agent\|group` and `?area=london\|thames-valley` |
+| `consultation.html` | Consultation form. It shows extra questions for agents and group leaders, and needs a phone number when phone or WhatsApp is chosen. Pre-fills from `?type=parent\|agent\|group` and `?area=around-london\|london` |
 | `privacy.html`, `terms.html`, `cookies.html` | Privacy policy, terms of use and cookie policy |
 | `credits.html` | Photo credits, generated from `assets/img/photos/credits.json` (not indexed by search engines) |
 | `404.html` | "Page not found" (GitHub Pages serves it automatically) |
@@ -106,8 +106,8 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 | `lessons.jpg` | Students seated at desks in a classroom | Pexels | index.html (a typical day) |
 | `location-campus.jpg` | A modern glass building among trees | Pexels | index.html |
 | `location-grounds.jpg` | A large tree on a sunny green lawn | Pexels | index.html |
+| `location-countryside.jpg` | A riverside meadow under a summer sky | Pexels | index.html |
 | `location-london.jpg` | London and the River Thames from above, at dawn | Pexels | index.html |
-| `location-thames-valley.jpg` | A riverside meadow under a summer sky | Pexels | index.html |
 | `location-windsor.jpg` | The Round Tower at Windsor Castle | Pexels | index.html |
 | `students-corridor.jpg` | Students with backpacks walking along a school corridor | Pexels | agents.html, index.html |
 | `students-park.jpg` | Children running across a park with balloons | Pexels | index.html |
@@ -129,7 +129,7 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 - **Alexander Burns is the Designated Safeguarding Lead.**
 - Students of every English level are welcome, **including complete beginners**.
 - Three meals a day and a packed lunch on excursion days, with dietary needs catered for. Rooms separated by age and gender. Daily time to call home and phone-free lessons. Airport meet-and-greet and transfers available.
-- Locations: **London and the Thames Valley** (no venues named). **Only one site will operate in 2028.**
+- Locations: **the area around London**, or **London on request**. It's the parent's or agent's choice, so copy should read that way ("choose…", "ask for…"), never as the school's decision. No venues are named. Only one site will operate in 2028, but the site doesn't say so.
 - Founder: **Alexander Burns**, a student with several years' experience delivering enjoyable summer programmes, who founded Sandbox English to offer a better experience at a reasonable price. The school is founder-led and teaches English only.
 - **Not accredited yet.** Never claim or imply accreditation or membership (British Council, English UK or others) until it is granted. See [Accreditation and visas](#accreditation-and-visas).
 - Contact: `hello@sandboxenglish.co.uk`, @sandboxenglish on Instagram, Facebook and YouTube.
@@ -153,7 +153,7 @@ These are blocking. Launching without them would lose enquiries or break UK law.
 - [ ] **Check the cookie policy is still true** once the forms are connected. If a provider sets cookies or loads scripts, update `cookies.html` and add a consent banner for anything non-essential.
 - [ ] **Create the social accounts** @sandboxenglish on Instagram, Facebook and YouTube (the footer links to them), or remove any you won't use from `SOCIAL` in `src/build.py`.
 - [ ] **Point the domain at the site.** See [Going live](#going-live-on-sandboxenglishcouk). Then check `https://sandboxenglish.co.uk` loads with the padlock (HTTPS).
-- [ ] **Make `main` the default branch** on GitHub (Settings → General). GitHub Pages should publish from `main`.
+- [x] **Make `main` the default branch** on GitHub (Settings → General). GitHub Pages should publish from `main`.
 
 ### 2. Strongly recommended before promoting the site
 

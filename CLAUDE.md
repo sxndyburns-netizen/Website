@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing site for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for ages 8–17 in London and the Thames Valley. The first summer is **2028**. The domain is **sandboxenglish.co.uk**. The audience is **parents, agents and group leaders**. It's a small static site (three main pages: `index.html`, `agents.html` and `consultation.html`, plus `privacy.html`, `terms.html`, `cookies.html`, `credits.html` and `404.html`) with plain HTML, one CSS file and one vanilla JS file. A small Python generator assembles the pages. There are no dependencies, package manager, linter or tests.
+Marketing site for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for ages 8–17 in the area around London, or in London on request. The first summer is **2028**. The domain is **sandboxenglish.co.uk**. The audience is **parents, agents and group leaders**. It's a small static site (three main pages: `index.html`, `agents.html` and `consultation.html`, plus `privacy.html`, `terms.html`, `cookies.html`, `credits.html` and `404.html`) with plain HTML, one CSS file and one vanilla JS file. A small Python generator assembles the pages. There are no dependencies, package manager, linter or tests.
 
 ```bash
 python3 src/build.py          # regenerate root *.html, credits.html, sitemap.xml, robots.txt (Python 3.11+, stdlib only)
@@ -16,12 +16,13 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 
 ## Business rules that shape every edit
 
-- **The site exists to book free consultations.** Never add prices, fees, calculators or "from £…" copy. Every call to action leads to `consultation.html`. Pre-fill links use `?type=parent|agent|group` and `?area=london|thames-valley`.
+- **The site exists to book free consultations.** Never add prices, fees, calculators or "from £…" copy. Every call to action leads to `consultation.html`. Pre-fill links use `?type=parent|agent|group` and `?area=around-london|london`.
 - **Keep it to about three pages.** The home page holds everything for families, in anchored sections (`#programme`, `#safety`, `#summer-life`, `#locations`, `#about`, `#faq`…) that the nav links to. Add sections rather than new pages. The legal pages are the only exception.
 - **Only state confirmed facts as facts.** The README's "Confirmed facts" section lists them: 15 hours of English a week; small classes (never a number); two excursions a week, tailored to parents' and agents' wishes, each with free time and a packed lunch; 24/7 staff on site and emergency line; first-aid trained staff; at least one member of staff for every 10 students (a 1:10 staff-to-student ratio, not a class size); **one programme**, with students grouped on site by age and level; complete beginners welcome; stays of one to six weeks.
 - **Not accredited yet.** Never claim or imply accreditation or membership (British Council, English UK or others) until the user confirms it's granted. The README's "Accreditation and visas" section explains why it matters.
 - **Company details are placeholders.** `COMPANY` in `src/build.py` holds the legal name, company number, registered office and ICO number, shown in the footer, privacy policy and terms (via `{{company:key}}`). Values in `[brackets]` are placeholders. Don't invent real-looking values, and keep them out of the JSON-LD until they're real.
-- **No venues are confirmed.** Never name a venue in copy, alt text, captions, file names or photo credit links, and don't use photos of potential venues. Describe "London" and "the Thames Valley" as regions only, and never state venue features (e.g. "close to Heathrow") as fact.
+- **No venues are confirmed.** Never name a venue in copy, alt text, captions, file names or photo credit links, and don't use photos of potential venues. Describe "the area around London" and "London" as regions only, and never state venue features (e.g. "close to Heathrow") as fact.
+- **Location is the customer's choice.** The school runs in the area around London, with London available on request. Word it as the parent's or agent's decision ("choose the area around London… or ask for a location in London"), never as the school's choice. Only one site operates in 2028, but don't say so on the site.
 - **Founder:** Alexander Burns, a student with several years' experience delivering enjoyable summer programmes, who founded the school to offer a better experience at a reasonable price. He is also the **Designated Safeguarding Lead**. The school is founder-led (not family-run) and teaches English only. Don't invent quotes attributed to him, or state safeguarding training or qualifications he hasn't confirmed.
 - **Tone:** professional and warm.
 - **Photos:** always prefer real photos to illustrations. **No child's face may ever be visible.** Show children from behind, as silhouettes, or as hands only.
@@ -63,7 +64,7 @@ Forms have `action="#"` and no backend. After validation, the element named by `
 ## Launch checklist
 
 The README's **Launch checklist** is the single list of what is left, in priority order:
-1. **Blocking before go-live:** connect the consultation and newsletter forms, the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, domain and HTTPS, and making `main` the default branch.
+1. **Blocking before go-live:** connect the consultation and newsletter forms, the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, and domain and HTTPS (`main` is already the default branch).
 2. **Before promoting:** accreditation, founder photo, DSL training, written policies, a phone/WhatsApp number, booking and agent terms, insurance, Search Console.
 3. **When venues and dates are confirmed:** name them, swap in venue photos, add dates, and update the rules in this file.
 4. **After the first summer:** real photos (with consent), testimonials, and removing "new school" wording.
