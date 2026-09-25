@@ -85,7 +85,13 @@ Every photo has a fixed slot: `assets/img/photos/<slug>.jpg`, plus a smaller `<s
 
 Sandbox English has no photos of its own yet. The current photos are free stock photos from [Pexels](https://www.pexels.com/license/) (no credit required), apart from two from [Wikimedia Commons](https://commons.wikimedia.org) (CC BY-SA, which requires credit). Every photo's photographer, licence and source is recorded in `credits.json`, and the build turns that into `credits.html`.
 
-**Alexander's photo.** Save a portrait (4:5, about 1200px wide) as `assets/img/photos/founder.jpg`, add a `founder` entry to `credits.json` (e.g. artist "Sandbox English", licence "All rights reserved", with `license_url` and `source` left empty), then run `python3 src/images.py` and `python3 src/build.py`. The About section switches from the monogram to the photo automatically.
+**Alexander's photo.** The About us portrait is `assets/img/photos/founder.jpg` (4:5, 1200×1500). If the file is missing, the section shows an "AB" monogram instead.
+
+> **Temporary portrait.** The current `founder.jpg` is a fun photo of Alexander at a bin bag fashion show, used for now. When a professional headshot is uploaded:
+> 1. Rename the current photo to `activities-fashion-show.jpg` (and its `-800` file), and rename its `credits.json` key to match.
+> 2. Add it to the Summer life photo grid (`#summer-life` in `src/pages/index.html`) with the caption **"Bin bag fashion show"**, e.g. `{{photo:activities-fashion-show|Alexander Burns in a costume of black bin bags and a tall blue paper hat, with face paint, at a bin bag fashion show||Bin bag fashion show}}`. The grid shows 4:3 tiles cropped from the centre, so first crop the photo to 4:3 **from the top** to keep his head and hat in frame. A fifth tile leaves an uneven row, so check the grid at desktop width and at 390px.
+> 3. Save the headshot as `founder.jpg` (4:5, about 1200px wide) with a `founder` entry in `credits.json`, and update the alt text in `FOUNDER` in `src/build.py`.
+> 4. Run `python3 src/images.py` and `python3 src/build.py`. In the photo table below, rename the row to `activities-fashion-show.jpg` with "Used on" set to "index.html (Summer life)", keep the table in alphabetical order, and add a row for the new `founder.jpg`.
 
 **Rules for every photo**
 - Children's faces must never be visible. Show them from behind, as silhouettes, or as hands only.
@@ -102,11 +108,12 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 | `food-2.jpg` | Fresh salad at a buffet counter | Pexels | index.html |
 | `food-3.jpg` | A selection of desserts | Pexels | index.html |
 | `food-5.jpg` | Croissants and strawberries for breakfast | Pexels | index.html |
+| `founder.jpg` | Alexander Burns at a bin bag fashion show (temporary portrait, see above) | Sandbox English | index.html (About us) |
 | `hero-students.jpg` | Students of different ages walking into school, seen from behind | Pexels | index.html |
 | `lessons.jpg` | Students seated at desks in a classroom | Pexels | index.html (a typical day) |
 | `location-campus.jpg` | A modern glass building among trees | Pexels | index.html |
-| `location-grounds.jpg` | A large tree on a sunny green lawn | Pexels | index.html |
 | `location-countryside.jpg` | A riverside meadow under a summer sky | Pexels | index.html |
+| `location-grounds.jpg` | A large tree on a sunny green lawn | Pexels | index.html |
 | `location-london.jpg` | London and the River Thames from above, at dawn | Pexels | index.html |
 | `location-windsor.jpg` | The Round Tower at Windsor Castle | Pexels | index.html |
 | `students-corridor.jpg` | Students with backpacks walking along a school corridor | Pexels | agents.html, index.html |
@@ -160,7 +167,7 @@ These are blocking. Launching without them would lose enquiries or break UK law.
 These build trust with parents and agents.
 
 - [ ] **Plan accreditation.** Visitors can only study an English course in the UK at an accredited institution, so this decides who can legally enrol. See [Accreditation and visas](#accreditation-and-visas).
-- [ ] **Add a photo of Alexander.** The About section has a slot for it: see "Alexander's photo" under [Photos](#photos). Adult faces are fine.
+- [ ] **Replace the temporary portrait of Alexander with a professional headshot**, and move the current bin bag fashion show photo to Summer life. See "Alexander's photo" under [Photos](#photos).
 - [x] **Name the Designated Safeguarding Lead** in the Safety section (Alexander Burns, also named in About, the FAQs and on the agents page).
 - [ ] **Get Alexander's DSL training** (a designated safeguarding lead course, often called Level 3).
 - [ ] **Write the safeguarding, anti-bullying, online safety and code-of-conduct policies** and have them ready to send, since the site promises them on request.

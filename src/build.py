@@ -8,8 +8,8 @@ The body may use these shortcodes:
 
     {{icon:name}}                         inline SVG icon from ICON
     {{photo:slug|alt|variant|caption}}    photo for assets/img/photos/<slug>.jpg
-                                          (variant: "", "wide" or "tall"; "tall" is the
-                                          hero and loads first)
+                                          (variant: "", "wide", "portrait" (4:5) or "tall";
+                                          "tall" is the hero and loads first)
     {{trips}}                             the excursion cards from TRIPS
     {{founder}}                           Alexander's portrait (assets/img/photos/founder.jpg),
                                           or a monogram placeholder until that file exists
@@ -203,7 +203,7 @@ def photo(slug, alt, variant="", caption=""):
     )
 
 
-FOUNDER = ("founder", "Alexander Burns, founder of Sandbox English")
+FOUNDER = ("founder", "Alexander Burns in a costume of black bin bags and a tall blue paper hat, with face paint, at a bin bag fashion show")
 
 
 def founder():

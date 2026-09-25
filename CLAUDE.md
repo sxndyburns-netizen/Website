@@ -35,7 +35,7 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 - `{{photo:slug|alt|variant|caption}}` becomes a `<figure class="photo">` with `srcset` (the 1600px and `-800` files), `width`/`height`, and lazy loading (`tall` = the hero, loaded first).
 - `{{trips}}` becomes the excursion cards from `TRIPS`, used on the home and agents pages.
 - `{{icon:name}}` becomes an inline SVG from `ICON`.
-- `{{founder}}` becomes Alexander's portrait (`assets/img/photos/founder.jpg`, 4:5) with his name and roles, or a navy "AB" monogram until that file exists.
+- `{{founder}}` becomes Alexander's portrait (`assets/img/photos/founder.jpg`, 4:5) with his name and roles, or a navy "AB" monogram if that file is missing. The current portrait is temporary (a bin bag fashion show photo). When a professional headshot arrives, follow the README's "Temporary portrait" steps: the old photo moves to Summer life, captioned "Bin bag fashion show".
 - `{{company:key}}` becomes a value from `COMPANY` (`name`, `number`, `office`, `ico`).
 
 The build fails on unknown shortcodes, icons or company keys, missing photo files, or photos without a `credits.json` entry, and warns while company details are placeholders. Text is read and written as UTF-8, and attribute values are HTML-escaped.
@@ -65,7 +65,7 @@ Forms have `action="#"` and no backend. After validation, the element named by `
 
 The README's **Launch checklist** is the single list of what is left, in priority order:
 1. **Blocking before go-live:** connect the consultation and newsletter forms, the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, and domain and HTTPS (`main` is already the default branch).
-2. **Before promoting:** accreditation, founder photo, DSL training, written policies, a phone/WhatsApp number, booking and agent terms, insurance, Search Console.
+2. **Before promoting:** accreditation, founder headshot, DSL training, written policies, a phone/WhatsApp number, booking and agent terms, insurance, Search Console.
 3. **When venues and dates are confirmed:** name them, swap in venue photos, add dates, and update the rules in this file.
 4. **After the first summer:** real photos (with consent), testimonials, and removing "new school" wording.
 
