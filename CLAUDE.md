@@ -14,6 +14,8 @@ python3 -m http.server 8000   # preview at http://localhost:8000
 
 The generated HTML is committed and served as-is, so any static host works (GitHub Pages is the intended option). **Edit `src/`, never the root `*.html` files, then run the build and commit both.** A rebuild with no source changes should produce no git diff, which is a quick way to check the build is sound.
 
+**Never push to `main` without the user's explicit instruction for that change.** Commit and push to the working branch; `main` is what the live site publishes from.
+
 ## Business rules that shape every edit
 
 - **The site exists to book free consultations.** Never add prices, fees, calculators or "from £…" copy. Every call to action leads to `consultation.html`. Pre-fill links use `?type=parent|agent|group` and `?area=london|around-london`.
