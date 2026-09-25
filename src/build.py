@@ -21,13 +21,24 @@ SRC = pathlib.Path(__file__).parent / "pages"
 
 NAV = [
     ("index.html", "Home"),
-    ("programmes.html", "Programmes"),
-    ("campuses.html", "Campuses"),
+    ("programme.html", "Programme"),
+    ("locations.html", "Locations"),
     ("summer-life.html", "Summer life"),
-    ("about.html", "Our story"),
+    ("about.html", "About"),
+    ("agents.html", "Agents &amp; groups"),
 ]
 
-LOGO = """<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#14213d"/><path d="M8 34.5c5-2.2 10.5-2.2 16 0s11 2.2 16 0V40H8z" fill="#e6c98f"/><path d="M13 9h22a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H22l-6 5v-5h-3a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5z" fill="#f2603d"/><circle cx="17" cy="18.5" r="2.3" fill="#fff"/><circle cx="24" cy="18.5" r="2.3" fill="#fff"/><circle cx="31" cy="18.5" r="2.3" fill="#fff"/></svg>"""
+SITE_URL = "https://sandboxenglish.co.uk"
+EMAIL = "hello@sandboxenglish.co.uk"
+SOCIAL = [
+    ("instagram", "Instagram", "https://www.instagram.com/sandboxenglish"),
+    ("facebook", "Facebook", "https://www.facebook.com/sandboxenglish"),
+    ("youtube", "YouTube", "https://www.youtube.com/@sandboxenglish"),
+]
+
+# Brand mark: speech bubble with a wave and sun. Two colours (navy + coral) so it prints
+# cleanly on shirts and lanyards; one-colour versions live in assets/brand/.
+LOGO = """<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#14213d" d="M13 4h22a9 9 0 0 1 9 9v13a9 9 0 0 1-9 9H22l-9 8.5V35a9 9 0 0 1-9-9V13a9 9 0 0 1 9-9z"/><path fill="none" stroke="#f2603d" stroke-width="4.2" stroke-linecap="round" d="M11 24c4.3-3.6 8.7-3.6 13 0s8.7 3.6 13 0"/><circle cx="31.5" cy="13.5" r="3.6" fill="#f2603d"/></svg>"""
 
 ICON = {
     "arrow": '<path d="M5 12h14M13 6l6 6-6 6"/>',
@@ -67,7 +78,7 @@ ICON = {
 }
 
 CAMPUS = {
-    # Leighton Park: Victorian school house in private parkland with old oaks
+    # Parkland school: Victorian school house in private grounds with old oaks
     "park": """<svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice">
   <rect width="600" height="340" fill="#d6f0ec"/>
   <circle cx="500" cy="70" r="38" fill="#f7b733"/>
@@ -89,7 +100,7 @@ CAMPUS = {
   </g>
   <path d="M0 322c150-10 300-10 600 0v18H0z" fill="#e6c98f"/>
 </svg>""",
-    # Brunel: modern campus blocks with running track
+    # University: modern campus blocks with running track
     "uni": """<svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice">
   <rect width="600" height="340" fill="#e0eafa"/>
   <circle cx="90" cy="70" r="34" fill="#f7b733"/>
@@ -205,35 +216,11 @@ HERO_ART = """<svg viewBox="0 0 560 520">
         </g>
       </svg>"""
 
-PROGRAMME_ART = {
-    "programme-juniors": """<div style="background:#e0eafa;width:100%;height:100%"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
-            <circle cx="330" cy="60" r="36" fill="#f7b733"/>
-            <path d="M0 200c80-30 160-30 240-5s120 20 160 5v50H0z" fill="#2a9d8f"/>
-            <path d="M120 50l40 40-40 40-40-40z" fill="#f2603d"/>
-            <path d="M120 130c10 30-20 40-5 70" fill="none" stroke="#14213d" stroke-width="2.5"/>
-            <text x="250" y="170" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#14213d">8–12</text>
-          </svg></div>""",
-    "programme-teens": """<div style="background:#d6f0ec;width:100%;height:100%"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
-            <circle cx="70" cy="70" r="44" fill="#fff" opacity=".7"/>
-            <circle cx="120" cy="120" r="24" fill="#f7b733"/>
-            <rect x="40" y="160" width="120" height="40" rx="20" fill="#f2603d"/>
-            <path d="M0 225h400v25H0z" fill="#e6c98f"/>
-            <text x="200" y="170" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#14213d">13–15</text>
-          </svg></div>""",
-    "programme-leaders": """<div style="background:#fde3da;width:100%;height:100%"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
-            <path d="M40 90l60-26 60 26-60 26z" fill="#14213d"/>
-            <path d="M64 100v30c0 12 72 12 72 0v-30l-36 16z" fill="#1d2d52"/>
-            <path d="M160 90v40" stroke="#f7b733" stroke-width="4"/>
-            <circle cx="160" cy="134" r="6" fill="#f7b733"/>
-            <rect x="0" y="210" width="400" height="40" fill="#f2603d" opacity=".25"/>
-            <text x="200" y="170" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#14213d">16–17</text>
-          </svg></div>""",
-}
 
 PHOTO_FALLBACK = {
     "hero-students": "HERO_ART",
-    "leighton-park-grounds": "campus:park",
-    "brunel-campus": "campus:uni",
+    "location-parkland": "campus:park",
+    "location-modern-campus": "campus:uni",
 }
 
 
@@ -241,9 +228,6 @@ def photo(slug, alt, variant="", caption=""):
     fb = PHOTO_FALLBACK.get(slug)
     if fb == "HERO_ART":
         inner = HERO_ART
-        cls = " photo--art"
-    elif slug in PROGRAMME_ART:
-        inner = PROGRAMME_ART[slug]
         cls = " photo--art"
     elif fb and fb.startswith("campus:"):
         inner = CAMPUS[fb.split(":")[1]]
@@ -307,9 +291,9 @@ def header(current):
     return f"""<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Sandbox Languages home">
+    <a class="brand" href="index.html" aria-label="Sandbox English Summer School home">
       {LOGO}
-      <span class="brand-name">Sandbox<small>Languages</small></span>
+      <span class="brand-name">Sandbox<small>English Summer School</small></span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -327,39 +311,38 @@ FOOTER = f"""<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="brand" href="index.html" aria-label="Sandbox Languages home">
+        <a class="brand" href="index.html" aria-label="Sandbox English Summer School home">
           {LOGO}
-          <span class="brand-name">Sandbox<small>Languages</small></span>
+          <span class="brand-name">Sandbox<small>English Summer School</small></span>
         </a>
-        <p class="footer-note">A family-run English language summer school in the UK for young people aged 8–17, started by summer-school staff who wanted to make it more fun, more engaging and more affordable.</p>
+        <p class="footer-note">A residential English summer school for young people aged 8–17 in London and the Thames Valley. Launching summer 2028.</p>
+        <p class="footer-note"><a href="mailto:{EMAIL}">{EMAIL}</a><br>@sandboxenglish</p>
         <div class="socials">
-          <a href="#" aria-label="Sandbox Languages on Instagram">{icon("instagram")}</a>
-          <a href="#" aria-label="Sandbox Languages on Facebook">{icon("facebook")}</a>
-          <a href="#" aria-label="Sandbox Languages on YouTube">{icon("youtube")}</a>
+          {"".join(f'<a href="{url}" rel="noopener" aria-label="Sandbox English on {name}">{icon(ic)}</a>' for ic, name, url in SOCIAL)}
         </div>
       </div>
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="programmes.html">Programmes</a></li>
+          <li><a href="programme.html">The programme</a></li>
+          <li><a href="locations.html">Locations</a></li>
           <li><a href="summer-life.html">Summer life</a></li>
-          <li><a href="campuses.html">Campuses</a></li>
-          <li><a href="about.html">Our story</a></li>
+          <li><a href="about.html">About us</a></li>
           <li><a href="about.html#faq">FAQs</a></li>
         </ul>
       </div>
       <div>
-        <h4>Families</h4>
+        <h4>Work with us</h4>
         <ul>
           <li><a href="consultation.html">Book a free consultation</a></li>
-          <li><a href="campuses.html#compare">Choosing a campus</a></li>
-          <li><a href="about.html#safeguarding">Safeguarding</a></li>
-          <li><a href="consultation.html?type=group">Group leaders &amp; agents</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="agents.html#groups">Group leaders</a></li>
+          <li><a href="about.html#safeguarding">Safety &amp; welfare</a></li>
         </ul>
       </div>
       <div>
-        <h4>Summer 2027 news</h4>
-        <p>Be first to hear when summer 2027 places open, plus news from both campuses.</p>
+        <h4>Summer 2028</h4>
+        <p>Be the first to hear when places for our first summer open.</p>
         <form class="newsletter" novalidate>
           <label class="visually-hidden" for="newsletter-email">Email address</label>
           <input id="newsletter-email" type="email" placeholder="Your email" autocomplete="email" required>
@@ -369,7 +352,7 @@ FOOTER = f"""<footer class="site-footer">
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="mb-0">© <span data-year>2026</span> Sandbox Languages. All rights reserved.</p>
+      <p class="mb-0">© <span data-year>2026</span> Sandbox English, trading as Sandbox English Summer School.</p>
       <ul>
         <li><a href="#">Privacy policy</a></li>
         <li><a href="#">Terms &amp; conditions</a></li>
@@ -432,7 +415,10 @@ def page(filename, title, description, body):
   <title>{title}</title>
   <meta name="description" content="{description}">
   <meta name="theme-color" content="#14213d">
+  <link rel="canonical" href="{SITE_URL}/{'' if filename == 'index.html' else filename}">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="{SITE_URL}/{'' if filename == 'index.html' else filename}">
+  <meta property="og:site_name" content="Sandbox English Summer School">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -471,5 +457,5 @@ for src in sorted(SRC.glob("*.html")):
     (ROOT / src.name).write_text(out)
     print("wrote", src.name)
 
-(ROOT / "credits.html").write_text(page("credits.html", "Photo Credits | Sandbox Languages", "Credits and licences for photographs used on the Sandbox Languages website.", credits_page()))
+(ROOT / "credits.html").write_text(page("credits.html", "Photo Credits | Sandbox English Summer School", "Credits and licences for photographs used on the Sandbox English Summer School website.", credits_page()))
 print("wrote credits.html")

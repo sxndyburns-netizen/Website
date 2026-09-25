@@ -222,7 +222,7 @@ a:hover { color: var(--accent); }
   font-family: var(--font-body);
   font-size: 0.66rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--coral-600);
   margin-top: 4px;
@@ -265,13 +265,14 @@ a:hover { color: var(--accent); }
   font-weight: 500;
   font-size: 0.97rem;
   color: var(--navy-800);
+  white-space: nowrap;
   transition: background 0.2s, color 0.2s;
 }
 .site-nav a:hover { background: var(--sand-200); color: var(--navy-900); }
 .site-nav a[aria-current="page"] { background: var(--navy-900); color: #fff; }
 .site-nav .nav-cta { margin-left: 8px; }
 
-@media (max-width: 1020px) {
+@media (max-width: 1180px) {
   .nav-toggle { display: block; }
   .site-nav {
     position: fixed;
@@ -653,6 +654,20 @@ a:hover { color: var(--accent); }
   background: var(--sea-100);
   color: #1d7268;
 }
+
+/* Audience cards, group figures, founder card */
+.audience-card { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: inherit; }
+.audience-card:hover { color: inherit; }
+.audience-card .link-arrow { margin-top: auto; padding-top: 12px; }
+.audience-card:hover .link-arrow svg { transform: translateX(4px); }
+.group-figure { margin: 0; display: grid; gap: 14px; }
+.group-figure .photo { border-radius: var(--radius); }
+.group-figure figcaption { color: var(--text-muted); font-size: 0.97rem; }
+.group-figure figcaption strong { display: block; color: var(--text); font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 2px; }
+.founder-card { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.founder-card .role { color: var(--coral-600); font-weight: 600; margin: 0 0 8px; }
+.founder-card .btn { white-space: normal; text-align: center; justify-content: center; }
+.grid-3 > .photo { border-radius: var(--radius); }
 
 /* Comparison table */
 .compare td, .compare th { min-width: 180px; }

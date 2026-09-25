@@ -1,12 +1,12 @@
-title: Book a Free Consultation | Sandbox Languages Summer School
-description: Book a free, no-obligation consultation with the family behind Sandbox Languages. We'll recommend the right programme and campus and send you a tailored quote.
+title: Book a Free Consultation | Sandbox English Summer School
+description: Book a free, no-obligation consultation with Sandbox English Summer School. For parents, agents and group leaders planning summer 2028.
 ---
 <section class="page-hero">
   <div class="container">
     <p class="breadcrumb"><a href="index.html">Home</a> / Book a consultation</p>
     <p class="eyebrow">Free &amp; no obligation</p>
     <h1>Book your free consultation</h1>
-    <p class="lead">Every Sandbox summer starts with a friendly chat with our family. Tell us a little about your child and when suits you, and we'll be in touch within one working day to confirm a time.</p>
+    <p class="lead">Tell us a little about yourself and your students, and when suits you to talk. We will reply within one working day to confirm a time.</p>
   </div>
 </section>
 
@@ -15,11 +15,12 @@ description: Book a free, no-obligation consultation with the family behind Sand
     <div class="form-card reveal">
       <form id="consultation-form" data-validate data-success="consultation-success" action="#" method="post">
         <fieldset class="form-section">
-          <legend>How would you like to talk?</legend>
+          <legend>I am a…</legend>
           <div class="choice-group">
-            <label class="choice"><input type="radio" name="method" value="video" checked><span>{{icon:video}} Video call</span></label>
-            <label class="choice"><input type="radio" name="method" value="phone"><span>{{icon:phone}} Phone call</span></label>
-            <label class="choice"><input type="radio" name="method" value="whatsapp"><span>{{icon:chat}} WhatsApp</span></label>
+            <label class="choice"><input type="radio" name="enquirer" value="parent" checked><span>{{icon:heart}} Parent or guardian</span></label>
+            <label class="choice"><input type="radio" name="enquirer" value="agent"><span>{{icon:globe}} Agent</span></label>
+            <label class="choice"><input type="radio" name="enquirer" value="group"><span>{{icon:users}} Group leader</span></label>
+            <label class="choice"><input type="radio" name="enquirer" value="other"><span>Other</span></label>
           </div>
         </fieldset>
 
@@ -27,8 +28,8 @@ description: Book a free, no-obligation consultation with the family behind Sand
           <legend>Your details</legend>
           <div class="form-grid">
             <div class="field">
-              <label for="parent-name">Your name <span class="req" aria-hidden="true">*</span></label>
-              <input id="parent-name" name="name" type="text" autocomplete="name" required data-error="Please tell us your name.">
+              <label for="contact-name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" required data-error="Please tell us your name.">
               <p class="field-error" aria-live="polite"></p>
             </div>
             <div class="field">
@@ -42,9 +43,21 @@ description: Book a free, no-obligation consultation with the family behind Sand
               <p class="field-error" aria-live="polite"></p>
             </div>
             <div class="field">
-              <label for="country">Country of residence</label>
+              <label for="country">Country</label>
               <input id="country" name="country" type="text" autocomplete="country-name">
               <p class="field-error" aria-live="polite"></p>
+            </div>
+            <div class="field span-2">
+              <label for="organisation">Agency, school or organisation <span class="muted small">(if applicable)</span></label>
+              <input id="organisation" name="organisation" type="text" autocomplete="organization">
+            </div>
+            <div class="field span-2">
+              <span class="label" id="method-label">How would you like to talk?</span>
+              <div class="choice-group" role="radiogroup" aria-labelledby="method-label">
+                <label class="choice"><input type="radio" name="method" value="video" id="m-video" checked><span>{{icon:video}} Video call</span></label>
+                <label class="choice"><input type="radio" name="method" value="phone" id="m-phone"><span>{{icon:phone}} Phone call</span></label>
+                <label class="choice"><input type="radio" name="method" value="whatsapp" id="m-wa"><span>{{icon:chat}} WhatsApp</span></label>
+              </div>
             </div>
             <div class="field span-2">
               <span class="label" id="times-label">When suits you best? <span class="muted small">(your local time)</span></span>
@@ -59,28 +72,23 @@ description: Book a free, no-obligation consultation with the family behind Sand
         </fieldset>
 
         <fieldset class="form-section">
-          <legend>About the student</legend>
+          <legend>About the students</legend>
           <div class="form-grid">
             <div class="field">
-              <label for="student-age">Age this summer</label>
-              <input id="student-age" name="student-age" type="number" min="8" max="17" inputmode="numeric" data-error="Our programmes are for ages 8–17.">
+              <label for="students">Number of students</label>
+              <input id="students" name="students" type="number" min="1" inputmode="numeric" value="1" data-error="Please enter at least 1 student.">
               <p class="field-error" aria-live="polite"></p>
             </div>
             <div class="field">
-              <label for="programme">Programme of interest</label>
-              <select id="programme" name="programme">
-                <option value="">Not sure yet</option>
-                <option value="juniors">Junior Explorers (8–12)</option>
-                <option value="teens">Teen Discovery (13–15)</option>
-                <option value="leaders">Young Leaders (16–17)</option>
-              </select>
+              <label for="ages">Age or ages this summer</label>
+              <input id="ages" name="ages" type="text" placeholder="e.g. 12, or 13–15">
             </div>
             <div class="field">
-              <label for="campus">Campus preference</label>
-              <select id="campus" name="campus">
-                <option value="">Not sure yet</option>
-                <option value="leighton-park">Leighton Park School, Reading</option>
-                <option value="brunel">Brunel University of London, Uxbridge</option>
+              <label for="area">Preferred area</label>
+              <select id="area" name="area">
+                <option value="">No preference</option>
+                <option value="london">London</option>
+                <option value="thames-valley">Thames Valley</option>
               </select>
             </div>
             <div class="field">
@@ -92,16 +100,8 @@ description: Book a free, no-obligation consultation with the family behind Sand
             </div>
             <div class="field span-2">
               <label for="message">Anything you'd like us to know?</label>
-              <p class="hint" id="message-hint">For example: English level, interests, dietary needs, travel plans or questions for us.</p>
+              <p class="hint" id="message-hint">For example: English levels, interests, excursions you'd like, dietary needs or questions for us.</p>
               <textarea id="message" name="message" aria-describedby="message-hint"></textarea>
-            </div>
-            <div class="field span-2">
-              <label for="enquirer">I am a…</label>
-              <select id="enquirer" name="enquirer">
-                <option value="parent">Parent or guardian</option>
-                <option value="group">Group leader or agent</option>
-                <option value="other">Other</option>
-              </select>
             </div>
           </div>
         </fieldset>
@@ -109,11 +109,11 @@ description: Book a free, no-obligation consultation with the family behind Sand
         <div class="form-section">
           <label class="checkbox">
             <input type="checkbox" name="consent" id="consent" required>
-            <span>I agree to Sandbox Languages storing my details to arrange my consultation, as described in the <a href="#">privacy policy</a>. <span class="req" aria-hidden="true">*</span><span class="field-error" aria-live="polite" style="display:block"></span></span>
+            <span>I agree to Sandbox English storing my details to arrange my consultation, as described in the <a href="#">privacy policy</a>. <span class="req" aria-hidden="true">*</span><span class="field-error" aria-live="polite" style="display:block"></span></span>
           </label>
           <label class="checkbox" style="margin-top:14px">
             <input type="checkbox" name="newsletter" id="newsletter-optin">
-            <span>Send me occasional news from Sandbox (you can unsubscribe at any time).</span>
+            <span>Send me occasional news about summer 2028 (you can unsubscribe at any time).</span>
           </label>
           <div class="btn-row" style="margin-top:28px">
             <button class="btn btn--primary" type="submit">Request my consultation {{icon:arrow}}</button>
@@ -124,8 +124,8 @@ description: Book a free, no-obligation consultation with the family behind Sand
       <div id="consultation-success" class="form-success" hidden tabindex="-1" role="status">
         <span class="icon-tile icon-tile--sea">{{icon:check}}</span>
         <h2>Thank you!</h2>
-        <p class="lead">We've got your request. One of the family will email you within one working day to confirm a time for your consultation.</p>
-        <a class="btn btn--ghost" href="campuses.html">Explore our campuses</a>
+        <p class="lead">We've received your request and will email you within one working day to confirm a time for your consultation.</p>
+        <a class="btn btn--ghost" href="programme.html">Explore the programme</a>
       </div>
     </div>
 
@@ -134,14 +134,14 @@ description: Book a free, no-obligation consultation with the family behind Sand
         <h3>What to expect</h3>
         <ol class="steps">
           <li><strong>We confirm a time</strong><span>We'll email within one working day to arrange a slot that suits you.</span></li>
-          <li><strong>A friendly 20–30 minute chat</strong><span>We get to know your child and answer all your questions about programmes, campuses and care.</span></li>
-          <li><strong>Your tailored quote</strong><span>We send a written recommendation and quote. There's no obligation and no pressure.</span></li>
+          <li><strong>A friendly conversation</strong><span>We'll talk through your students, their interests and the excursions you would like.</span></li>
+          <li><strong>Your tailored proposal</strong><span>We'll send a written proposal and quote, with no obligation and no pressure.</span></li>
         </ol>
-        <h3 style="margin-top:32px">Prefer to contact us directly?</h3>
+        <h3 style="margin-top:32px">Prefer to get in touch directly?</h3>
         <ul class="contact-list">
-          <li><span class="icon-tile">{{icon:mail}}</span><div><strong>Email</strong><a href="mailto:hello@sandboxlanguages.co.uk">hello@sandboxlanguages.co.uk</a></div></li>
-          <li><span class="icon-tile icon-tile--sea">{{icon:phone}}</span><div><strong>Phone &amp; WhatsApp</strong><a href="tel:+441234567890">+44 (0)1234 567890</a></div></li>
-          <li><span class="icon-tile icon-tile--sun">{{icon:clock}}</span><div><strong>Office hours</strong><span>Mon–Fri, 9:00–17:30 (UK time)<br>24/7 emergency line during courses</span></div></li>
+          <li><span class="icon-tile">{{icon:mail}}</span><div><strong>Email</strong><a href="mailto:hello@sandboxenglish.co.uk">hello@sandboxenglish.co.uk</a></div></li>
+          <li><span class="icon-tile icon-tile--sea">{{icon:instagram}}</span><div><strong>Social media</strong><span>@sandboxenglish on Instagram, Facebook and YouTube</span></div></li>
+          <li><span class="icon-tile icon-tile--sun">{{icon:phone}}</span><div><strong>During the course</strong><span>24/7 emergency line for parents, agents and group leaders</span></div></li>
         </ul>
       </div>
     </aside>

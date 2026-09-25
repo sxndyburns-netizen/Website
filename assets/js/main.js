@@ -1,4 +1,4 @@
-/* Sandbox Languages — site behaviour (no dependencies) */
+/* Sandbox English Summer School — site behaviour (no dependencies) */
 (function () {
   "use strict";
 
@@ -35,7 +35,7 @@
         toggle.focus();
       }
     });
-    window.matchMedia("(min-width: 1021px)").addEventListener("change", function (mq) {
+    window.matchMedia("(min-width: 1181px)").addEventListener("change", function (mq) {
       if (mq.matches) setOpen(false);
     });
   }
@@ -87,7 +87,7 @@
         if (next) { e.preventDefault(); select(next, true); }
       });
     });
-    // Deep-link support, e.g. programmes.html#teens
+    // Deep-link support: a tab with data-hash="x" opens from page.html#x
     var hash = location.hash.replace("#", "");
     if (hash) {
       tabList.forEach(function (t) {
@@ -179,22 +179,23 @@
         input.focus();
         return;
       }
-      msg.textContent = "Thanks! We'll be in touch when 2027 bookings open.";
+      msg.textContent = "Thanks! We'll be in touch when summer 2028 places open.";
       form.reset();
     });
   });
 
-  /* ---------- Pre-fill the consultation form from links, e.g. ?programme=teens&campus=brunel ---------- */
+  /* ---------- Pre-fill the consultation form from links, e.g. ?type=agent&area=london ---------- */
   var params = new URLSearchParams(location.search);
-  var prefill = function (id, value) {
-    var select = document.getElementById(id);
-    if (!select || !value) return;
-    Array.prototype.forEach.call(select.options, function (opt) {
-      if (opt.value === value) select.value = value;
-    });
-  };
-  prefill("programme", params.get("programme"));
-  prefill("campus", params.get("campus"));
   var type = params.get("type");
-  if (type) prefill("enquirer", type === "group" ? "group" : "other");
+  if (type) {
+    var radio = document.querySelector('input[name="enquirer"][value="' + (/^(parent|agent|group)$/.test(type) ? type : "other") + '"]');
+    if (radio) radio.checked = true;
+  }
+  var area = document.getElementById("area");
+  var areaParam = params.get("area");
+  if (area && areaParam) {
+    Array.prototype.forEach.call(area.options, function (opt) {
+      if (opt.value === areaParam) area.value = areaParam;
+    });
+  }
 })();

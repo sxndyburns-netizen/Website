@@ -1,46 +1,4 @@
 {
-  "hero-students": {
-    "description": "Children walking hand in hand, seen from behind",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/4894722/"
-  },
-  "programme-juniors": {
-    "description": "Children running across a park with balloons",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/6299265/"
-  },
-  "programme-teens": {
-    "description": "Students with backpacks walking along a school corridor",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/8456146/"
-  },
-  "programme-leaders": {
-    "description": "Older students raising their hands in a seminar",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/8199135/"
-  },
-  "lessons": {
-    "description": "Students seated at desks in a classroom",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/7395893/"
-  },
-  "activities-sport": {
-    "description": "A football on a floodlit pitch",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/10923066/"
-  },
   "activities-arts": {
     "description": "A student painting with a brush",
     "artist": "Pexels contributor",
@@ -62,61 +20,131 @@
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/25308588/"
   },
-  "leighton-park-food-1": {
+  "activities-sport": {
+    "description": "A football on a floodlit pitch",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/10923066/"
+  },
+  "food-1": {
     "description": "Roast chicken with vegetables",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/6210933/"
   },
-  "leighton-park-food-2": {
+  "food-2": {
     "description": "Fresh salad at a buffet counter",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/2291344/"
   },
-  "leighton-park-food-3": {
+  "food-3": {
     "description": "A selection of desserts",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/1448721/"
   },
-  "leighton-park-food-4": {
+  "food-4": {
     "description": "A dining hall with tables set out",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/17154532/"
   },
-  "leighton-park-food-5": {
+  "food-5": {
     "description": "Croissants and strawberries for breakfast",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/11009273/"
   },
-  "leighton-park-food-6": {
+  "food-6": {
     "description": "Fresh oranges and melons",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/12708049/"
   },
-  "trip-london": {
-    "description": "Westminster Bridge and the Houses of Parliament",
+  "hero-students": {
+    "description": "Children walking hand in hand, seen from behind",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/19955275/"
+    "source": "https://www.pexels.com/photo/4894722/"
   },
-  "trip-oxford": {
-    "description": "The Radcliffe Camera, Oxford",
+  "lessons": {
+    "description": "Students seated at desks in a classroom",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/18283322/"
+    "source": "https://www.pexels.com/photo/7395893/"
+  },
+  "location-arts-centre": {
+    "description": "A modern music and arts centre on a school campus",
+    "artist": "Joggs64",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Michael_Malnick_Centre_for_music_and_media.jpg"
+  },
+  "location-campus-buildings": {
+    "description": "Modern buildings and green space on a university campus in west London",
+    "artist": "DiscoA340",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_03.jpg"
+  },
+  "location-campus-walkway": {
+    "description": "A tree-lined walkway on a university campus in west London",
+    "artist": "DiscoA340",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_08.jpg"
+  },
+  "location-modern-campus": {
+    "description": "A curved glass building on a university campus in west London",
+    "artist": "DiscoA340",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_02.jpg"
+  },
+  "location-parkland": {
+    "description": "A historic school building across open parkland in the Thames Valley",
+    "artist": "Joggs64",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Old_School_at_Leighton_Park.jpg"
+  },
+  "location-parkland-hall": {
+    "description": "A school hall framed by autumn trees in parkland",
+    "artist": "Joggs64",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:View_of_Peckover_Hall_in_Autumn.jpg"
+  },
+  "students-corridor": {
+    "description": "Students with backpacks walking along a school corridor",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/8456146/"
+  },
+  "students-park": {
+    "description": "Children running across a park with balloons",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/6299265/"
+  },
+  "students-seminar": {
+    "description": "Older students raising their hands in a seminar",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/8199135/"
   },
   "trip-cambridge": {
     "description": "A historic college in Cambridge",
@@ -125,68 +153,32 @@
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/31771446/"
   },
-  "leighton-park-grounds": {
-    "description": "The Old School building across parkland at Leighton Park School",
-    "artist": "Joggs64",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Old_School_at_Leighton_Park.jpg",
-    "title": "File:Old School at Leighton Park.jpg"
-  },
-  "leighton-park-oaks": {
-    "description": "Peckover Hall at Leighton Park framed by autumn trees",
-    "artist": "Joggs64",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:View_of_Peckover_Hall_in_Autumn.jpg",
-    "title": "File:View of Peckover Hall in Autumn.jpg"
-  },
-  "leighton-park-music": {
-    "description": "The Michael Malnick Centre for music and media at Leighton Park",
-    "artist": "Joggs64",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:The_Michael_Malnick_Centre_for_music_and_media.jpg",
-    "title": "File:The Michael Malnick Centre for music and media.jpg"
-  },
-  "brunel-campus": {
-    "description": "A curved glass building on the Brunel University of London campus",
-    "artist": "DiscoA340",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_02.jpg",
-    "title": "File:Brunel University London Campus (August 2023) 02.jpg"
-  },
-  "brunel-grounds": {
-    "description": "A tree-lined walkway on the Brunel campus",
-    "artist": "DiscoA340",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_08.jpg",
-    "title": "File:Brunel University London Campus (August 2023) 08.jpg"
-  },
-  "brunel-buildings": {
-    "description": "Modern buildings and green space on the Brunel campus",
-    "artist": "DiscoA340",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_03.jpg",
-    "title": "File:Brunel University London Campus (August 2023) 03.jpg"
-  },
   "trip-harry-potter": {
     "description": "The Great Hall set at the Warner Bros. Studio Tour London",
     "artist": "Ank Kumar",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Hogwart%E2%80%98s_Great_Hall,_Warner_Bros_Harry_Potter_Studio,_London_08.jpg",
-    "title": "File:Hogwart‘s Great Hall, Warner Bros Harry Potter Studio, London 08.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Hogwart%E2%80%98s_Great_Hall,_Warner_Bros_Harry_Potter_Studio,_London_08.jpg"
+  },
+  "trip-london": {
+    "description": "Westminster Bridge and the Houses of Parliament",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/19955275/"
   },
   "trip-madame-tussauds": {
     "description": "The exterior of Madame Tussauds London",
     "artist": "Jordiferrer",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:2017_Madame_Tussauds_London_01.jpg",
-    "title": "File:2017 Madame Tussauds London 01.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:2017_Madame_Tussauds_London_01.jpg"
+  },
+  "trip-oxford": {
+    "description": "The Radcliffe Camera, Oxford",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/18283322/"
   }
 }
