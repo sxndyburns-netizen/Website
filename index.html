@@ -457,7 +457,10 @@
       <div>
         <h2 class="footer-title">Summer 2028</h2>
         <p>Be the first to hear when places for our first summer open.</p>
-        <form class="newsletter" action="#" method="post" novalidate>
+        <form class="newsletter" action="https://formspree.io/f/moevnyyl" method="post">
+          <input type="hidden" name="form" value="Newsletter sign-up">
+          <input type="hidden" name="_subject" value="Newsletter sign-up">
+          <div class="hp-field" aria-hidden="true"><label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
           <label class="visually-hidden" for="newsletter-email">Email address</label>
           <input id="newsletter-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
           <button class="btn btn--primary btn--sm" type="submit">Sign up</button>

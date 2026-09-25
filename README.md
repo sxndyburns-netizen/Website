@@ -152,15 +152,15 @@ Work through these in order. Tick items off by editing this file, so the next se
 
 These are blocking. Launching without them would lose enquiries or break UK law.
 
-- [ ] **Connect the consultation form** to a form service (e.g. Formspree or Netlify Forms). Until then, every enquiry is silently lost. See [Wiring up the forms](#wiring-up-the-forms).
-- [ ] **Connect the newsletter sign-up** to an email provider (e.g. Mailchimp, Brevo or Buttondown), or remove the form from the footer in `src/build.py`.
+- [x] **Connect the consultation form** to a form service. Done with Formspree. See [Forms](#forms-formspree).
+- [ ] **Move newsletter sign-ups to an email provider** (e.g. Buttondown or Brevo) before sending any newsletter. For now they arrive through Formspree as "Newsletter sign-up" emails.
 - [ ] **Send a test submission** of both forms from a phone and a computer, and check they arrive.
 - [ ] **Set up the mailbox** `hello@sandboxenglish.co.uk` and check it receives mail.
 - [ ] **Fill in the company details** in `COMPANY` at the top of `src/build.py`: registered company name, company number, registered office address and ICO registration number. They currently show as `[placeholders]` in the footer, the privacy policy and the terms, and the build warns until they're all replaced. If the business won't be a limited company, reword the footer in `footer()` and the "Who we are" and "About us" sections of the privacy policy and terms.
-- [ ] **Name the form and email providers in the privacy policy** ("Who we share it with"), with where they store data.
+- [ ] **Name the email provider in the privacy policy** ("Who we share it with") once the mailbox is set up. Formspree and GitHub Pages are already named. Check Formspree's data processing terms match the transfer safeguard the policy describes.
 - [ ] **Have the legal pages reviewed** by a solicitor or a reputable template service. `privacy.html`, `terms.html` and `cookies.html` are careful first drafts, not legal advice.
 - [ ] **Register with the ICO and pay the data protection fee**, unless exempt. Most organisations that handle personal data must do this. Check at [ico.org.uk/fee](https://ico.org.uk/for-organisations/data-protection-fee/).
-- [ ] **Check the cookie policy is still true** once the forms are connected. If a provider sets cookies or loads scripts, update `cookies.html` and add a consent banner for anything non-essential.
+- [x] **Check the cookie policy is still true** once the forms are connected. The background (JavaScript) submission sets no cookies. Without JavaScript, visitors see Formspree's own confirmation page. `cookies.html` explains both.
 - [ ] **Create the social accounts** @sandboxenglish on Instagram, Facebook and YouTube (the footer links to them), or remove any you won't use from `SOCIAL` in `src/build.py`.
 - [ ] **Point the domain at the site.** See [Going live](#going-live-on-sandboxenglishcouk). Then check `https://sandboxenglish.co.uk` loads with the padlock (HTTPS).
 - [x] **Make `main` the default branch** on GitHub (Settings → General). GitHub Pages should publish from `main`.
@@ -205,15 +205,19 @@ This is advice to check with an immigration adviser (OISC-registered or a solici
 - **Other accepted bodies.** The rules also accept some other inspection bodies (for example ISI or BAC). Ask the adviser which one suits a residential summer school for under-18s.
 - **On the website.** Never claim or imply accreditation until it's granted. The visa FAQ on the home page doesn't mention accreditation. Update it once you have it.
 
-## Wiring up the forms
+## Forms (Formspree)
 
-Both forms work front-end only right now. They validate input, then show a success message without sending anything. To make them live:
+Both forms send to one Formspree form, set once as `FORM_ENDPOINT` at the top of `src/build.py` (currently `https://formspree.io/f/moevnyyl`). Formspree emails each submission to the address on the Formspree account and keeps a copy in its dashboard.
 
-1. **Consultation form** (`src/pages/consultation.html`, `#consultation-form`): set `action` to the form service's endpoint (e.g. `https://formspree.io/f/xxxx`). Once `action` is not `#`, the form submits normally after validation. Most services then show their own thank-you page, or redirect back to a page you choose.
-2. **Newsletter** (footer, in `src/build.py`): set the form's `action` to your email provider's sign-up URL, and rename the input's `name` if the provider needs a different field name. It then submits normally.
-3. Run `python3 src/build.py`, commit, and send a test from each form.
+- **Consultation form** (`src/pages/consultation.html`): after validation, `assets/js/main.js` sends the answers in the background as JSON, then shows the on-page thank-you message. Values arrive readable (e.g. "Agent", "WhatsApp", "In London"). Fields hidden for the chosen enquirer type and empty fields are left out. The email subject is "Consultation request: <type> – <name>", and replying goes straight to the enquirer's email address.
+- **Newsletter sign-up** (footer, in `src/build.py`): sends the email address to the same Formspree form with the subject "Newsletter sign-up". Add these people to a mailing list by hand until a newsletter service is chosen.
+- **Spam:** both forms have a hidden `_gotcha` field. Formspree ignores any submission that fills it in.
+- **If sending fails,** the consultation form shows an error and suggests emailing instead, and the newsletter says to try again. Nothing pretends to have worked.
+- **Without JavaScript,** the forms post normally and Formspree shows its own thank-you page.
+- **The claude.ai preview can't send forms** (it blocks other sites), so test on the GitHub Pages site.
+- **If a test shows an error,** check the form's settings on formspree.io: reCAPTCHA must be off for background (AJAX) submissions, and the free plan allows 50 submissions a month.
 
-Don't embed a provider's script or iframe without updating `cookies.html`. The site currently makes no third-party requests, and the cookie policy says so.
+To change provider, update `FORM_ENDPOINT`, the privacy policy ("Who we share it with") and, if the provider sets cookies or loads scripts, `cookies.html`. Apart from form submissions, the site makes no third-party requests, and the cookie policy says so.
 
 ## Going live on sandboxenglish.co.uk
 

@@ -14,6 +14,7 @@ The body may use these shortcodes:
     {{founder}}                           Alexander's portrait (assets/img/photos/founder.jpg),
                                           or a monogram placeholder until that file exists
     {{company:key}}                       a company detail from COMPANY (name, number, office, ico)
+    {{form_endpoint}}                     FORM_ENDPOINT, the Formspree URL forms submit to
 
 It also writes credits.html (from assets/img/photos/credits.json), sitemap.xml and
 robots.txt. The generated files in the repo root are committed; never edit them directly.
@@ -35,6 +36,9 @@ PHOTOS = ROOT / "assets/img/photos"
 SITE_NAME = "Sandbox English Summer School"
 SITE_URL = "https://sandboxenglish.co.uk"
 EMAIL = "hello@sandboxenglish.co.uk"
+# Formspree form that receives both the consultation form and the newsletter sign-up.
+# Submissions are emailed to the Formspree account's address. See README "Forms".
+FORM_ENDPOINT = "https://formspree.io/f/moevnyyl"
 SOCIAL = [
     ("instagram", "Instagram", "https://www.instagram.com/sandboxenglish"),
     ("facebook", "Facebook", "https://www.facebook.com/sandboxenglish"),
@@ -339,7 +343,10 @@ def footer():
       <div>
         <h2 class="footer-title">Summer 2028</h2>
         <p>Be the first to hear when places for our first summer open.</p>
-        <form class="newsletter" action="#" method="post" novalidate>
+        <form class="newsletter" action="{FORM_ENDPOINT}" method="post">
+          <input type="hidden" name="form" value="Newsletter sign-up">
+          <input type="hidden" name="_subject" value="Newsletter sign-up">
+          <div class="hp-field" aria-hidden="true"><label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
           <label class="visually-hidden" for="newsletter-email">Email address</label>
           <input id="newsletter-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
           <button class="btn btn--primary btn--sm" type="submit">Sign up</button>
@@ -436,6 +443,7 @@ def company(key):
 def render(text, source):
     text = text.replace("{{trips}}", trips())
     text = text.replace("{{founder}}", founder())
+    text = text.replace("{{form_endpoint}}", FORM_ENDPOINT)
     text = re.sub(r"\{\{company:(\w+)\}\}", lambda m: company(m.group(1)), text)
     text = re.sub(r"\{\{photo:([^}]*)\}\}", lambda m: photo(*m.group(1).split("|")), text)
     text = re.sub(r"\{\{icon:(\w+)\}\}", lambda m: icon(m.group(1)), text)
@@ -505,6 +513,8 @@ def credits_page(credits):
 # Build
 # ---------------------------------------------------------------------------
 def main():
+    if not FORM_ENDPOINT.startswith("https://"):
+        fail("FORM_ENDPOINT must be the form provider's https:// URL, or enquiries would be lost")
     pages = []
     for source in sorted(SRC.glob("*.html")):
         meta, body = parse(source)

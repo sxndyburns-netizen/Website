@@ -112,6 +112,54 @@
     return !msg;
   };
 
+  /* ---------- Sending forms to Formspree ----------
+     Forms post to their action URL (the Formspree endpoint set in src/build.py).
+     With JavaScript we send JSON in the background and stay on the page; without it,
+     the browser posts the form normally and Formspree shows its own thank-you page. */
+  var hasEndpoint = function (form) {
+    var action = form.getAttribute("action");
+    return !!action && action !== "#";
+  };
+
+  // Human-readable value for a field: the option or label text, not the internal value.
+  var readable = function (input) {
+    if (input.type === "radio" || input.type === "checkbox") {
+      if (input.dataset.value) return input.dataset.value;
+      var label = input.closest("label");
+      return label ? label.textContent.replace(/\s+/g, " ").trim() : input.value;
+    }
+    if (input.tagName === "SELECT") {
+      var opt = input.options[input.selectedIndex];
+      return opt && opt.value !== "" ? opt.text : "";
+    }
+    return input.value.trim();
+  };
+
+  var collect = function (form) {
+    var data = {};
+    Array.prototype.forEach.call(form.elements, function (input) {
+      if (!input.name || input.disabled || input.type === "submit" || input.type === "button") return;
+      if ((input.type === "radio" || input.type === "checkbox") && !input.checked) return;
+      var value = input.type === "hidden" || input.name === "_gotcha" ? input.value : readable(input);
+      if (value === "" && input.name !== "_gotcha") return;
+      data[input.name] = data[input.name] ? data[input.name] + ", " + value : value;
+    });
+    if (data.email) data._replyto = data.email;
+    return data;
+  };
+
+  var send = function (form, data) {
+    return fetch(form.getAttribute("action"), {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+      credentials: "omit"
+    }).then(function (res) {
+      if (!res.ok) throw new Error("Formspree returned " + res.status);
+      return res;
+    });
+  };
+
   document.querySelectorAll("form[data-validate]").forEach(function (form) {
     form.setAttribute("novalidate", "");
     var inputs = form.querySelectorAll("input, select, textarea");
@@ -139,16 +187,38 @@
         firstInvalid.focus();
         return;
       }
-      // No backend is wired up yet: with no real action, show the success state instead.
-      if (!form.getAttribute("action") || form.getAttribute("action") === "#") {
-        e.preventDefault();
-        var success = document.getElementById(form.dataset.success);
-        if (success) {
-          form.hidden = true;
-          success.hidden = false;
-          success.focus();
-        }
+      e.preventDefault();
+      var success = document.getElementById(form.dataset.success);
+      var status = document.getElementById(form.dataset.status);
+      var button = form.querySelector("[type='submit']");
+      var showSuccess = function () {
+        if (!success) return;
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+      };
+      // No endpoint set (e.g. a local copy): show the success state without sending.
+      if (!hasEndpoint(form) || !window.fetch) {
+        if (hasEndpoint(form)) { form.submit(); return; }
+        showSuccess();
+        return;
       }
+      var data = collect(form);
+      if (data.enquirer) data._subject = "Consultation request: " + data.enquirer + (data.name ? " – " + data.name : "");
+      if (status) status.hidden = true;
+      button.disabled = true;
+      form.setAttribute("aria-busy", "true");
+      send(form, data).then(showSuccess).catch(function () {
+        form.removeAttribute("aria-busy");
+        if (status) {
+          status.innerHTML = 'Sorry, your request couldn\'t be sent. Please check your connection and try again. If it still doesn\'t work, email us at <a href="mailto:hello@sandboxenglish.co.uk">hello@sandboxenglish.co.uk</a>.';
+          status.hidden = false;
+          status.focus();
+        }
+      }).then(function () {
+        button.disabled = false;
+        form.removeAttribute("aria-busy");
+      });
     });
   });
 
@@ -200,6 +270,7 @@
 
   /* ---------- Newsletter ---------- */
   document.querySelectorAll(".newsletter").forEach(function (form) {
+    form.setAttribute("novalidate", ""); // validated below; without JS the browser checks the email itself
     form.addEventListener("submit", function (e) {
       var input = form.querySelector("input[type='email']");
       var msg = form.parentElement.querySelector(".newsletter-msg");
@@ -209,11 +280,22 @@
         input.focus();
         return;
       }
-      // With a real action set, let the browser submit to the email provider.
-      if (form.getAttribute("action") && form.getAttribute("action") !== "#") return;
       e.preventDefault();
-      msg.textContent = "Thanks! We'll be in touch when summer 2028 places open.";
-      form.reset();
+      var thanks = function () {
+        msg.textContent = "Thanks! We'll be in touch when summer 2028 places open.";
+        form.reset();
+      };
+      if (!hasEndpoint(form) || !window.fetch) {
+        if (hasEndpoint(form)) { form.submit(); return; }
+        thanks();
+        return;
+      }
+      var button = form.querySelector("[type='submit']");
+      button.disabled = true;
+      msg.textContent = "Signing you up…";
+      send(form, collect(form)).then(thanks).catch(function () {
+        msg.textContent = "Sorry, that didn't work. Please try again in a moment.";
+      }).then(function () { button.disabled = false; });
     });
   });
 })();

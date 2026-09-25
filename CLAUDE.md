@@ -52,7 +52,7 @@ The build fails on unknown shortcodes, icons or company keys, missing photo file
 - **Blocked:** the Unsplash site (bot challenge) and some venue websites.
 
 **CSS (`assets/css/styles.css`):**
-- It starts with the self-hosted `@font-face` rules (`assets/fonts/`, Fraunces and DM Sans woff2). Don't add Google Fonts or any other third-party request: the cookie policy promises there are none.
+- It starts with the self-hosted `@font-face` rules (`assets/fonts/`, Fraunces and DM Sans woff2). Don't add Google Fonts or any other third-party request: the cookie policy promises there are none apart from form submissions to Formspree.
 - Design tokens (palette, fonts, radii, spacing) live on `:root`.
 - Sections are `.section`, with `--alt` for a sand background, `--navy` for dark and `--tight-top` to remove top padding. There are also layout helpers (`.split`, `.split--top`, `.grid-2/3/4/tiles`, `.photo-grid`, `.mt-sm`/`.mt-md`/`.mt-lg`), cards, `.faq` (`<details>`), `.prose` (legal pages) and `.form-layout`.
 - The site is light-only. Below 1240px the nav collapses into a menu button, but only when JavaScript runs. Layouts must not scroll horizontally at 390px width.
@@ -63,12 +63,12 @@ The build fails on unknown shortcodes, icons or company keys, missing photo file
 - validation for `form[data-validate]`. Each field's error element is found through its `aria-describedby`, and hidden or disabled fields are skipped
 - consultation-form logic: `data-show-for="agent group"` fields appear for the chosen enquirer type, the phone number becomes required for phone or WhatsApp, and `?type=` / `?area=` pre-fill the form
 
-Forms have `action="#"` and no backend. After validation, the element named by `data-success` is shown instead. Set a real `action` (Formspree, Netlify Forms or similar) and the form submits normally. The newsletter form works the same way.
+Both forms post to Formspree (`FORM_ENDPOINT` in `src/build.py`, `{{form_endpoint}}` in page sources). With JavaScript, `main.js` sends readable JSON in the background (skipping empty and hidden-for-this-enquirer fields), then shows the element named by `data-success`. On failure it shows the element named by `data-status` (or the newsletter message) instead. Each form has a hidden `_gotcha` spam trap and hidden `form`/`_subject` fields. Newsletter sign-ups go to the same Formspree form for now. See the README's "Forms" section.
 
 ## Launch checklist
 
 The README's **Launch checklist** is the single list of what is left, in priority order:
-1. **Blocking before go-live:** connect the consultation and newsletter forms, the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, and domain and HTTPS (`main` is already the default branch).
+1. **Blocking before go-live:** test the forms (connected to Formspree), the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, and domain and HTTPS (`main` is already the default branch).
 2. **Before promoting:** accreditation, founder headshot, DSL training, written policies, a phone/WhatsApp number, booking and agent terms, insurance, Search Console.
 3. **When venues and dates are confirmed:** name them, swap in venue photos, add dates, and update the rules in this file.
 4. **After the first summer:** real photos (with consent), testimonials, and removing "new school" wording.

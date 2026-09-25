@@ -69,7 +69,8 @@
     <h2>How this website works without them</h2>
     <ul>
       <li>We do not use analytics, advertising or social media tracking.</li>
-      <li>Our fonts, images and scripts are hosted on our own website, so no third party is contacted when you visit.</li>
+      <li>Our fonts, images and scripts are served from this website's own address, so no other website is contacted while you browse.</li>
+      <li>When you send our consultation form or sign up for news, your answers go to our form provider, Formspree, only when you press send. We send them in the background without cookies. If JavaScript is turned off in your browser, you'll see Formspree's own confirmation page instead, which is covered by <a href="https://formspree.io/legal/privacy-policy/" rel="noopener">Formspree's privacy policy</a>. See also our <a href="privacy.html">privacy policy</a>.</li>
       <li>We do not store anything else on your device, such as local storage.</li>
     </ul>
     <p>Because we don't set cookies, we don't need to ask for your consent, and you won't see a cookie banner.</p>
@@ -125,7 +126,10 @@
       <div>
         <h2 class="footer-title">Summer 2028</h2>
         <p>Be the first to hear when places for our first summer open.</p>
-        <form class="newsletter" action="#" method="post" novalidate>
+        <form class="newsletter" action="https://formspree.io/f/moevnyyl" method="post">
+          <input type="hidden" name="form" value="Newsletter sign-up">
+          <input type="hidden" name="_subject" value="Newsletter sign-up">
+          <div class="hp-field" aria-hidden="true"><label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
           <label class="visually-hidden" for="newsletter-email">Email address</label>
           <input id="newsletter-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
           <button class="btn btn--primary btn--sm" type="submit">Sign up</button>

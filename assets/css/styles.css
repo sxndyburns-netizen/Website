@@ -861,6 +861,18 @@ input:focus, select:focus, textarea:focus {
 .field.has-error textarea { border-color: #c2412d; background: #fff7f5; }
 .field-error { color: #b0341f; font-size: 0.86rem; font-weight: 500; min-height: 0; }
 .field-error:empty { display: none; }
+/* Form sending: spam trap (Formspree ignores submissions that fill it) and send errors */
+.hp-field { display: none; }
+.form-status {
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: #fdecea;
+  border: 1px solid #f3b8ad;
+  color: #8f2a18;
+  font-weight: 500;
+}
+form[aria-busy="true"] [type="submit"] { opacity: 0.7; cursor: progress; }
 
 .choice-group { display: flex; flex-wrap: wrap; gap: 10px; }
 .choice {
