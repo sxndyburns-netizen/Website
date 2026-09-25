@@ -40,6 +40,8 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 - `{{founder}}` becomes Alexander's portrait (`assets/img/photos/founder.jpg`, 4:5) with his name and roles, or a navy "AB" monogram if that file is missing. The current portrait is temporary (a bin bag fashion show photo). When a professional headshot arrives, follow the README's "Temporary portrait" steps: the old photo moves to Summer life, captioned "Bin bag fashion show".
 - `{{company:key}}` becomes a value from `COMPANY` (`name`, `number`, `office`, `ico`).
 
+Link to the home page as `./` (and its sections as `./#faq`), never `index.html`, so the home page has one address. Browsers, Safari in particular, remember tab icons per address.
+
 The build fails on unknown shortcodes, icons or company keys, missing photo files, or photos without a `credits.json` entry, and warns while company details are placeholders. Text is read and written as UTF-8, and attribute values are HTML-escaped.
 
 **Photos** live in `assets/img/photos/<slug>.jpg` (pre-cropped: 16:10 wide, 4:5 tall hero, 4:3 default, about 1600px wide) with `<slug>-800.jpg` made by `src/images.py`. Every photo needs a `credits.json` entry (description, artist, licence, licence URL, source), and the README's photo table lists them. For images used with permission (e.g. Alexander's photo), leave `license_url` and `source` empty and the credits page shows "—". Write alt text that describes what the photo actually shows.

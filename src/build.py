@@ -56,12 +56,12 @@ def is_placeholder(value):
 
 
 NAV = [
-    ("index.html#programme", "Programme"),
-    ("index.html#about", "About us"),
-    ("index.html#safety", "Safety"),
-    ("index.html#summer-life", "Summer life"),
-    ("index.html#locations", "Locations"),
-    ("index.html#faq", "FAQs"),
+    ("./#programme", "Programme"),
+    ("./#about", "About us"),
+    ("./#safety", "Safety"),
+    ("./#summer-life", "Summer life"),
+    ("./#locations", "Locations"),
+    ("./#faq", "FAQs"),
     ("agents.html", "Agents &amp; groups"),
 ]
 
@@ -287,7 +287,7 @@ def header(current):
     return f"""<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="{SITE_NAME} home">
+    <a class="brand" href="./" aria-label="{SITE_NAME} home">
       {brand()}
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
@@ -308,7 +308,7 @@ def footer():
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="brand" href="index.html" aria-label="{SITE_NAME} home">
+        <a class="brand" href="./" aria-label="{SITE_NAME} home">
           {brand(on_navy=True)}
         </a>
         <p class="footer-note">A residential English summer school for young people aged 8–17, in London or the area around it: you choose. Launching summer 2028.</p>
@@ -320,11 +320,11 @@ def footer():
       <div>
         <h2 class="footer-title">Explore</h2>
         <ul>
-          <li><a href="index.html#programme">The programme</a></li>
-          <li><a href="index.html#about">About us</a></li>
-          <li><a href="index.html#summer-life">Summer life &amp; excursions</a></li>
-          <li><a href="index.html#locations">Locations</a></li>
-          <li><a href="index.html#faq">FAQs</a></li>
+          <li><a href="./#programme">The programme</a></li>
+          <li><a href="./#about">About us</a></li>
+          <li><a href="./#summer-life">Summer life &amp; excursions</a></li>
+          <li><a href="./#locations">Locations</a></li>
+          <li><a href="./#faq">FAQs</a></li>
         </ul>
       </div>
       <div>
@@ -333,7 +333,7 @@ def footer():
           <li><a href="consultation.html">Book a free consultation</a></li>
           <li><a href="agents.html">Agents</a></li>
           <li><a href="agents.html#groups">Group leaders</a></li>
-          <li><a href="index.html#safety">Safety &amp; welfare</a></li>
+          <li><a href="./#safety">Safety &amp; welfare</a></li>
         </ul>
       </div>
       <div>
@@ -481,7 +481,7 @@ def credits_page(credits):
     row_html = "\n          ".join(rows)
     return f"""<section class="page-hero">
   <div class="container">
-    <p class="breadcrumb"><a href="index.html">Home</a> / Photo credits</p>
+    <p class="breadcrumb"><a href="./">Home</a> / Photo credits</p>
     <h1>Photo credits</h1>
     <p class="lead">We are grateful to the photographers who share their work under open licences. Images may have been cropped or resized.</p>
   </div>
