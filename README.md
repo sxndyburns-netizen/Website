@@ -74,6 +74,8 @@ assets/img/photos/      photos (one file per slot, plus <slug>-800.jpg) + credit
 | `logo-stacked-*.svg` | The badge for shirt chest or back prints and square spaces (full colour, navy, white) |
 | `logo-on-navy.svg`, `logo-stacked-on-navy.svg` | Two colours on navy shirts or dark backgrounds (white bubble and name, coral details) |
 | `mark-*.svg` | The bubble on its own: sleeves, social avatars, favicons (`assets/img/favicon.svg` is a copy of `mark-full-colour.svg`) |
+
+**Browser-tab icons.** Safari ignores SVG tab icons, so every page also links `favicon.ico` (16, 32 and 48px, in the site root) and `assets/img/apple-touch-icon.png` (180px, on the sand background, for Safari and iPhone home screens). `assets/img/favicon-32.png` is a spare 32px PNG. All are rendered from `mark-full-colour.svg`: regenerate them whenever the mark changes. Safari caches tab icons for a long time, so a change may only show after clearing its history or website data.
 | `lanyard-navy.svg`, `lanyard-coral.svg` | One repeat of the lanyard design (20mm high). The printer tiles it along the strap |
 
 ## Photos
