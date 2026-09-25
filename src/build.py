@@ -11,11 +11,14 @@ The body may use these shortcodes:
                                           (variant: "", "wide" or "tall"; "tall" is the
                                           hero and loads first)
     {{trips}}                             the excursion cards from TRIPS
+    {{founder}}                           Alexander's portrait (assets/img/photos/founder.jpg),
+                                          or a monogram placeholder until that file exists
+    {{company:key}}                       a company detail from COMPANY (name, number, office, ico)
 
 It also writes credits.html (from assets/img/photos/credits.json), sitemap.xml and
 robots.txt. The generated files in the repo root are committed; never edit them directly.
 The build stops with an error if a shortcode is unknown, a photo file is missing, or a
-photo has no entry in credits.json.
+photo has no entry in credits.json. It warns while any COMPANY detail is still a placeholder.
 """
 import html
 import json
@@ -36,6 +39,20 @@ SOCIAL = [
     ("facebook", "Facebook", "https://www.facebook.com/sandboxenglish"),
     ("youtube", "YouTube", "https://www.youtube.com/@sandboxenglish"),
 ]
+
+# Legal details, shown in the footer, privacy policy and terms. Values in [brackets] are
+# placeholders: replace them once the company is registered (the build warns until then).
+COMPANY = {
+    "name": "[Company name] Ltd",
+    "number": "[00000000]",
+    "office": "[Registered office address]",
+    "ico": "[ZA000000]",
+}
+
+
+def is_placeholder(value):
+    return value.startswith("[")
+
 
 NAV = [
     ("index.html#programme", "Programme"),
@@ -158,6 +175,7 @@ def jpeg_size(path):
 
 SIZES = {
     "tall": "(min-width: 960px) 45vw, 100vw",
+    "portrait": "(min-width: 900px) 25vw, 100vw",
     "wide": "(min-width: 900px) 50vw, 100vw",
     "": "(min-width: 900px) 25vw, (min-width: 600px) 50vw, 100vw",
 }
@@ -181,6 +199,22 @@ def photo(slug, alt, variant="", caption=""):
         f'<figure class="photo{cls}">'
         f'<img src="{src}"{srcset} width="{w}" height="{h}" alt="{attr(alt)}" {loading} decoding="async">'
         f"{cap}</figure>"
+    )
+
+
+FOUNDER = ("founder", "Alexander Burns, founder of Sandbox English")
+
+
+def founder():
+    """Alexander's portrait, or a monogram placeholder until founder.jpg is added."""
+    slug, alt = FOUNDER
+    caption = "<strong>Alexander Burns</strong> Founder and Designated Safeguarding Lead"
+    if (PHOTOS / f"{slug}.jpg").exists():
+        return photo(slug, alt, "portrait", caption)
+    return (
+        '<figure class="photo photo--portrait photo--monogram">'
+        '<span class="monogram" aria-hidden="true">AB</span>'
+        f"<figcaption>{caption}</figcaption></figure>"
     )
 
 
@@ -279,7 +313,7 @@ def footer():
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="mb-0">© <span data-year>2026</span> Sandbox English, trading as Sandbox English Summer School.</p>
+      <p class="mb-0">© <span data-year>2026</span> {COMPANY["name"]}, trading as {SITE_NAME}. Registered in England and Wales, company number {COMPANY["number"]}. Registered office: {COMPANY["office"]}.</p>
       <ul>
         <li><a href="privacy.html">Privacy policy</a></li>
         <li><a href="terms.html">Terms of use</a></li>
@@ -307,6 +341,8 @@ STRUCTURED_DATA = {
     "founder": {"@type": "Person", "name": "Alexander Burns"},
     "sameAs": [url for _, _, url in SOCIAL],
 }
+if not is_placeholder(COMPANY["name"]):
+    STRUCTURED_DATA["legalName"] = COMPANY["name"]
 
 
 def page(filename, meta, body):
@@ -354,8 +390,16 @@ def page(filename, meta, body):
 """
 
 
+def company(key):
+    if key not in COMPANY:
+        fail(f"unknown company detail '{key}'")
+    return COMPANY[key]
+
+
 def render(text, source):
     text = text.replace("{{trips}}", trips())
+    text = text.replace("{{founder}}", founder())
+    text = re.sub(r"\{\{company:(\w+)\}\}", lambda m: company(m.group(1)), text)
     text = re.sub(r"\{\{photo:([^}]*)\}\}", lambda m: photo(*m.group(1).split("|")), text)
     text = re.sub(r"\{\{icon:(\w+)\}\}", lambda m: icon(m.group(1)), text)
     leftover = re.search(r"\{\{[^}]*\}\}", text)
@@ -386,12 +430,16 @@ def credits_page(credits):
     rows = []
     for slug, c in sorted(credits.items()):
         thumb = f"assets/img/photos/{slug}-800.jpg" if (PHOTOS / f"{slug}-800.jpg").exists() else f"assets/img/photos/{slug}.jpg"
+        licence = html.escape(c["license"])
+        if c.get("license_url"):
+            licence = f'<a href="{attr(c["license_url"])}" rel="noopener">{licence}</a>'
+        source = f'<a href="{attr(c["source"])}" rel="noopener">Source</a>' if c.get("source") else "—"
         rows.append(
             f'<tr><td><img class="credit-thumb" src="{thumb}" alt="" loading="lazy" width="120" height="80"></td>'
             f'<th scope="row">{html.escape(c["description"])}</th>'
             f'<td>{html.escape(c["artist"])}</td>'
-            f'<td><a href="{attr(c["license_url"])}" rel="noopener">{html.escape(c["license"])}</a></td>'
-            f'<td><a href="{attr(c["source"])}" rel="noopener">Source</a></td></tr>'
+            f'<td>{licence}</td>'
+            f'<td>{source}</td></tr>'
         )
     row_html = "\n          ".join(rows)
     return f"""<section class="page-hero">
@@ -446,6 +494,10 @@ def main():
     write_text(ROOT / "sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sitemap}\n</urlset>\n')
     write_text(ROOT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
     print("wrote sitemap.xml, robots.txt")
+
+    placeholders = [key for key, value in COMPANY.items() if is_placeholder(value)]
+    if placeholders:
+        print(f"warning: company details still placeholders: {', '.join(placeholders)} (COMPANY in src/build.py)")
 
 
 if __name__ == "__main__":

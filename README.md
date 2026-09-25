@@ -15,15 +15,17 @@ python3 src/build.py            # regenerates the root *.html files, credits.htm
 python3 -m http.server 8000     # preview at http://localhost:8000
 ```
 
-The build needs only Python 3.11+, with no packages. It adds the shared `<head>`, header, navigation and footer to every page and expands a few shortcodes. The site URL, email address and social links are set once at the top of `src/build.py` (`SITE_URL`, `EMAIL`, `SOCIAL`).
+The build needs only Python 3.11+, with no packages. It adds the shared `<head>`, header, navigation and footer to every page and expands a few shortcodes. The site URL, email address, social links and company details are set once at the top of `src/build.py` (`SITE_URL`, `EMAIL`, `SOCIAL`, `COMPANY`).
 
-The build stops with an error if a shortcode is mistyped, a photo file is missing, or a photo has no entry in `credits.json`. Running it twice gives identical output.
+The build stops with an error if a shortcode is mistyped, a photo file is missing, or a photo has no entry in `credits.json`. It prints a warning while any company detail is still a `[placeholder]`. Running it twice gives identical output.
 
 | Shortcode | Output |
 | --- | --- |
 | `{{photo:slug\|alt\|variant\|caption}}` | A photo for `assets/img/photos/<slug>.jpg` with a smaller version for phones (`variant` is empty, `wide`, or `tall` for the hero, which loads first) |
 | `{{trips}}` | The excursion option cards (defined in `TRIPS`) |
 | `{{icon:name}}` | An inline SVG icon (defined in `ICON`) |
+| `{{founder}}` | Alexander's portrait from `assets/img/photos/founder.jpg`, or an "AB" monogram until that file exists |
+| `{{company:key}}` | A company detail from `COMPANY` (`name`, `number`, `office`, `ico`) |
 
 Page front matter is `title:`, `description:` and optionally `robots: noindex`.
 
@@ -83,6 +85,13 @@ Every photo has a fixed slot: `assets/img/photos/<slug>.jpg`, plus a smaller `<s
 
 Sandbox English has no photos of its own yet. The current photos are free stock photos from [Pexels](https://www.pexels.com/license/) (no credit required), apart from two from [Wikimedia Commons](https://commons.wikimedia.org) (CC BY-SA, which requires credit). Every photo's photographer, licence and source is recorded in `credits.json`, and the build turns that into `credits.html`.
 
+**Alexander's photo.** Save a portrait (4:5, about 1200px wide) as `assets/img/photos/founder.jpg`, add a `founder` entry to `credits.json` (e.g. artist "Sandbox English", licence "All rights reserved", with `license_url` and `source` left empty), then run `python3 src/images.py` and `python3 src/build.py`. The About section switches from the monogram to the photo automatically.
+
+**Official attraction images** (Harry Potter Studio Tour and Madame Tussauds). Both attractions supply images to their travel-trade partners (tour operators and schools that bring groups) through their trade or group-sales teams, usually after you register as a trade partner. Press-office images are normally for editorial coverage only, so ask for written permission to use them **on your website to advertise excursions**. Then:
+1. Crop each to 16:10, about 1600px wide, and save over `trip-harry-potter.jpg` and `trip-madame-tussauds.jpg`.
+2. Update their `credits.json` entries: `artist` as the attraction requires (e.g. "© Warner Bros. Studio Tour London"), `license` "Used with permission", and leave `license_url` and `source` empty if there's nothing to link to. The credits page shows "—" for empty links.
+3. Follow any wording rules they give you (e.g. the exact attraction name or a trademark notice) in `TRIPS` in `src/build.py`.
+
 **Rules for every photo**
 - Children's faces must never be visible. Show them from behind, as silhouettes, or as hands only.
 - Don't use photos of possible venues, or name venues anywhere (captions, alt text, file names or credit links), until they are confirmed.
@@ -99,7 +108,7 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 | `food-3.jpg` | A selection of desserts | Pexels | index.html |
 | `food-5.jpg` | Croissants and strawberries for breakfast | Pexels | index.html |
 | `hero-students.jpg` | Students of different ages walking into school, seen from behind | Pexels | index.html |
-| `lessons.jpg` | Students seated at desks in a classroom | Pexels | index.html |
+| `lessons.jpg` | Students seated at desks in a classroom | Pexels | index.html (a typical day) |
 | `location-campus.jpg` | A modern glass building among trees | Pexels | index.html |
 | `location-grounds.jpg` | A large tree on a sunny green lawn | Pexels | index.html |
 | `location-london.jpg` | London and the River Thames from above, at dawn | Pexels | index.html |
@@ -121,9 +130,13 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 - **15 hours of English lessons a week.**
 - **Two excursions a week**, chosen from many options and tailored to what parents and agents want. Every trip includes free time and a packed lunch.
 - **Staff on site 24/7**, a **24/7 emergency line**, and **first-aid trained staff**. Safer recruitment and DBS checks for all staff. Safeguarding, anti-bullying, online safety and code-of-conduct policies.
+- **At least one member of staff for every 10 students** (a staff-to-student ratio of at least 1:10).
+- **Alexander Burns is the Designated Safeguarding Lead.**
+- Students of every English level are welcome, **including complete beginners**.
 - Three meals a day and a packed lunch on excursion days, with dietary needs catered for. Rooms separated by age and gender. Daily time to call home and phone-free lessons. Airport meet-and-greet and transfers available.
 - Locations: **London and the Thames Valley** (no venues named).
-- Founder: **Alexander Burns**, a student with several years' experience delivering enjoyable summer programmes, who founded Sandbox English to offer a better experience at a reasonable price.
+- Founder: **Alexander Burns**, a student with several years' experience delivering enjoyable summer programmes, who founded Sandbox English to offer a better experience at a reasonable price. The school is founder-led and teaches English only.
+- **Not accredited yet.** Never claim or imply accreditation or membership (British Council, English UK or others) until it is granted. See [Accreditation and visas](#accreditation-and-visas).
 - Contact: `hello@sandboxenglish.co.uk`, @sandboxenglish on Instagram, Facebook and YouTube.
 
 ## ⚠️ Launch checklist
@@ -138,7 +151,7 @@ These are blocking. Launching without them would lose enquiries or break UK law.
 - [ ] **Connect the newsletter sign-up** to an email provider (e.g. Mailchimp, Brevo or Buttondown), or remove the form from the footer in `src/build.py`.
 - [ ] **Send a test submission** of both forms from a phone and a computer, and check they arrive.
 - [ ] **Set up the mailbox** `hello@sandboxenglish.co.uk` and check it receives mail.
-- [ ] **Add the registered address** (and company number, if Sandbox English is a limited company) to `src/pages/privacy.html` ("Who we are") and to the footer in `src/build.py`.
+- [ ] **Fill in the company details** in `COMPANY` at the top of `src/build.py`: registered company name, company number, registered office address and ICO registration number. They currently show as `[placeholders]` in the footer, the privacy policy and the terms, and the build warns until they're all replaced. If the business won't be a limited company, reword the footer in `footer()` and the "Who we are" and "About us" sections of the privacy policy and terms.
 - [ ] **Name the form and email providers in the privacy policy** ("Who we share it with"), with where they store data.
 - [ ] **Have the legal pages reviewed** by a solicitor or a reputable template service. `privacy.html`, `terms.html` and `cookies.html` are careful first drafts, not legal advice.
 - [ ] **Register with the ICO and pay the data protection fee**, unless exempt. Most organisations that handle personal data must do this. Check at [ico.org.uk/fee](https://ico.org.uk/for-organisations/data-protection-fee/).
@@ -151,14 +164,17 @@ These are blocking. Launching without them would lose enquiries or break UK law.
 
 These build trust with parents and agents.
 
-- [ ] **Add a photo of Alexander** to the About section (`#about` in `src/pages/index.html`). Adult faces are fine.
-- [ ] **Name the Designated Safeguarding Lead** in the Safety section. Have the safeguarding, anti-bullying, online safety and code-of-conduct policies written and ready to send, since the site promises them on request.
+- [ ] **Plan accreditation.** Visitors can only study an English course in the UK at an accredited institution, so this decides who can legally enrol. See [Accreditation and visas](#accreditation-and-visas).
+- [ ] **Add a photo of Alexander.** The About section has a slot for it: see "Alexander's photo" under [Photos](#photos). Adult faces are fine.
+- [x] **Name the Designated Safeguarding Lead** in the Safety section (Alexander Burns, also named in About, the FAQs and on the agents page).
+- [ ] **Get Alexander's DSL training** (a designated safeguarding lead course, often called Level 3) and name a **deputy DSL for each venue**, since one person can't cover two sites around the clock.
+- [ ] **Write the safeguarding, anti-bullying, online safety and code-of-conduct policies** and have them ready to send, since the site promises them on request.
 - [ ] **Add a contact phone or WhatsApp number**, at least for agents and group leaders. Add it to the footer in `src/build.py` and the consultation page's sidebar.
 - [ ] **Have booking terms and conditions ready.** The terms of use say every booking has separate booking terms, sent with the quote.
 - [ ] **Write the agent terms** (commission, booking deadlines, payment schedule) so they can be confirmed in writing after a consultation, as the agents page promises.
 - [ ] **Arrange insurance** (public liability and any other cover a residential course for children needs) before quoting.
 - [ ] **State accreditation or membership honestly** once you have it (e.g. British Council, English UK). Don't add logos until they're granted.
-- [ ] **Replace the Harry Potter Studio Tour and Madame Tussauds photos** with the venues' official press images, or confirm the current CC BY-SA photos are acceptable for advertising.
+- [ ] **Replace the Harry Potter Studio Tour and Madame Tussauds photos** with the attractions' official images, used with written permission. See "Official attraction images" under [Photos](#photos). Until then the current CC BY-SA photos stay, with their credits.
 - [ ] **Set up Google Search Console** (and Bing Webmaster Tools) and submit `https://sandboxenglish.co.uk/sitemap.xml`.
 - [ ] **Check the share preview** by pasting the site link into WhatsApp and a social network. The 1200×630 image is `assets/img/share.jpg`.
 
@@ -174,6 +190,16 @@ These build trust with parents and agents.
 - [ ] **Replace stock photos with real ones** from the first summer. Get written parental consent, and keep to the rule that no child's face is visible.
 - [ ] **Add testimonials** from parents, agents and group leaders, with their permission.
 - [ ] **Remove "new school" wording** such as the "Why choose a new summer school?" FAQ.
+
+## Accreditation and visas
+
+This is advice to check with an immigration adviser (OISC-registered or a solicitor) and with the accrediting body. It is not legal advice.
+
+- **Why it matters.** Under the UK Immigration Rules (Appendix Visitor: Permitted Activities), a visitor may study for up to six months only at an **accredited institution**. Visitors may also take "recreational" courses of up to 30 days at any provider, but the rules specifically exclude English language training from that. This applies to students who come visa-free with an ETA as well as those who need a Standard Visitor visa. Nearly all Sandbox English students will be visitors, so without accreditation they may be unable to enrol lawfully, and agents are unlikely to book.
+- **Accreditation UK** (British Council with English UK) is the scheme agents and families recognise. Full accreditation normally needs a year of teaching English in the UK. New providers can apply for **provisional accreditation** after an inspection that shows they're ready to run courses to the scheme's standards. Summer centres are normally inspected while their courses are running.
+- **Timing.** Contact Accreditation UK now to confirm the route for a brand-new, summer-only provider: what must be in place before inspection (company, venues, staff, policies, insurance), the fees, and whether provisional accreditation can be granted before the first students arrive in 2028. If it can't, ask whether a first summer is possible at all, for example only for UK-resident students, or in partnership with an already accredited provider.
+- **Other accepted bodies.** The rules also accept some other inspection bodies (for example ISI or BAC). Ask the adviser which one suits a residential summer school for under-18s.
+- **On the website.** Never claim or imply accreditation until it's granted. The visa FAQ on the home page doesn't mention accreditation. Update it once you have it.
 
 ## Wiring up the forms
 

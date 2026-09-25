@@ -18,9 +18,11 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 
 - **The site exists to book free consultations.** Never add prices, fees, calculators or "from £…" copy. Every call to action leads to `consultation.html`. Pre-fill links use `?type=parent|agent|group` and `?area=london|thames-valley`.
 - **Keep it to about three pages.** The home page holds everything for families, in anchored sections (`#programme`, `#safety`, `#summer-life`, `#locations`, `#about`, `#faq`…) that the nav links to. Add sections rather than new pages. The legal pages are the only exception.
-- **Only state confirmed facts as facts.** The README's "Confirmed facts" section lists them: 15 hours of English a week; small classes (never a number); two excursions a week, tailored to parents' and agents' wishes, each with free time and a packed lunch; 24/7 staff on site and emergency line; first-aid trained staff; **one programme**, with students grouped on site by age and level; stays of one to six weeks.
+- **Only state confirmed facts as facts.** The README's "Confirmed facts" section lists them: 15 hours of English a week; small classes (never a number); two excursions a week, tailored to parents' and agents' wishes, each with free time and a packed lunch; 24/7 staff on site and emergency line; first-aid trained staff; at least one member of staff for every 10 students (a 1:10 staff-to-student ratio, not a class size); **one programme**, with students grouped on site by age and level; complete beginners welcome; stays of one to six weeks.
+- **Not accredited yet.** Never claim or imply accreditation or membership (British Council, English UK or others) until the user confirms it's granted. The README's "Accreditation and visas" section explains why it matters.
+- **Company details are placeholders.** `COMPANY` in `src/build.py` holds the legal name, company number, registered office and ICO number, shown in the footer, privacy policy and terms (via `{{company:key}}`). Values in `[brackets]` are placeholders. Don't invent real-looking values, and keep them out of the JSON-LD until they're real.
 - **No venues are confirmed.** Never name a venue in copy, alt text, captions, file names or photo credit links, and don't use photos of potential venues. Describe "London" and "the Thames Valley" as regions only, and never state venue features (e.g. "close to Heathrow") as fact.
-- **Founder:** Alexander Burns, a student with several years' experience delivering enjoyable summer programmes, who founded the school to offer a better experience at a reasonable price. The school is founder-led, not family-run. Don't invent quotes attributed to him.
+- **Founder:** Alexander Burns, a student with several years' experience delivering enjoyable summer programmes, who founded the school to offer a better experience at a reasonable price. He is also the **Designated Safeguarding Lead**. The school is founder-led (not family-run) and teaches English only. Don't invent quotes attributed to him, or state safeguarding training or qualifications he hasn't confirmed.
 - **Tone:** professional and warm.
 - **Photos:** always prefer real photos to illustrations. **No child's face may ever be visible.** Show children from behind, as silhouettes, or as hands only.
 - **Accessibility:** keep text contrast at WCAG AA. White text goes on `--coral-700` (not the brand coral `#f2603d`), and small coral text uses `--coral-text`. Headings must not skip levels (use `.h3`/`.h4` classes to change size).
@@ -32,10 +34,12 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 - `{{photo:slug|alt|variant|caption}}` becomes a `<figure class="photo">` with `srcset` (the 1600px and `-800` files), `width`/`height`, and lazy loading (`tall` = the hero, loaded first).
 - `{{trips}}` becomes the excursion cards from `TRIPS`, used on the home and agents pages.
 - `{{icon:name}}` becomes an inline SVG from `ICON`.
+- `{{founder}}` becomes Alexander's portrait (`assets/img/photos/founder.jpg`, 4:5) with his name and roles, or a navy "AB" monogram until that file exists.
+- `{{company:key}}` becomes a value from `COMPANY` (`name`, `number`, `office`, `ico`).
 
-The build fails on unknown shortcodes or icons, missing photo files, or photos without a `credits.json` entry. Text is read and written as UTF-8, and attribute values are HTML-escaped.
+The build fails on unknown shortcodes, icons or company keys, missing photo files, or photos without a `credits.json` entry, and warns while company details are placeholders. Text is read and written as UTF-8, and attribute values are HTML-escaped.
 
-**Photos** live in `assets/img/photos/<slug>.jpg` (pre-cropped: 16:10 wide, 4:5 tall hero, 4:3 default, about 1600px wide) with `<slug>-800.jpg` made by `src/images.py`. Every photo needs a `credits.json` entry (description, artist, licence, licence URL, source), and the README's photo table lists them. Write alt text that describes what the photo actually shows.
+**Photos** live in `assets/img/photos/<slug>.jpg` (pre-cropped: 16:10 wide, 4:5 tall hero, 4:3 default, about 1600px wide) with `<slug>-800.jpg` made by `src/images.py`. Every photo needs a `credits.json` entry (description, artist, licence, licence URL, source), and the README's photo table lists them. For images used with permission (Alexander's photo, official attraction images), leave `license_url` and `source` empty and the credits page shows "—". Write alt text that describes what the photo actually shows.
 
 **Getting photos in the cloud environment:**
 - **Pexels:** full images download directly from `https://images.pexels.com/photos/<id>/pexels-photo-<id>.jpeg?auto=compress&cs=tinysrgb&w=2000`. The pexels.com site itself is blocked, so find photo IDs with web search.
@@ -60,7 +64,7 @@ Forms have `action="#"` and no backend. After validation, the element named by `
 
 The README's **Launch checklist** is the single list of what is left, in priority order:
 1. **Blocking before go-live:** connect the consultation and newsletter forms, the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, domain and HTTPS, and making `main` the default branch.
-2. **Before promoting:** founder photo, a named safeguarding lead and written policies, a phone/WhatsApp number, booking and agent terms, insurance, honest accreditation, press images for the attractions, Search Console.
+2. **Before promoting:** accreditation, founder photo, DSL training and deputies, written policies, a phone/WhatsApp number, booking and agent terms, insurance, honest accreditation, press images for the attractions, Search Console.
 3. **When venues and dates are confirmed:** name them, swap in venue photos, add dates, and update the rules in this file.
 4. **After the first summer:** real photos (with consent), testimonials, and removing "new school" wording.
 
