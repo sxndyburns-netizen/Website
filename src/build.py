@@ -64,9 +64,33 @@ NAV = [
     ("agents.html", "Agents &amp; groups"),
 ]
 
-# Brand mark: speech bubble with a wave and sun. Two colours (navy + coral) so it prints
-# cleanly on shirts and lanyards; one-colour versions live in assets/brand/.
-LOGO = """<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#14213d" d="M13 4h22a9 9 0 0 1 9 9v13a9 9 0 0 1-9 9H22l-9 8.5V35a9 9 0 0 1-9-9V13a9 9 0 0 1 9-9z"/><path fill="none" stroke="#f2603d" stroke-width="4.2" stroke-linecap="round" d="M11 24c4.3-3.6 8.7-3.6 13 0s8.7 3.6 13 0"/><circle cx="31.5" cy="13.5" r="3.6" fill="#f2603d"/></svg>"""
+# Brand mark: a speech bubble (English) holding a sandcastle with a flag (Sandbox), with a
+# sun and a wave (summer). Navy and coral only, so it prints cleanly on shirts and lanyards;
+# print and one-colour versions live in assets/brand/ (made by src/brand.py, which uses the
+# same paths). The header uses it on light backgrounds, the footer on navy.
+MARK = {
+    "body": "M13 4h22a9 9 0 0 1 9 9v13a9 9 0 0 1-9 9H22l-9 8.5V35a9 9 0 0 1-9-9V13a9 9 0 0 1 9-9z",
+    "castle": "M10 26.5V16h1.8v1.8h1.9V16h1.8v10.5zM26.5 26.5V16h1.8v1.8h1.9V16h1.8v10.5z"
+              "M15 26.5v-6h12v6zM17 26.5v-14h2v1.8h1.3v-1.8h1.4v1.8h1.3v-1.8h2v14z",
+    "door": "M19.6 26.5v-2.9a1.4 1.4 0 0 1 2.8 0v2.9z",
+    "flag": "M21.4 6.6l4.4 1.7-4.4 1.7z",
+    "wave": "M9.5 30.8c2.5-2 5-2 7.5 0s5 2 7.5 0 5-2 7.5 0 5-2 7.5 0",
+}
+
+
+def logo(body="#14213d", castle="#ffffff", accent="#f2603d"):
+    return (
+        '<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">'
+        f'<path fill="{body}" d="{MARK["body"]}"/>'
+        f'<path fill="{castle}" d="{MARK["castle"]}"/>'
+        f'<path fill="none" stroke="{castle}" stroke-width=".9" stroke-linecap="round" d="M21 12.5V7"/>'
+        f'<path fill="{body}" d="{MARK["door"]}"/>'
+        f'<path fill="{accent}" d="{MARK["flag"]}"/>'
+        f'<circle cx="36" cy="12.2" r="3.3" fill="{accent}"/>'
+        f'<path fill="none" stroke="{accent}" stroke-width="2.3" stroke-linecap="round" d="{MARK["wave"]}"/>'
+        "</svg>"
+    )
+
 
 USED_PHOTOS = set()
 
@@ -238,7 +262,9 @@ def trips():
 # ---------------------------------------------------------------------------
 # Shared header and footer
 # ---------------------------------------------------------------------------
-BRAND = f"""{LOGO}
+def brand(on_navy=False):
+    mark = logo(body="#ffffff", castle="#14213d") if on_navy else logo()
+    return f"""{mark}
       <span class="brand-name">Sandbox<small>English Summer School</small></span>"""
 
 
@@ -254,7 +280,7 @@ def header(current):
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="{SITE_NAME} home">
-      {BRAND}
+      {brand()}
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -275,7 +301,7 @@ def footer():
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html" aria-label="{SITE_NAME} home">
-          {BRAND}
+          {brand(on_navy=True)}
         </a>
         <p class="footer-note">A residential English summer school for young people aged 8–17, in London or the area around it: you choose. Launching summer 2028.</p>
         <p class="footer-note"><a href="mailto:{EMAIL}">{EMAIL}</a><br>@sandboxenglish</p>

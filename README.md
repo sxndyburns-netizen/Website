@@ -60,7 +60,7 @@ assets/img/photos/      photos (one file per slot, plus <slug>-800.jpg) + credit
 ## Brand
 
 - **Name:** Sandbox English, trading as Sandbox English Summer School. Web: sandboxenglish.co.uk. Email: `hello@sandboxenglish.co.uk`. Social: @sandboxenglish.
-- **Logo:** a speech bubble containing a wave and a sun (English, summer and the seaside). It uses two colours only, so it prints cleanly on shirts and lanyards, and every version also works in a single colour.
+- **Logo:** a speech bubble (English) holding a sandcastle with a flag (Sandbox), with a sun and a wave (summer), next to the "Sandbox" wordmark. The simple mark is used in the website header and as the browser-tab icon. On shirts and printed materials, the stacked version (mark above the name) acts as the badge. It uses two colours only, so it prints cleanly on shirts and lanyards, and every version also works in a single colour. The mark is drawn once in `src/brand.py` (print files) and `MARK` in `src/build.py` (website header and footer); keep the two in sync.
 - **Colours:** navy `#14213d` and coral `#f2603d` are the core brand pair. On the website, buttons and banners use a deeper coral `#c2412d` so white text is readable, and small coral text uses `#b83a22`. Sand `#fdf9f1`/`#f8efdc` is the web background. Sea `#2a9d8f`, sun `#f7b733` and sky `#4a7fd6` are web accents only. Ask your printer to match navy and coral to the nearest Pantone.
 - **Type:** Fraunces (bold display serif) for "Sandbox", and DM Sans (bold, spaced capitals) for "ENGLISH SUMMER SCHOOL". Both are free Google Fonts. The website serves its own copies from `assets/fonts/`, so no request goes to Google.
 
@@ -71,8 +71,9 @@ assets/img/photos/      photos (one file per slot, plus <slug>-800.jpg) + credit
 | `logo-full-colour.svg` | Website, documents, white or light shirts |
 | `logo-navy.svg` | One-colour print on light fabric or paper |
 | `logo-white.svg` | Navy or coral shirts, dark backgrounds |
-| `logo-stacked-*.svg` | Shirt chest or back prints, square spaces (full colour, navy, white) |
-| `mark-*.svg` | The bubble on its own: sleeves, social avatars, favicons |
+| `logo-stacked-*.svg` | The badge for shirt chest or back prints and square spaces (full colour, navy, white) |
+| `logo-on-navy.svg`, `logo-stacked-on-navy.svg` | Two colours on navy shirts or dark backgrounds (white bubble and name, coral details) |
+| `mark-*.svg` | The bubble on its own: sleeves, social avatars, favicons (`assets/img/favicon.svg` is a copy of `mark-full-colour.svg`) |
 | `lanyard-navy.svg`, `lanyard-coral.svg` | One repeat of the lanyard design (20mm high). The printer tiles it along the strap |
 
 ## Photos
