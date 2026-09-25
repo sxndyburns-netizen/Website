@@ -276,7 +276,7 @@ def footer():
         <a class="brand" href="index.html" aria-label="{SITE_NAME} home">
           {BRAND}
         </a>
-        <p class="footer-note">A residential English summer school for young people aged 8–17 in London and the Thames Valley. Launching summer 2028.</p>
+        <p class="footer-note">A residential English summer school around London (or in London on request) for young people aged 8–17. Launching summer 2028.</p>
         <p class="footer-note"><a href="mailto:{EMAIL}">{EMAIL}</a><br>@sandboxenglish</p>
         <div class="socials">
           {social}
@@ -337,7 +337,7 @@ STRUCTURED_DATA = {
     "email": EMAIL,
     "logo": SITE_URL + "/assets/img/favicon.svg",
     "image": SITE_URL + "/assets/img/share.jpg",
-    "description": "Residential English summer school for ages 8–17 in London and the Thames Valley, from summer 2028.",
+    "description": "Residential English summer school for ages 8–17 around London, or in London on request, from summer 2028.",
     "founder": {"@type": "Person", "name": "Alexander Burns"},
     "sameAs": [url for _, _, url in SOCIAL],
 }

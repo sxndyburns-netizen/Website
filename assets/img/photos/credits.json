@@ -76,6 +76,13 @@
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/129667/"
   },
+  "location-countryside": {
+    "description": "A riverside meadow under a summer sky",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/12173389/"
+  },
   "location-grounds": {
     "description": "A large tree on a sunny green lawn",
     "artist": "Pexels contributor",
@@ -89,13 +96,6 @@
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/50631/"
-  },
-  "location-thames-valley": {
-    "description": "A riverside meadow under a summer sky",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/12173389/"
   },
   "location-windsor": {
     "description": "The Round Tower at Windsor Castle",
