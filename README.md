@@ -87,11 +87,6 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 
 **Alexander's photo.** Save a portrait (4:5, about 1200px wide) as `assets/img/photos/founder.jpg`, add a `founder` entry to `credits.json` (e.g. artist "Sandbox English", licence "All rights reserved", with `license_url` and `source` left empty), then run `python3 src/images.py` and `python3 src/build.py`. The About section switches from the monogram to the photo automatically.
 
-**Official attraction images** (Harry Potter Studio Tour and Madame Tussauds). Both attractions supply images to their travel-trade partners (tour operators and schools that bring groups) through their trade or group-sales teams, usually after you register as a trade partner. Press-office images are normally for editorial coverage only, so ask for written permission to use them **on your website to advertise excursions**. Then:
-1. Crop each to 16:10, about 1600px wide, and save over `trip-harry-potter.jpg` and `trip-madame-tussauds.jpg`.
-2. Update their `credits.json` entries: `artist` as the attraction requires (e.g. "© Warner Bros. Studio Tour London"), `license` "Used with permission", and leave `license_url` and `source` empty if there's nothing to link to. The credits page shows "—" for empty links.
-3. Follow any wording rules they give you (e.g. the exact attraction name or a trademark notice) in `TRIPS` in `src/build.py`.
-
 **Rules for every photo**
 - Children's faces must never be visible. Show them from behind, as silhouettes, or as hands only.
 - Don't use photos of possible venues, or name venues anywhere (captions, alt text, file names or credit links), until they are confirmed.
@@ -134,7 +129,7 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 - **Alexander Burns is the Designated Safeguarding Lead.**
 - Students of every English level are welcome, **including complete beginners**.
 - Three meals a day and a packed lunch on excursion days, with dietary needs catered for. Rooms separated by age and gender. Daily time to call home and phone-free lessons. Airport meet-and-greet and transfers available.
-- Locations: **London and the Thames Valley** (no venues named).
+- Locations: **London and the Thames Valley** (no venues named). **Only one site will operate in 2028.**
 - Founder: **Alexander Burns**, a student with several years' experience delivering enjoyable summer programmes, who founded Sandbox English to offer a better experience at a reasonable price. The school is founder-led and teaches English only.
 - **Not accredited yet.** Never claim or imply accreditation or membership (British Council, English UK or others) until it is granted. See [Accreditation and visas](#accreditation-and-visas).
 - Contact: `hello@sandboxenglish.co.uk`, @sandboxenglish on Instagram, Facebook and YouTube.
@@ -167,14 +162,13 @@ These build trust with parents and agents.
 - [ ] **Plan accreditation.** Visitors can only study an English course in the UK at an accredited institution, so this decides who can legally enrol. See [Accreditation and visas](#accreditation-and-visas).
 - [ ] **Add a photo of Alexander.** The About section has a slot for it: see "Alexander's photo" under [Photos](#photos). Adult faces are fine.
 - [x] **Name the Designated Safeguarding Lead** in the Safety section (Alexander Burns, also named in About, the FAQs and on the agents page).
-- [ ] **Get Alexander's DSL training** (a designated safeguarding lead course, often called Level 3) and name a **deputy DSL for each venue**, since one person can't cover two sites around the clock.
+- [ ] **Get Alexander's DSL training** (a designated safeguarding lead course, often called Level 3).
 - [ ] **Write the safeguarding, anti-bullying, online safety and code-of-conduct policies** and have them ready to send, since the site promises them on request.
 - [ ] **Add a contact phone or WhatsApp number**, at least for agents and group leaders. Add it to the footer in `src/build.py` and the consultation page's sidebar.
 - [ ] **Have booking terms and conditions ready.** The terms of use say every booking has separate booking terms, sent with the quote.
 - [ ] **Write the agent terms** (commission, booking deadlines, payment schedule) so they can be confirmed in writing after a consultation, as the agents page promises.
 - [ ] **Arrange insurance** (public liability and any other cover a residential course for children needs) before quoting.
 - [ ] **State accreditation or membership honestly** once you have it (e.g. British Council, English UK). Don't add logos until they're granted.
-- [ ] **Replace the Harry Potter Studio Tour and Madame Tussauds photos** with the attractions' official images, used with written permission. See "Official attraction images" under [Photos](#photos). Until then the current CC BY-SA photos stay, with their credits.
 - [ ] **Set up Google Search Console** (and Bing Webmaster Tools) and submit `https://sandboxenglish.co.uk/sitemap.xml`.
 - [ ] **Check the share preview** by pasting the site link into WhatsApp and a social network. The 1200×630 image is `assets/img/share.jpg`.
 

@@ -39,7 +39,7 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 
 The build fails on unknown shortcodes, icons or company keys, missing photo files, or photos without a `credits.json` entry, and warns while company details are placeholders. Text is read and written as UTF-8, and attribute values are HTML-escaped.
 
-**Photos** live in `assets/img/photos/<slug>.jpg` (pre-cropped: 16:10 wide, 4:5 tall hero, 4:3 default, about 1600px wide) with `<slug>-800.jpg` made by `src/images.py`. Every photo needs a `credits.json` entry (description, artist, licence, licence URL, source), and the README's photo table lists them. For images used with permission (Alexander's photo, official attraction images), leave `license_url` and `source` empty and the credits page shows "—". Write alt text that describes what the photo actually shows.
+**Photos** live in `assets/img/photos/<slug>.jpg` (pre-cropped: 16:10 wide, 4:5 tall hero, 4:3 default, about 1600px wide) with `<slug>-800.jpg` made by `src/images.py`. Every photo needs a `credits.json` entry (description, artist, licence, licence URL, source), and the README's photo table lists them. For images used with permission (e.g. Alexander's photo), leave `license_url` and `source` empty and the credits page shows "—". Write alt text that describes what the photo actually shows.
 
 **Getting photos in the cloud environment:**
 - **Pexels:** full images download directly from `https://images.pexels.com/photos/<id>/pexels-photo-<id>.jpeg?auto=compress&cs=tinysrgb&w=2000`. The pexels.com site itself is blocked, so find photo IDs with web search.
@@ -64,7 +64,7 @@ Forms have `action="#"` and no backend. After validation, the element named by `
 
 The README's **Launch checklist** is the single list of what is left, in priority order:
 1. **Blocking before go-live:** connect the consultation and newsletter forms, the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, domain and HTTPS, and making `main` the default branch.
-2. **Before promoting:** accreditation, founder photo, DSL training and deputies, written policies, a phone/WhatsApp number, booking and agent terms, insurance, honest accreditation, press images for the attractions, Search Console.
+2. **Before promoting:** accreditation, founder photo, DSL training, written policies, a phone/WhatsApp number, booking and agent terms, insurance, Search Console.
 3. **When venues and dates are confirmed:** name them, swap in venue photos, add dates, and update the rules in this file.
 4. **After the first summer:** real photos (with consent), testimonials, and removing "new school" wording.
 
