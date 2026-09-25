@@ -1,32 +1,34 @@
-"""Build the site's HTML pages from src/pages/ with a shared header and footer.
+"""Build the site's HTML pages from src/pages/ with a shared head, header and footer.
 
     python3 src/build.py
 
-Each file in src/pages/ starts with `title:` and `description:` lines, then `---`,
-then the page body. The body may use these shortcodes:
+Each file in src/pages/ starts with front matter (`title:`, `description:` and
+optionally `robots: noindex`), then a line containing only `---`, then the page body.
+The body may use these shortcodes:
 
     {{icon:name}}                         inline SVG icon from ICON
-    {{photo:slug|alt|variant|caption}}    photo slot for assets/img/photos/<slug>.jpg
-                                          (variant: "", "wide" or "tall")
+    {{photo:slug|alt|variant|caption}}    photo for assets/img/photos/<slug>.jpg
+                                          (variant: "", "wide" or "tall"; "tall" is the
+                                          hero and loads first)
     {{trips}}                             the excursion cards from TRIPS
-    {{campus:park}} / {{campus:uni}}      campus illustrations
 
-It also writes credits.html from assets/img/photos/credits.json.
-The generated .html files in the repo root are committed; never edit them directly.
+It also writes credits.html (from assets/img/photos/credits.json), sitemap.xml and
+robots.txt. The generated files in the repo root are committed; never edit them directly.
+The build stops with an error if a shortcode is unknown, a photo file is missing, or a
+photo has no entry in credits.json.
 """
-import pathlib, re
+import html
+import json
+import pathlib
+import re
+import struct
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = pathlib.Path(__file__).parent / "pages"
+PHOTOS = ROOT / "assets/img/photos"
 
-NAV = [
-    ("index.html#programme", "Programme"),
-    ("index.html#summer-life", "Summer life"),
-    ("index.html#locations", "Locations"),
-    ("index.html#about", "About"),
-    ("agents.html", "Agents &amp; groups"),
-]
-
+SITE_NAME = "Sandbox English Summer School"
 SITE_URL = "https://sandboxenglish.co.uk"
 EMAIL = "hello@sandboxenglish.co.uk"
 SOCIAL = [
@@ -35,9 +37,38 @@ SOCIAL = [
     ("youtube", "YouTube", "https://www.youtube.com/@sandboxenglish"),
 ]
 
+NAV = [
+    ("index.html#programme", "Programme"),
+    ("index.html#safety", "Safety"),
+    ("index.html#summer-life", "Summer life"),
+    ("index.html#locations", "Locations"),
+    ("index.html#faq", "FAQs"),
+    ("agents.html", "Agents &amp; groups"),
+]
+
 # Brand mark: speech bubble with a wave and sun. Two colours (navy + coral) so it prints
 # cleanly on shirts and lanyards; one-colour versions live in assets/brand/.
 LOGO = """<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#14213d" d="M13 4h22a9 9 0 0 1 9 9v13a9 9 0 0 1-9 9H22l-9 8.5V35a9 9 0 0 1-9-9V13a9 9 0 0 1 9-9z"/><path fill="none" stroke="#f2603d" stroke-width="4.2" stroke-linecap="round" d="M11 24c4.3-3.6 8.7-3.6 13 0s8.7 3.6 13 0"/><circle cx="31.5" cy="13.5" r="3.6" fill="#f2603d"/></svg>"""
+
+USED_PHOTOS = set()
+
+
+def attr(text):
+    """Escape text for an HTML attribute (source text may already contain entities)."""
+    return html.escape(html.unescape(text), quote=True)
+
+
+def fail(message):
+    sys.exit(f"build error: {message}")
+
+
+def read_text(path):
+    return path.read_text(encoding="utf-8").replace("\r\n", "\n")
+
+
+def write_text(path, text):
+    path.write_text(text, encoding="utf-8", newline="\n")
+
 
 ICON = {
     "arrow": '<path d="M5 12h14M13 6l6 6-6 6"/>',
@@ -76,173 +107,6 @@ ICON = {
     "youtube": '<path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
 }
 
-CAMPUS = {
-    # Parkland school: Victorian school house in private grounds with old oaks
-    "park": """<svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice">
-  <rect width="600" height="340" fill="#d6f0ec"/>
-  <circle cx="500" cy="70" r="38" fill="#f7b733"/>
-  <path d="M0 220c120-40 250-46 380-20s160 16 220 4v136H0z" fill="#7cc7b8"/>
-  <path d="M0 250c140-24 300-22 420 0s140 10 180 4v86H0z" fill="#3fb3a4"/>
-  <g transform="translate(210 118)">
-    <rect x="0" y="40" width="180" height="92" fill="#fdf9f1"/>
-    <path d="M-10 42 90 -6l100 48z" fill="#d94a28"/>
-    <rect x="72" y="-40" width="36" height="60" fill="#fdf9f1"/>
-    <path d="M66 -40l24-22 24 22z" fill="#d94a28"/>
-    <g fill="#14213d"><rect x="18" y="62" width="18" height="26" rx="9"/><rect x="50" y="62" width="18" height="26" rx="9"/><rect x="112" y="62" width="18" height="26" rx="9"/><rect x="144" y="62" width="18" height="26" rx="9"/><rect x="82" y="-24" width="16" height="20" rx="8"/></g>
-    <path d="M78 132v-30a12 12 0 0 1 24 0v30z" fill="#14213d"/>
-  </g>
-  <g fill="#1d7268"><circle cx="90" cy="178" r="56"/><circle cx="130" cy="150" r="40"/><circle cx="520" cy="185" r="50"/><circle cx="480" cy="160" r="36"/></g>
-  <g fill="#14213d"><rect x="100" y="210" width="14" height="60"/><rect x="505" y="215" width="12" height="54"/></g>
-  <path d="M0 300h600" stroke="#14213d" stroke-width="3"/>
-  <g stroke="#14213d" stroke-width="3">
-    <path d="M20 286v28M60 286v28M100 286v28M140 286v28M180 286v28M220 286v28M260 286v28M300 286v28M340 286v28M380 286v28M420 286v28M460 286v28M500 286v28M540 286v28M580 286v28"/>
-  </g>
-  <path d="M0 322c150-10 300-10 600 0v18H0z" fill="#e6c98f"/>
-</svg>""",
-    # University: modern campus blocks with running track
-    "uni": """<svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice">
-  <rect width="600" height="340" fill="#e0eafa"/>
-  <circle cx="90" cy="70" r="34" fill="#f7b733"/>
-  <g transform="translate(150 80)">
-    <rect x="0" y="40" width="120" height="150" fill="#1d2d52"/>
-    <rect x="130" y="0" width="90" height="190" fill="#14213d"/>
-    <rect x="230" y="60" width="130" height="130" fill="#3a4a6e"/>
-    <g fill="#f7b733" opacity=".9">
-      <rect x="14" y="58" width="92" height="10"/><rect x="14" y="84" width="92" height="10"/><rect x="14" y="110" width="92" height="10"/><rect x="14" y="136" width="92" height="10"/>
-      <rect x="144" y="18" width="12" height="150"/><rect x="170" y="18" width="12" height="150"/><rect x="196" y="18" width="12" height="150"/>
-      <rect x="246" y="78" width="98" height="12"/><rect x="246" y="104" width="98" height="12"/><rect x="246" y="130" width="98" height="12"/>
-    </g>
-    <rect x="-150" y="190" width="600" height="10" fill="#14213d"/>
-  </g>
-  <ellipse cx="300" cy="320" rx="330" ry="60" fill="#f2603d"/>
-  <ellipse cx="300" cy="324" rx="290" ry="44" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="10 8"/>
-  <ellipse cx="300" cy="328" rx="250" ry="30" fill="#3fb3a4"/>
-  <g fill="#2a9d8f"><circle cx="530" cy="230" r="34"/><circle cx="60" cy="240" r="28"/></g>
-</svg>""",
-}
-
-
-def icon(name):
-    return (
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
-        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[name] + "</svg>"
-    )
-
-
-# ---------------------------------------------------------------------------
-# Photos. Every real photo lives in assets/img/photos/<slug>.jpg.
-# Until a file exists, a tinted placeholder (or illustration) shows instead.
-# ---------------------------------------------------------------------------
-HERO_ART = """<svg viewBox="0 0 560 520">
-        <defs>
-          <clipPath id="heroClip"><circle cx="290" cy="270" r="230"/></clipPath>
-        </defs>
-        <circle cx="290" cy="270" r="230" fill="#f1e0bb"/>
-        <g clip-path="url(#heroClip)">
-          <rect x="40" y="40" width="500" height="300" fill="#e0eafa"/>
-          <circle cx="400" cy="140" r="52" fill="#f7b733"/>
-          <path d="M40 330c80-50 170-60 260-30s170 20 240-10v230H40z" fill="#2a9d8f"/>
-          <path d="M40 360c90-30 200-20 290 10s150 10 210-10v200H40z" fill="#3fb3a4"/>
-          <!-- College building -->
-          <g transform="translate(150 210)">
-            <rect x="0" y="40" width="200" height="110" fill="#1d2d52"/>
-            <rect x="70" y="0" width="60" height="150" fill="#14213d"/>
-            <path d="M70 0l30-28 30 28z" fill="#f2603d"/>
-            <path d="M0 40l20-18h160l20 18z" fill="#14213d"/>
-            <g fill="#f7b733">
-              <rect x="18" y="62" width="16" height="24" rx="8"/>
-              <rect x="44" y="62" width="16" height="24" rx="8"/>
-              <rect x="140" y="62" width="16" height="24" rx="8"/>
-              <rect x="166" y="62" width="16" height="24" rx="8"/>
-              <rect x="18" y="100" width="16" height="24" rx="8"/>
-              <rect x="44" y="100" width="16" height="24" rx="8"/>
-              <rect x="140" y="100" width="16" height="24" rx="8"/>
-              <rect x="166" y="100" width="16" height="24" rx="8"/>
-              <circle cx="100" cy="36" r="12"/>
-            </g>
-            <path d="M88 150v-34a12 12 0 0 1 24 0v34z" fill="#fdf9f1"/>
-          </g>
-          <!-- Trees -->
-          <circle cx="110" cy="330" r="30" fill="#1d7268"/>
-          <rect x="106" y="340" width="8" height="30" fill="#14213d"/>
-          <circle cx="440" cy="325" r="36" fill="#1d7268"/>
-          <rect x="436" y="340" width="8" height="34" fill="#14213d"/>
-          <!-- Sand -->
-          <path d="M40 440c70-24 160-26 250-6s170 18 250-4v90H40z" fill="#e6c98f"/>
-          <!-- Bucket -->
-          <g transform="translate(330 400)">
-            <path d="M0 0h44l-6 42H6z" fill="#f2603d"/>
-            <rect x="-3" y="-6" width="50" height="9" rx="4" fill="#d94a28"/>
-            <path d="M2 -2c0-22 40-22 40 0" fill="none" stroke="#14213d" stroke-width="3"/>
-          </g>
-          <!-- Spade -->
-          <g transform="translate(395 380) rotate(18)">
-            <rect x="0" y="0" width="6" height="46" rx="3" fill="#14213d"/>
-            <path d="M-8 44h22l-3 22a8 8 0 0 1-16 0z" fill="#4a7fd6"/>
-          </g>
-        </g>
-
-        <!-- Speech bubbles -->
-        <g class="bubble-float">
-          <rect x="18" y="96" width="132" height="54" rx="27" fill="#f2603d"/>
-          <path d="M112 146l18 20 2-22z" fill="#f2603d"/>
-          <text x="84" y="131" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="24" font-weight="600" fill="#fff">Hello!</text>
-        </g>
-        <g class="bubble-float">
-          <rect x="400" y="24" width="140" height="50" rx="25" fill="#14213d"/>
-          <path d="M430 70l-10 20 26-16z" fill="#14213d"/>
-          <text x="470" y="57" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="600" fill="#fff">Bonjour</text>
-        </g>
-        <g class="bubble-float">
-          <rect x="436" y="250" width="112" height="48" rx="24" fill="#f7b733"/>
-          <path d="M452 294l-6 20 22-18z" fill="#f7b733"/>
-          <text x="492" y="282" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="600" fill="#14213d">¡Hola!</text>
-        </g>
-        <g class="bubble-float">
-          <rect x="6" y="300" width="104" height="48" rx="24" fill="#ffffff" stroke="#14213d" stroke-width="2"/>
-          <path d="M84 346l14 18 2-20z" fill="#ffffff" stroke="#14213d" stroke-width="2" stroke-linejoin="round"/>
-          <rect x="80" y="340" width="22" height="6" fill="#fff"/>
-          <text x="58" y="331" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="600" fill="#14213d">Ciao</text>
-        </g>
-        <g class="bubble-float">
-          <rect x="190" y="0" width="100" height="46" rx="23" fill="#4a7fd6"/>
-          <path d="M230 42l4 18 12-18z" fill="#4a7fd6"/>
-          <text x="240" y="31" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#fff">你好</text>
-        </g>
-        <g class="bubble-float">
-          <rect x="360" y="470" width="140" height="46" rx="23" fill="#2a9d8f"/>
-          <text x="430" y="500" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="21" font-weight="600" fill="#fff">Merhaba</text>
-        </g>
-      </svg>"""
-
-
-PHOTO_FALLBACK = {
-    "hero-students": "HERO_ART",
-    "location-parkland": "campus:park",
-    "location-modern-campus": "campus:uni",
-}
-
-
-def photo(slug, alt, variant="", caption=""):
-    fb = PHOTO_FALLBACK.get(slug)
-    if fb == "HERO_ART":
-        inner = HERO_ART
-        cls = " photo--art"
-    elif fb and fb.startswith("campus:"):
-        inner = CAMPUS[fb.split(":")[1]]
-        cls = " photo--art"
-    else:
-        inner = icon("image")
-        cls = ""
-    variant_cls = "".join(f" photo--{v}" for v in variant.split() if v)
-    cap = f"<figcaption>{caption}</figcaption>" if caption else ""
-    return (
-        f'<figure class="photo{variant_cls}{cls}">'
-        f'<div class="photo__placeholder" aria-hidden="true">{inner}</div>'
-        f'<img src="assets/img/photos/{slug}.jpg" alt="{alt}" loading="lazy" decoding="async" onerror="this.remove()">'
-        f"{cap}</figure>"
-    )
-
 
 TRIPS = [
     ("trip-london", "London walking tour",
@@ -263,6 +127,63 @@ TRIPS = [
 ]
 
 
+def icon(name):
+    if name not in ICON:
+        fail(f"unknown icon '{name}'")
+    return (
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICON[name] + "</svg>"
+    )
+
+
+# ---------------------------------------------------------------------------
+# Photos. Every photo lives in assets/img/photos/<slug>.jpg, with a smaller
+# <slug>-800.jpg made by src/images.py for phones.
+# ---------------------------------------------------------------------------
+def jpeg_size(path):
+    """Return (width, height) of a JPEG using only the standard library."""
+    data = path.read_bytes()
+    i = 2
+    while i < len(data):
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker = data[i + 1]
+        if marker in (0xC0, 0xC1, 0xC2):
+            h, w = struct.unpack(">HH", data[i + 5:i + 9])
+            return w, h
+        i += 2 + struct.unpack(">H", data[i + 2:i + 4])[0]
+    fail(f"could not read the size of {path.name}")
+
+
+SIZES = {
+    "tall": "(min-width: 960px) 45vw, 100vw",
+    "wide": "(min-width: 900px) 50vw, 100vw",
+    "": "(min-width: 900px) 25vw, (min-width: 600px) 50vw, 100vw",
+}
+
+
+def photo(slug, alt, variant="", caption=""):
+    path = PHOTOS / f"{slug}.jpg"
+    if not path.exists():
+        fail(f"missing photo assets/img/photos/{slug}.jpg")
+    USED_PHOTOS.add(slug)
+    w, h = jpeg_size(path)
+    src = f"assets/img/photos/{slug}.jpg"
+    small = PHOTOS / f"{slug}-800.jpg"
+    srcset = ""
+    if small.exists():
+        srcset = f' srcset="assets/img/photos/{slug}-800.jpg 800w, {src} {w}w" sizes="{SIZES[variant]}"'
+    loading = 'fetchpriority="high"' if variant == "tall" else 'loading="lazy"'
+    cls = f" photo--{variant}" if variant else ""
+    cap = f"<figcaption>{caption}</figcaption>" if caption else ""
+    return (
+        f'<figure class="photo{cls}">'
+        f'<img src="{src}"{srcset} width="{w}" height="{h}" alt="{attr(alt)}" {loading} decoding="async">'
+        f"{cap}</figure>"
+    )
+
+
 def trips():
     cards = []
     for slug, name, text, alt in TRIPS:
@@ -279,6 +200,13 @@ def trips():
     return '<div class="trip-grid">\n' + "\n".join(cards) + "\n    </div>"
 
 
+# ---------------------------------------------------------------------------
+# Shared header and footer
+# ---------------------------------------------------------------------------
+BRAND = f"""{LOGO}
+      <span class="brand-name">Sandbox<small>English Summer School</small></span>"""
+
+
 def header(current):
     items = []
     for href, label in NAV:
@@ -290,9 +218,8 @@ def header(current):
     return f"""<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Sandbox English Summer School home">
-      {LOGO}
-      <span class="brand-name">Sandbox<small>English Summer School</small></span>
+    <a class="brand" href="index.html" aria-label="{SITE_NAME} home">
+      {BRAND}
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -306,22 +233,23 @@ def header(current):
 </header>"""
 
 
-FOOTER = f"""<footer class="site-footer">
+def footer():
+    social = "".join(f'<a href="{url}" rel="noopener" aria-label="Sandbox English on {name}">{icon(ic)}</a>' for ic, name, url in SOCIAL)
+    return f"""<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="brand" href="index.html" aria-label="Sandbox English Summer School home">
-          {LOGO}
-          <span class="brand-name">Sandbox<small>English Summer School</small></span>
+        <a class="brand" href="index.html" aria-label="{SITE_NAME} home">
+          {BRAND}
         </a>
         <p class="footer-note">A residential English summer school for young people aged 8–17 in London and the Thames Valley. Launching summer 2028.</p>
         <p class="footer-note"><a href="mailto:{EMAIL}">{EMAIL}</a><br>@sandboxenglish</p>
         <div class="socials">
-          {"".join(f'<a href="{url}" rel="noopener" aria-label="Sandbox English on {name}">{icon(ic)}</a>' for ic, name, url in SOCIAL)}
+          {social}
         </div>
       </div>
       <div>
-        <h4>Explore</h4>
+        <h2 class="footer-title">Explore</h2>
         <ul>
           <li><a href="index.html#programme">The programme</a></li>
           <li><a href="index.html#summer-life">Summer life &amp; excursions</a></li>
@@ -331,7 +259,7 @@ FOOTER = f"""<footer class="site-footer">
         </ul>
       </div>
       <div>
-        <h4>Work with us</h4>
+        <h2 class="footer-title">Work with us</h2>
         <ul>
           <li><a href="consultation.html">Book a free consultation</a></li>
           <li><a href="agents.html">Agents</a></li>
@@ -340,11 +268,11 @@ FOOTER = f"""<footer class="site-footer">
         </ul>
       </div>
       <div>
-        <h4>Summer 2028</h4>
+        <h2 class="footer-title">Summer 2028</h2>
         <p>Be the first to hear when places for our first summer open.</p>
-        <form class="newsletter" novalidate>
+        <form class="newsletter" action="#" method="post" novalidate>
           <label class="visually-hidden" for="newsletter-email">Email address</label>
-          <input id="newsletter-email" type="email" placeholder="Your email" autocomplete="email" required>
+          <input id="newsletter-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
           <button class="btn btn--primary btn--sm" type="submit">Sign up</button>
         </form>
         <p class="newsletter-msg" role="status" aria-live="polite"></p>
@@ -353,9 +281,9 @@ FOOTER = f"""<footer class="site-footer">
     <div class="footer-bottom">
       <p class="mb-0">© <span data-year>2026</span> Sandbox English, trading as Sandbox English Summer School.</p>
       <ul>
-        <li><a href="#">Privacy policy</a></li>
-        <li><a href="#">Terms &amp; conditions</a></li>
-        <li><a href="#">Cookies</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="terms.html">Terms of use</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
         <li><a href="credits.html">Photo credits</a></li>
       </ul>
     </div>
@@ -364,68 +292,54 @@ FOOTER = f"""<footer class="site-footer">
 
 
 # ---------------------------------------------------------------------------
-# Photo credits, generated from assets/img/photos/credits.json
+# Page wrapper
 # ---------------------------------------------------------------------------
-import json, html as _html
+STRUCTURED_DATA = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Sandbox English",
+    "alternateName": SITE_NAME,
+    "url": SITE_URL + "/",
+    "email": EMAIL,
+    "logo": SITE_URL + "/assets/img/favicon.svg",
+    "image": SITE_URL + "/assets/img/share.jpg",
+    "description": "Residential English summer school for ages 8–17 in London and the Thames Valley, from summer 2028.",
+    "founder": {"@type": "Person", "name": "Alexander Burns"},
+    "sameAs": [url for _, _, url in SOCIAL],
+}
 
 
-def credits_page():
-    path = ROOT / "assets/img/photos/credits.json"
-    data = json.loads(path.read_text()) if path.exists() else {}
-    rows = []
-    for slug, c in sorted(data.items()):
-        rows.append(
-            f'<tr><th scope="row"><img src="assets/img/photos/{slug}.jpg" alt="" loading="lazy" '
-            f'style="width:120px;height:80px;object-fit:cover;border-radius:8px"></th>'
-            f'<td>{_html.escape(c["description"])}</td>'
-            f'<td>{_html.escape(c["artist"])}</td>'
-            f'<td><a href="{c["license_url"]}" rel="noopener">{_html.escape(c["license"])}</a></td>'
-            f'<td><a href="{c["source"]}" rel="noopener">Source</a></td></tr>'
-        )
-    row_html = "\n          ".join(rows)
-    body = f"""<section class="page-hero">
-  <div class="container">
-    <p class="breadcrumb"><a href="index.html">Home</a> / Photo credits</p>
-    <h1>Photo credits</h1>
-    <p class="lead">We are grateful to the photographers who share their work under open licences. Images may have been cropped or resized.</p>
-  </div>
-</section>
-<section class="section" style="padding-top:0">
-  <div class="container">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th scope="col">Photo</th><th scope="col">Description</th><th scope="col">Photographer</th><th scope="col">Licence</th><th scope="col">Link</th></tr></thead>
-        <tbody>
-          {row_html}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>"""
-    return body
-
-
-def page(filename, title, description, body):
+def page(filename, meta, body):
+    title, description = attr(meta["title"]), attr(meta["description"])
+    path = "" if filename == "index.html" else filename
+    robots = '\n  <meta name="robots" content="noindex">' if meta.get("robots") == "noindex" else ""
+    ld = ""
+    if filename == "index.html":
+        ld = '\n  <script type="application/ld+json">' + json.dumps(STRUCTURED_DATA, ensure_ascii=False) + "</script>"
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
-  <meta name="description" content="{description}">
+  <meta name="description" content="{description}">{robots}
   <meta name="theme-color" content="#14213d">
-  <link rel="canonical" href="{SITE_URL}/{'' if filename == 'index.html' else filename}">
+  <link rel="canonical" href="{SITE_URL}/{path}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{SITE_URL}/{'' if filename == 'index.html' else filename}">
-  <meta property="og:site_name" content="Sandbox English Summer School">
+  <meta property="og:site_name" content="{SITE_NAME}">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="{SITE_URL}/{path}">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
+  <meta property="og:image" content="{SITE_URL}/assets/img/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&amp;family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..700,0..100,0..1;1,9..144,500..700,0..100,0..1&amp;display=swap">
+  <link rel="preload" href="assets/fonts/dm-sans-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js" defer></script>{ld}
 </head>
 <body>
 {header(filename)}
@@ -434,27 +348,105 @@ def page(filename, title, description, body):
 {body.strip()}
 </main>
 
-{FOOTER}
+{footer()}
 </body>
 </html>
 """
 
 
-def render(text):
-    # {{icon:name}} shortcodes
+def render(text, source):
     text = text.replace("{{trips}}", trips())
     text = re.sub(r"\{\{photo:([^}]*)\}\}", lambda m: photo(*m.group(1).split("|")), text)
-    text = re.sub(r"\{\{campus:(\w+)\}\}", lambda m: CAMPUS[m.group(1)], text)
-    return re.sub(r"\{\{icon:(\w+)\}\}", lambda m: icon(m.group(1)), text)
+    text = re.sub(r"\{\{icon:(\w+)\}\}", lambda m: icon(m.group(1)), text)
+    leftover = re.search(r"\{\{[^}]*\}\}", text)
+    if leftover:
+        fail(f"unknown shortcode {leftover.group(0)} in {source}")
+    return text
 
 
-for src in sorted(SRC.glob("*.html")):
-    raw = src.read_text()
-    meta, body = raw.split("\n---\n", 1)
-    fields = dict(line.split(": ", 1) for line in meta.strip().splitlines())
-    out = page(src.name, fields["title"], fields["description"], render(body))
-    (ROOT / src.name).write_text(out)
-    print("wrote", src.name)
+def parse(source):
+    raw = read_text(source)
+    if "\n---\n" not in raw:
+        fail(f"{source.name} has no '---' line after its front matter")
+    head, body = raw.split("\n---\n", 1)
+    meta = {}
+    for line in head.strip().splitlines():
+        key, _, value = line.partition(":")
+        meta[key.strip()] = value.strip()
+    for key in ("title", "description"):
+        if key not in meta:
+            fail(f"{source.name} is missing '{key}:'")
+    return meta, body
 
-(ROOT / "credits.html").write_text(page("credits.html", "Photo Credits | Sandbox English Summer School", "Credits and licences for photographs used on the Sandbox English Summer School website.", credits_page()))
-print("wrote credits.html")
+
+# ---------------------------------------------------------------------------
+# Photo credits
+# ---------------------------------------------------------------------------
+def credits_page(credits):
+    rows = []
+    for slug, c in sorted(credits.items()):
+        thumb = f"assets/img/photos/{slug}-800.jpg" if (PHOTOS / f"{slug}-800.jpg").exists() else f"assets/img/photos/{slug}.jpg"
+        rows.append(
+            f'<tr><td><img class="credit-thumb" src="{thumb}" alt="" loading="lazy" width="120" height="80"></td>'
+            f'<th scope="row">{html.escape(c["description"])}</th>'
+            f'<td>{html.escape(c["artist"])}</td>'
+            f'<td><a href="{attr(c["license_url"])}" rel="noopener">{html.escape(c["license"])}</a></td>'
+            f'<td><a href="{attr(c["source"])}" rel="noopener">Source</a></td></tr>'
+        )
+    row_html = "\n          ".join(rows)
+    return f"""<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Photo credits</p>
+    <h1>Photo credits</h1>
+    <p class="lead">We are grateful to the photographers who share their work under open licences. Images may have been cropped or resized.</p>
+  </div>
+</section>
+<section class="section section--tight-top">
+  <div class="container">
+    <div class="table-wrap">
+      <table>
+        <caption class="visually-hidden">Photographs used on this website, with photographer, licence and source</caption>
+        <thead><tr><td></td><th scope="col">Photo</th><th scope="col">Photographer</th><th scope="col">Licence</th><th scope="col">Link</th></tr></thead>
+        <tbody>
+          {row_html}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>"""
+
+
+# ---------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------
+def main():
+    pages = []
+    for source in sorted(SRC.glob("*.html")):
+        meta, body = parse(source)
+        write_text(ROOT / source.name, page(source.name, meta, render(body, source.name)))
+        pages.append((source.name, meta))
+        print("wrote", source.name)
+
+    credits = json.loads(read_text(PHOTOS / "credits.json"))
+    missing = sorted(USED_PHOTOS - set(credits))
+    if missing:
+        fail(f"no credits.json entry for: {', '.join(missing)}")
+    for slug in sorted(set(credits) - USED_PHOTOS):
+        print(f"warning: credits.json lists '{slug}', which no page uses")
+    write_text(ROOT / "credits.html", page("credits.html", {
+        "title": f"Photo Credits | {SITE_NAME}",
+        "description": f"Credits and licences for photographs used on the {SITE_NAME} website.",
+        "robots": "noindex",
+    }, credits_page(credits)))
+    print("wrote credits.html")
+
+    urls = [f"{SITE_URL}/" if name == "index.html" else f"{SITE_URL}/{name}"
+            for name, meta in pages if meta.get("robots") != "noindex"]
+    sitemap = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
+    write_text(ROOT / "sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sitemap}\n</urlset>\n')
+    write_text(ROOT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
+    print("wrote sitemap.xml, robots.txt")
+
+
+if __name__ == "__main__":
+    main()

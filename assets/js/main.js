@@ -2,7 +2,8 @@
 (function () {
   "use strict";
 
-  document.documentElement.classList.add("js");
+  var root = document.documentElement;
+  root.classList.add("js");
 
   /* ---------- Sticky header shadow ---------- */
   var header = document.querySelector(".site-header");
@@ -35,14 +36,19 @@
         toggle.focus();
       }
     });
-    window.matchMedia("(min-width: 1181px)").addEventListener("change", function (mq) {
-      if (mq.matches) setOpen(false);
-    });
+    if (window.matchMedia) {
+      var desktop = window.matchMedia("(min-width: 1241px)");
+      var onChange = function (mq) { if (mq.matches) setOpen(false); };
+      if (desktop.addEventListener) desktop.addEventListener("change", onChange);
+      else if (desktop.addListener) desktop.addListener(onChange);
+    }
   }
 
-  /* ---------- Reveal on scroll ---------- */
-  var revealEls = document.querySelectorAll(".reveal");
+  /* ---------- Reveal on scroll ----------
+     Content is only hidden once the observer is running (html.reveal-ready),
+     so if anything fails, everything stays visible. */
   if ("IntersectionObserver" in window) {
+    var revealEls = document.querySelectorAll(".reveal");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -52,51 +58,12 @@
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     revealEls.forEach(function (el) { io.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+    root.classList.add("reveal-ready");
   }
 
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
-  });
-
-  /* ---------- Tabs ---------- */
-  document.querySelectorAll(".tabs").forEach(function (tabs) {
-    var tabList = tabs.querySelectorAll('[role="tab"]');
-    var select = function (tab, focus) {
-      tabList.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute("aria-selected", String(on));
-        t.tabIndex = on ? 0 : -1;
-        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-      });
-      if (focus) tab.focus();
-      if (history.replaceState && tab.dataset.hash) {
-        history.replaceState(null, "", "#" + tab.dataset.hash);
-      }
-    };
-    tabList.forEach(function (tab, i) {
-      tab.addEventListener("click", function () { select(tab); });
-      tab.addEventListener("keydown", function (e) {
-        var next = null;
-        if (e.key === "ArrowRight") next = tabList[(i + 1) % tabList.length];
-        if (e.key === "ArrowLeft") next = tabList[(i - 1 + tabList.length) % tabList.length];
-        if (e.key === "Home") next = tabList[0];
-        if (e.key === "End") next = tabList[tabList.length - 1];
-        if (next) { e.preventDefault(); select(next, true); }
-      });
-    });
-    // Deep-link support: a tab with data-hash="x" opens from page.html#x
-    var hash = location.hash.replace("#", "");
-    if (hash) {
-      tabList.forEach(function (t) {
-        if (t.dataset.hash === hash) {
-          select(t);
-          tabs.scrollIntoView();
-        }
-      });
-    }
   });
 
   /* ---------- Form validation ---------- */
@@ -105,28 +72,43 @@
     typeMismatch: "Please check the format of this field.",
     patternMismatch: "Please check the format of this field.",
     rangeUnderflow: "That value is too low.",
-    rangeOverflow: "That value is too high."
+    rangeOverflow: "That value is too high.",
+    stepMismatch: "Please enter a whole number.",
+    badInput: "Please enter a number."
   };
 
-  var fieldOf = function (input) { return input.closest(".field") || input.closest(".checkbox"); };
+  var errorElFor = function (input) {
+    var ids = (input.getAttribute("aria-describedby") || "").split(/\s+/);
+    for (var i = 0; i < ids.length; i++) {
+      var el = ids[i] && document.getElementById(ids[i]);
+      if (el && el.classList.contains("field-error")) return el;
+    }
+    return null;
+  };
+
+  var isActive = function (input) {
+    return !input.disabled && !input.closest("[hidden]");
+  };
 
   var showError = function (input) {
-    var field = fieldOf(input);
-    if (!field) return true;
-    var errorEl = field.querySelector(".field-error");
+    var errorEl = errorElFor(input);
+    if (!errorEl) return true;
     var msg = "";
-    if (!input.validity.valid) {
+    if (isActive(input) && !input.validity.valid) {
       if (input.type === "email" && input.validity.typeMismatch) msg = "Please enter a valid email address, e.g. name@example.com.";
       else if (input.type === "checkbox" && input.validity.valueMissing) msg = "Please tick this box to continue.";
+      else if (input.dataset.error) msg = input.dataset.error;
       else {
         for (var key in messages) {
-          if (input.validity[key]) { msg = input.dataset.error || messages[key]; break; }
+          if (input.validity[key]) { msg = messages[key]; break; }
         }
+        if (!msg) msg = "Please check this field.";
       }
     }
-    field.classList.toggle("has-error", !!msg);
+    var field = input.closest(".field");
+    if (field) field.classList.toggle("has-error", !!msg);
     input.setAttribute("aria-invalid", msg ? "true" : "false");
-    if (errorEl) errorEl.textContent = msg;
+    errorEl.textContent = msg;
     return !msg;
   };
 
@@ -135,12 +117,15 @@
     var inputs = form.querySelectorAll("input, select, textarea");
 
     inputs.forEach(function (input) {
+      var touched = false;
       input.addEventListener("blur", function () {
-        if (input.value || input.dataset.touched) showError(input);
-        input.dataset.touched = "1";
+        var hasValue = input.type === "checkbox" || input.type === "radio" ? false : input.value !== "";
+        if (hasValue || touched) showError(input);
+        touched = true;
       });
-      input.addEventListener("input", function () {
-        if (fieldOf(input) && fieldOf(input).classList.contains("has-error")) showError(input);
+      input.addEventListener(input.type === "checkbox" ? "change" : "input", function () {
+        var field = input.closest(".field");
+        if (field && field.classList.contains("has-error")) showError(input);
       });
     });
 
@@ -154,8 +139,7 @@
         firstInvalid.focus();
         return;
       }
-      // No backend is wired up yet: if the form has no real action,
-      // show the success state instead of navigating away.
+      // No backend is wired up yet: with no real action, show the success state instead.
       if (!form.getAttribute("action") || form.getAttribute("action") === "#") {
         e.preventDefault();
         var success = document.getElementById(form.dataset.success);
@@ -168,34 +152,68 @@
     });
   });
 
+  /* ---------- Consultation form: fields that depend on other answers ---------- */
+  var consult = document.getElementById("consultation-form");
+  if (consult) {
+    var phone = document.getElementById("phone");
+    var phoneMark = consult.querySelector("[data-phone-required]");
+
+    var syncEnquirer = function () {
+      var checked = consult.querySelector('input[name="enquirer"]:checked');
+      var who = checked ? checked.value : "parent";
+      consult.querySelectorAll("[data-show-for]").forEach(function (el) {
+        var show = el.dataset.showFor.split(" ").indexOf(who) !== -1;
+        el.hidden = !show;
+        el.querySelectorAll("input, select, textarea").forEach(function (i) { i.disabled = !show; });
+      });
+    };
+    var syncMethod = function () {
+      var checked = consult.querySelector('input[name="method"]:checked');
+      var needsPhone = !!checked && checked.value !== "video";
+      phone.required = needsPhone;
+      if (phoneMark) phoneMark.hidden = !needsPhone;
+      if (!needsPhone) showError(phone);
+    };
+
+    // Pre-fill from links, e.g. consultation.html?type=agent&area=london
+    var params = new URLSearchParams(location.search);
+    var type = params.get("type");
+    if (type) {
+      var radio = consult.querySelector('input[name="enquirer"][value="' + (/^(parent|agent|group)$/.test(type) ? type : "other") + '"]');
+      if (radio) radio.checked = true;
+    }
+    var area = document.getElementById("area");
+    var areaParam = params.get("area");
+    if (area && areaParam) {
+      Array.prototype.forEach.call(area.options, function (opt) {
+        if (opt.value === areaParam) area.value = areaParam;
+      });
+    }
+
+    consult.addEventListener("change", function (e) {
+      if (e.target.name === "enquirer") syncEnquirer();
+      if (e.target.name === "method") syncMethod();
+    });
+    syncEnquirer();
+    syncMethod();
+  }
+
   /* ---------- Newsletter ---------- */
   document.querySelectorAll(".newsletter").forEach(function (form) {
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
       var input = form.querySelector("input[type='email']");
       var msg = form.parentElement.querySelector(".newsletter-msg");
       if (!input.value || !input.checkValidity()) {
+        e.preventDefault();
         msg.textContent = "Please enter a valid email address.";
         input.focus();
         return;
       }
+      // With a real action set, let the browser submit to the email provider.
+      if (form.getAttribute("action") && form.getAttribute("action") !== "#") return;
+      e.preventDefault();
       msg.textContent = "Thanks! We'll be in touch when summer 2028 places open.";
       form.reset();
     });
   });
-
-  /* ---------- Pre-fill the consultation form from links, e.g. ?type=agent&area=london ---------- */
-  var params = new URLSearchParams(location.search);
-  var type = params.get("type");
-  if (type) {
-    var radio = document.querySelector('input[name="enquirer"][value="' + (/^(parent|agent|group)$/.test(type) ? type : "other") + '"]');
-    if (radio) radio.checked = true;
-  }
-  var area = document.getElementById("area");
-  var areaParam = params.get("area");
-  if (area && areaParam) {
-    Array.prototype.forEach.call(area.options, function (opt) {
-      if (opt.value === areaParam) area.value = areaParam;
-    });
-  }
 })();

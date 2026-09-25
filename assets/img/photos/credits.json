@@ -69,47 +69,40 @@
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/7395893/"
   },
-  "location-arts-centre": {
-    "description": "A modern music and arts centre on a school campus",
-    "artist": "Joggs64",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:The_Michael_Malnick_Centre_for_music_and_media.jpg"
+  "location-campus": {
+    "description": "A modern glass building among trees",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/129667/"
   },
-  "location-campus-buildings": {
-    "description": "Modern buildings and green space on a university campus in west London",
-    "artist": "DiscoA340",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_03.jpg"
+  "location-grounds": {
+    "description": "A large tree on a sunny green lawn",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/18010149/"
   },
-  "location-campus-walkway": {
-    "description": "A tree-lined walkway on a university campus in west London",
-    "artist": "DiscoA340",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_08.jpg"
+  "location-london": {
+    "description": "London and the River Thames from above, at dawn",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/50631/"
   },
-  "location-modern-campus": {
-    "description": "A curved glass building on a university campus in west London",
-    "artist": "DiscoA340",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Brunel_University_London_Campus_(August_2023)_02.jpg"
+  "location-thames-valley": {
+    "description": "A riverside meadow under a summer sky",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/12173389/"
   },
-  "location-parkland": {
-    "description": "A historic school building across open parkland in the Thames Valley",
-    "artist": "Joggs64",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:Old_School_at_Leighton_Park.jpg"
-  },
-  "location-parkland-hall": {
-    "description": "A school hall framed by autumn trees in parkland",
-    "artist": "Joggs64",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "source": "https://commons.wikimedia.org/wiki/File:View_of_Peckover_Hall_in_Autumn.jpg"
+  "location-windsor": {
+    "description": "The Round Tower at Windsor Castle",
+    "artist": "Pexels contributor",
+    "license": "Pexels License",
+    "license_url": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/29440881/"
   },
   "students-corridor": {
     "description": "Students with backpacks walking along a school corridor",
