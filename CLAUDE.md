@@ -56,6 +56,12 @@ The build fails on unknown shortcodes or icons, missing photo files, or photos w
 
 Forms have `action="#"` and no backend. After validation, the element named by `data-success` is shown instead. Set a real `action` (Formspree, Netlify Forms or similar) and the form submits normally. The newsletter form works the same way.
 
-## Still to do before launch
+## Launch checklist
 
-See the README's "Still to do before launch" list: the form backend, the registered address, a legal review of the policy pages, and naming venues once confirmed.
+The README's **Launch checklist** is the single list of what is left, in priority order:
+1. **Blocking before go-live:** connect the consultation and newsletter forms, the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, social accounts, domain and HTTPS, and making `main` the default branch.
+2. **Before promoting:** founder photo, a named safeguarding lead and written policies, a phone/WhatsApp number, booking and agent terms, insurance, honest accreditation, press images for the attractions, Search Console.
+3. **When venues and dates are confirmed:** name them, swap in venue photos, add dates, and update the rules in this file.
+4. **After the first summer:** real photos (with consent), testimonials, and removing "new school" wording.
+
+When you finish an item, tick it in the README (`- [x]`) in the same commit. If a change affects an item (e.g. connecting a form provider), update the related pages too: the privacy policy's providers and the cookie policy if the provider sets cookies or loads scripts. Don't mark legal or business items (insurance, ICO fee, legal review) as done unless the user confirms them.
