@@ -75,7 +75,7 @@ assets/img/photos/      photos (one file per slot, plus <slug>-800.jpg) + credit
 | `logo-on-navy.svg`, `logo-stacked-on-navy.svg` | Two colours on navy shirts or dark backgrounds (white bubble and name, coral details) |
 | `mark-*.svg` | The bubble on its own: sleeves, social avatars, favicons (`assets/img/favicon.svg` is a copy of `mark-full-colour.svg`) |
 
-**Browser-tab icons.** Safari ignores SVG tab icons, so every page also links `favicon.ico` (16, 32 and 48px, in the site root) and `assets/img/apple-touch-icon.png` (180px, on the sand background, for Safari and iPhone home screens). `assets/img/favicon-32.png` is a spare 32px PNG. All are rendered from `mark-full-colour.svg`: regenerate them whenever the mark changes. Safari caches tab icons for a long time, so a change may only show after clearing its history or website data.
+**Browser-tab icons.** Safari ignores SVG tab icons, so every page also links `favicon.ico` (16, 32 and 48px, in the site root) and `assets/img/apple-touch-icon.png` (180px, on the sand background, for Safari and iPhone home screens). `assets/img/favicon-32.png` is a spare 32px PNG. All are rendered from `mark-full-colour.svg`: regenerate them whenever the mark changes. The build adds a content hash to each icon link (e.g. `favicon.ico?v=a4a4537e`), so when an icon changes its address changes too and Safari fetches it again instead of keeping its cached copy. If Safari still shows an old icon or a letter tile, check in a Private window, then clear the site in Safari → Settings → Privacy → Manage Website Data.
 | `lanyard-navy.svg`, `lanyard-coral.svg` | One repeat of the lanyard design (20mm high). The printer tiles it along the strap |
 
 ## Photos

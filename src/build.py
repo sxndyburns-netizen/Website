@@ -20,6 +20,7 @@ robots.txt. The generated files in the repo root are committed; never edit them 
 The build stops with an error if a shortcode is unknown, a photo file is missing, or a
 photo has no entry in credits.json. It warns while any COMPANY detail is still a placeholder.
 """
+import hashlib
 import html
 import json
 import pathlib
@@ -93,6 +94,13 @@ def logo(body="#14213d", castle="#ffffff", accent="#f2603d"):
 
 
 USED_PHOTOS = set()
+
+
+def versioned(path):
+    """URL for a static file with a content hash, so browsers (Safari's icon cache in
+    particular) fetch it again whenever the file changes."""
+    digest = hashlib.sha1((ROOT / path).read_bytes()).hexdigest()[:8]
+    return f"{path}?v={digest}"
 
 
 def attr(text):
@@ -398,9 +406,9 @@ def page(filename, meta, body):
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="favicon.ico" sizes="32x32">
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="icon" href="{versioned("favicon.ico")}" sizes="32x32">
+  <link rel="icon" href="{versioned("assets/img/favicon.svg")}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{versioned("assets/img/apple-touch-icon.png")}">
   <link rel="preload" href="assets/fonts/dm-sans-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/fraunces-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
