@@ -48,13 +48,6 @@
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/1448721/"
   },
-  "food-4": {
-    "description": "A dining hall with tables set out",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/17154532/"
-  },
   "food-5": {
     "description": "Croissants and strawberries for breakfast",
     "artist": "Pexels contributor",
@@ -62,19 +55,12 @@
     "license_url": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/11009273/"
   },
-  "food-6": {
-    "description": "Fresh oranges and melons",
-    "artist": "Pexels contributor",
-    "license": "Pexels License",
-    "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/12708049/"
-  },
   "hero-students": {
-    "description": "Children walking hand in hand, seen from behind",
+    "description": "Students of different ages walking into school, seen from behind",
     "artist": "Pexels contributor",
     "license": "Pexels License",
     "license_url": "https://www.pexels.com/license/",
-    "source": "https://www.pexels.com/photo/4894722/"
+    "source": "https://www.pexels.com/photo/8500421/"
   },
   "lessons": {
     "description": "Students seated at desks in a classroom",

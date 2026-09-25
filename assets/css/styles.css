@@ -125,6 +125,7 @@ a:hover { color: var(--accent); }
 }
 
 .section { padding: var(--section-y) 0; }
+section[id] { scroll-margin-top: 84px; }
 .section--alt { background: var(--bg-alt); }
 .section--navy { background: var(--navy-900); color: #f4efe4; }
 .section--navy .eyebrow { color: var(--sun-400); }

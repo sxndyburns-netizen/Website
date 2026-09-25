@@ -20,11 +20,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = pathlib.Path(__file__).parent / "pages"
 
 NAV = [
-    ("index.html", "Home"),
-    ("programme.html", "Programme"),
-    ("locations.html", "Locations"),
-    ("summer-life.html", "Summer life"),
-    ("about.html", "About"),
+    ("index.html#programme", "Programme"),
+    ("index.html#summer-life", "Summer life"),
+    ("index.html#locations", "Locations"),
+    ("index.html#about", "About"),
     ("agents.html", "Agents &amp; groups"),
 ]
 
@@ -324,11 +323,11 @@ FOOTER = f"""<footer class="site-footer">
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="programme.html">The programme</a></li>
-          <li><a href="locations.html">Locations</a></li>
-          <li><a href="summer-life.html">Summer life</a></li>
-          <li><a href="about.html">About us</a></li>
-          <li><a href="about.html#faq">FAQs</a></li>
+          <li><a href="index.html#programme">The programme</a></li>
+          <li><a href="index.html#summer-life">Summer life &amp; excursions</a></li>
+          <li><a href="index.html#locations">Locations</a></li>
+          <li><a href="index.html#about">About us</a></li>
+          <li><a href="index.html#faq">FAQs</a></li>
         </ul>
       </div>
       <div>
@@ -337,7 +336,7 @@ FOOTER = f"""<footer class="site-footer">
           <li><a href="consultation.html">Book a free consultation</a></li>
           <li><a href="agents.html">Agents</a></li>
           <li><a href="agents.html#groups">Group leaders</a></li>
-          <li><a href="about.html#safeguarding">Safety &amp; welfare</a></li>
+          <li><a href="index.html#safety">Safety &amp; welfare</a></li>
         </ul>
       </div>
       <div>

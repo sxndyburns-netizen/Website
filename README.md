@@ -27,13 +27,11 @@ Commit both the sources and the regenerated HTML, because the host serves the HT
 
 ## Pages
 
+The site is deliberately small: three main pages, plus a photo credits page linked from the footer.
+
 | File | Purpose |
 | --- | --- |
-| `index.html` | Home: launch 2028, key facts, audiences (parents, agents, group leaders), the programme, founder, locations, a typical day, excursions, safety |
-| `programme.html` | The single programme and how students are grouped by age and level on site; what each week includes; sample week |
-| `locations.html` | London (`#london`) and the Thames Valley (`#thames-valley`), described generally; venue standards (`#standards`). **No venues are named** until confirmed |
-| `summer-life.html` | Activities, excursions (`#excursions`), food (`#food`), living with us (`#care`) |
-| `about.html` | Founder Alexander Burns, approach, safety and welfare (`#safeguarding`), FAQs (`#faq`) |
+| `index.html` | Everything families need, in sections the nav links to: who we work with, the programme (`#programme`), a typical day (`#day`), summer life (`#summer-life`), excursions (`#excursions`), food (`#food`), locations (`#locations`), safety and welfare (`#safety`), about the founder (`#about`), FAQs (`#faq`) |
 | `agents.html` | For agents (`#agents`) and group leaders (`#groups`) |
 | `consultation.html` | Consultation form. Pre-fills from `?type=parent\|agent\|group` and `?area=london\|thames-valley` |
 | `credits.html` | Photo credits, generated from `assets/img/photos/credits.json` |
@@ -80,52 +78,48 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 
 | File | What it shows | Source | Used on |
 | --- | --- | --- | --- |
-| `activities-arts.jpg` | A student painting with a brush | Pexels | summer-life.html |
-| `activities-drama.jpg` | A theatre stage with red curtains | Pexels | summer-life.html |
-| `activities-evening.jpg` | Friends silhouetted around a bonfire | Pexels | summer-life.html |
-| `activities-sport.jpg` | A football on a floodlit pitch | Pexels | summer-life.html |
-| `food-1.jpg` | Roast chicken with vegetables | Pexels | summer-life.html |
-| `food-2.jpg` | Fresh salad at a buffet counter | Pexels | summer-life.html |
-| `food-3.jpg` | A selection of desserts | Pexels | summer-life.html |
-| `food-4.jpg` | A dining hall with tables set out | Pexels | summer-life.html |
-| `food-5.jpg` | Croissants and strawberries for breakfast | Pexels | summer-life.html |
-| `food-6.jpg` | Fresh oranges and melons | Pexels | summer-life.html |
-| `hero-students.jpg` | Children walking hand in hand, seen from behind | Pexels | index.html |
-| `lessons.jpg` | Students seated at desks in a classroom | Pexels | index.html, programme.html |
-| `location-arts-centre.jpg` | A modern music and arts centre on a school campus | Wikimedia Commons (CC BY-SA 4.0) | locations.html |
-| `location-campus-buildings.jpg` | Modern buildings and green space on a university campus in west London | Wikimedia Commons (CC BY-SA 4.0) | locations.html |
-| `location-campus-walkway.jpg` | A tree-lined walkway on a university campus in west London | Wikimedia Commons (CC BY-SA 4.0) | locations.html |
-| `location-modern-campus.jpg` | A curved glass building on a university campus in west London | Wikimedia Commons (CC BY-SA 4.0) | index.html, locations.html |
-| `location-parkland.jpg` | A historic school building across open parkland in the Thames Valley | Wikimedia Commons (CC BY-SA 4.0) | index.html, locations.html |
-| `location-parkland-hall.jpg` | A school hall framed by autumn trees in parkland | Wikimedia Commons (CC BY-SA 4.0) | locations.html |
-| `students-corridor.jpg` | Students with backpacks walking along a school corridor | Pexels | agents.html, index.html, programme.html |
-| `students-park.jpg` | Children running across a park with balloons | Pexels | index.html, programme.html |
-| `students-seminar.jpg` | Older students raising their hands in a seminar | Pexels | agents.html, index.html, programme.html |
-| `trip-cambridge.jpg` | A historic college in Cambridge | Pexels | agents.html, index.html, summer-life.html |
-| `trip-harry-potter.jpg` | The Great Hall set at the Warner Bros. Studio Tour London | Wikimedia Commons (CC BY-SA 4.0) | agents.html, index.html, summer-life.html |
-| `trip-london.jpg` | Westminster Bridge and the Houses of Parliament | Pexels | agents.html, index.html, locations.html, summer-life.html |
-| `trip-madame-tussauds.jpg` | The exterior of Madame Tussauds London | Wikimedia Commons (CC BY-SA 4.0) | agents.html, index.html, summer-life.html |
-| `trip-oxford.jpg` | The Radcliffe Camera, Oxford | Pexels | agents.html, index.html, locations.html, summer-life.html |
+| `activities-arts.jpg` | A student painting with a brush | Pexels | index.html |
+| `activities-drama.jpg` | A theatre stage with red curtains | Pexels | index.html |
+| `activities-evening.jpg` | Friends silhouetted around a bonfire | Pexels | index.html |
+| `activities-sport.jpg` | A football on a floodlit pitch | Pexels | index.html |
+| `food-1.jpg` | Roast chicken with vegetables | Pexels | index.html |
+| `food-2.jpg` | Fresh salad at a buffet counter | Pexels | index.html |
+| `food-3.jpg` | A selection of desserts | Pexels | index.html |
+| `food-5.jpg` | Croissants and strawberries for breakfast | Pexels | index.html |
+| `hero-students.jpg` | Students of different ages walking into school, seen from behind | Pexels | index.html |
+| `lessons.jpg` | Students seated at desks in a classroom | Pexels | index.html |
+| `location-arts-centre.jpg` | A modern music and arts centre on a school campus | Wikimedia Commons (CC BY-SA 4.0) | index.html |
+| `location-campus-buildings.jpg` | Modern buildings and green space on a university campus in west London | Wikimedia Commons (CC BY-SA 4.0) | index.html |
+| `location-campus-walkway.jpg` | A tree-lined walkway on a university campus in west London | Wikimedia Commons (CC BY-SA 4.0) | index.html |
+| `location-modern-campus.jpg` | A curved glass building on a university campus in west London | Wikimedia Commons (CC BY-SA 4.0) | index.html |
+| `location-parkland.jpg` | A historic school building across open parkland in the Thames Valley | Wikimedia Commons (CC BY-SA 4.0) | index.html |
+| `location-parkland-hall.jpg` | A school hall framed by autumn trees in parkland | Wikimedia Commons (CC BY-SA 4.0) | index.html |
+| `students-corridor.jpg` | Students with backpacks walking along a school corridor | Pexels | agents.html, index.html |
+| `students-park.jpg` | Children running across a park with balloons | Pexels | index.html |
+| `students-seminar.jpg` | Older students raising their hands in a seminar | Pexels | agents.html, index.html |
+| `trip-cambridge.jpg` | A historic college in Cambridge | Pexels | agents.html, index.html |
+| `trip-harry-potter.jpg` | The Great Hall set at the Warner Bros. Studio Tour London | Wikimedia Commons (CC BY-SA 4.0) | agents.html, index.html |
+| `trip-london.jpg` | Westminster Bridge and the Houses of Parliament | Pexels | agents.html, index.html |
+| `trip-madame-tussauds.jpg` | The exterior of Madame Tussauds London | Wikimedia Commons (CC BY-SA 4.0) | agents.html, index.html |
+| `trip-oxford.jpg` | The Radcliffe Camera, Oxford | Pexels | agents.html, index.html |
 
 ## Confirmed facts (use freely)
 
-- First summer: **2028**. Ages **8–17**. Residential.
-- **One programme**, with students grouped on site by age and English level. **Small classes** (no fixed number is published).
+- First summer: **2028**. Ages **8–17**. Residential. Stays of **one to six weeks**.
+- **One programme**, with students grouped on site by age and English level. **Small classes** (no fixed number is published). A placement test before arrival and a speaking check on day one. Groups are reviewed during the course.
 - **15 hours of English lessons a week.**
 - **Two excursions a week**, chosen from many options and tailored to what parents and agents want. Every trip includes free time and a packed lunch.
-- **Staff on site 24/7**, a **24/7 emergency line**, and **first-aid trained staff**.
+- **Staff on site 24/7**, a **24/7 emergency line**, and **first-aid trained staff**. Safer recruitment and DBS checks for all staff. Safeguarding, anti-bullying, online safety and code-of-conduct policies.
+- Three meals a day, with dietary needs catered for. Rooms separated by age and gender. Airport meet-and-greet and transfers available.
 - Locations: **London and the Thames Valley** (no venues named).
 - Founder: **Alexander Burns**, a student with several years' experience delivering enjoyable summer programmes, who founded Sandbox English to offer a better experience at a reasonable price.
+- Contact: `hello@sandboxenglish.co.uk`, @sandboxenglish on Instagram, Facebook and YouTube.
 
-## ⚠️ To confirm before launch
+## ⚠️ Still to do before launch
 
-These are written as reasonable defaults but haven't been confirmed:
-- Placement testing, group reviews during the course, and progress feedback (`programme.html`)
-- DBS checks and safer recruitment, and the policies listed under Safety & welfare (`about.html`)
-- Airport transfers, accommodation arrangements, dietary provision and phone policy (`summer-life.html`, `locations.html`)
-- Length of stay options (1–6 weeks in the consultation form)
-- The email address `hello@sandboxenglish.co.uk`, and that the social accounts exist
 - Privacy policy, terms and cookie pages (currently `#`)
+- Connect the consultation form and newsletter to real services (see below)
+- Name the venues once they are confirmed
 
 ## Wiring up the forms
 

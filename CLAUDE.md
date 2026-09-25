@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing site for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for ages 8–17 in London and the Thames Valley. The first summer is **2028**. The domain is **sandboxenglish.co.uk**. The audience is **parents, agents and group leaders**. It's a static site with plain HTML, one CSS file and one vanilla JS file. A small Python generator assembles the pages. There are no dependencies, package manager, linter or tests.
+Marketing site for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for ages 8–17 in London and the Thames Valley. The first summer is **2028**. The domain is **sandboxenglish.co.uk**. The audience is **parents, agents and group leaders**. It's a small static site (three main pages: `index.html`, `agents.html` and `consultation.html`, plus `credits.html`) with plain HTML, one CSS file and one vanilla JS file. A small Python generator assembles the pages. There are no dependencies, package manager, linter or tests.
 
 ```bash
 python3 src/build.py          # regenerate the root *.html pages and credits.html (Python 3.11+, stdlib only)
@@ -16,7 +16,8 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 ## Business rules that shape every edit
 
 - **The site exists to book free consultations.** Never add prices, fees, calculators or "from £…" copy. Every call to action leads to `consultation.html`. Pre-fill links use `?type=parent|agent|group` and `?area=london|thames-valley`.
-- **Only state confirmed facts as facts.** The README's "Confirmed facts" section lists them: 15 hours of English a week; small classes (never a number); two excursions a week, tailored to parents' and agents' wishes, each with free time and a packed lunch; 24/7 staff on site and emergency line; first-aid trained staff; **one programme**, with students grouped on site by age and level.
+- **Keep it to about three pages.** The home page holds everything for families, in anchored sections (`#programme`, `#summer-life`, `#locations`, `#about`, `#faq`…) that the nav links to. Add sections rather than new pages.
+- **Only state confirmed facts as facts.** The README's "Confirmed facts" section lists them: 15 hours of English a week; small classes (never a number); two excursions a week, tailored to parents' and agents' wishes, each with free time and a packed lunch; 24/7 staff on site and emergency line; first-aid trained staff; **one programme**, with students grouped on site by age and level; stays of one to six weeks.
 - **No venues are confirmed.** Never name a venue (not Leighton Park, not Brunel) in copy, alt text, captions or file names. Describe "London" and "the Thames Valley" in general terms only. The location photos are real potential sites and are captioned generically.
 - **Founder:** Alexander Burns, a student with several years' experience delivering enjoyable summer programmes, who founded the school to offer a better experience at a reasonable price. The school is founder-led, not family-run. Don't invent quotes attributed to him.
 - **Tone:** professional and warm.
@@ -27,7 +28,7 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 
 **The generator (`src/build.py`).** Each `src/pages/*.html` file starts with `title:` and `description:` lines, then `---`, then the page body. The build wraps each body with the shared `<head>`, header/nav (`NAV`) and footer (`FOOTER`), so a nav or footer change is made once. It also expands these shortcodes:
 - `{{photo:slug|alt|variant|caption}}` becomes a photo `<figure>`.
-- `{{trips}}` becomes the excursion option cards from `TRIPS`, used on the home, summer-life and agents pages. Edit trips in `TRIPS`.
+- `{{trips}}` becomes the excursion option cards from `TRIPS`, used on the home and agents pages. Edit trips in `TRIPS`.
 - `{{icon:name}}` becomes an inline SVG from `ICON`.
 - `{{campus:park|uni}}` becomes a campus illustration.
 
@@ -51,12 +52,12 @@ The generated HTML is committed and served as-is, so any static host works (GitH
 **JS (`assets/js/main.js`)** is one IIFE that adds `.js` to `<html>` and then wires up:
 - the sticky header and mobile nav (Esc closes it)
 - `.reveal` scroll-in via IntersectionObserver
-- ARIA tabs with hash deep links (`programmes.html#teens` via `data-hash`)
+- ARIA tabs with hash deep links via `data-hash` (not currently used on any page)
 - validation for any `form[data-validate]`
 - query-string pre-fill of the consultation form
 
 Forms have `action="#"` and no backend. After validation, the element named by `data-success` is shown instead of the form. To make a form live, set a real `action` (Formspree, Netlify Forms or similar) and it will submit normally.
 
-## Content still to confirm before launch
+## Still to do before launch
 
-See the README's "To confirm before launch" list. The biggest items are safeguarding details, length-of-stay options, the email address, legal pages and the form backend.
+See the README's "Still to do before launch" list: legal pages, the form backend, and naming venues once confirmed.
