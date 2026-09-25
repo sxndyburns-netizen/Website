@@ -1,6 +1,6 @@
 # Sandbox English Summer School — website
 
-Marketing website for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for young people aged 8–17 in the area around London, or in London itself on request. **The first summer is 2028.** The site will live at **sandboxenglish.co.uk**.
+Marketing website for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for young people aged 8–17 in London or the area around London, whichever the family or agent chooses. **The first summer is 2028.** The site will live at **sandboxenglish.co.uk**.
 
 The site is for **parents, agents and group leaders**. Its job is to get them to **book a free consultation**. No prices are published: every quote is tailored after the consultation.
 
@@ -39,7 +39,7 @@ The site is deliberately small: three main pages, plus legal and utility pages l
 | --- | --- |
 | `index.html` | Everything families need, in sections the nav links to: who we work with, the programme (`#programme`), safety and welfare (`#safety`), a typical day (`#day`), summer life (`#summer-life`), excursions (`#excursions`), food (`#food`), locations (`#locations`), about the founder (`#about`), FAQs (`#faq`) |
 | `agents.html` | For agents (`#agents`) and group leaders (`#groups`), plus an FAQ for partners (`#agent-faq`) |
-| `consultation.html` | Consultation form. It shows extra questions for agents and group leaders, and needs a phone number when phone or WhatsApp is chosen. Pre-fills from `?type=parent\|agent\|group` and `?area=around-london\|london` |
+| `consultation.html` | Consultation form. It shows extra questions for agents and group leaders, and needs a phone number when phone or WhatsApp is chosen. Pre-fills from `?type=parent\|agent\|group` and `?area=london\|around-london` |
 | `privacy.html`, `terms.html`, `cookies.html` | Privacy policy, terms of use and cookie policy |
 | `credits.html` | Photo credits, generated from `assets/img/photos/credits.json` (not indexed by search engines) |
 | `404.html` | "Page not found" (GitHub Pages serves it automatically) |
@@ -129,7 +129,7 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 - **Alexander Burns is the Designated Safeguarding Lead.**
 - Students of every English level are welcome, **including complete beginners**.
 - Three meals a day and a packed lunch on excursion days, with dietary needs catered for. Rooms separated by age and gender. Daily time to call home and phone-free lessons. Airport meet-and-greet and transfers available.
-- Locations: **the area around London**, or **London on request**. It's the parent's or agent's choice, so copy should read that way ("choose…", "ask for…"), never as the school's decision. No venues are named. Only one site will operate in 2028, but the site doesn't say so.
+- Locations: **London** or **the area around London**. Both are available, and it's the parent's or agent's choice, so copy should present them side by side as equal options ("choose London or the area around London"), never as the school's decision or with one only "on request". No venues are named. Only one site will operate in 2028, but the site doesn't say so.
 - Founder: **Alexander Burns**, a student with several years' experience delivering enjoyable summer programmes, who founded Sandbox English to offer a better experience at a reasonable price. The school is founder-led and teaches English only.
 - **Not accredited yet.** Never claim or imply accreditation or membership (British Council, English UK or others) until it is granted. See [Accreditation and visas](#accreditation-and-visas).
 - Contact: `hello@sandboxenglish.co.uk`, @sandboxenglish on Instagram, Facebook and YouTube.
