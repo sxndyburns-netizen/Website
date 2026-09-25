@@ -155,7 +155,7 @@ These are blocking. Launching without them would lose enquiries or break UK law.
 - [x] **Connect the consultation form** to a form service. Done with Formspree. See [Forms](#forms-formspree).
 - [ ] **Move newsletter sign-ups to an email provider** (e.g. Buttondown or Brevo) before sending any newsletter. For now they arrive through Formspree as "Newsletter sign-up" emails.
 - [ ] **Send a test submission** of both forms from a phone and a computer, and check they arrive.
-- [ ] **Set up the mailbox** `hello@sandboxenglish.co.uk` and check it receives mail.
+- [ ] **Set up the mailbox** `hello@sandboxenglish.co.uk` and check it receives mail. It isn't set up yet, and it's the fallback the consultation form suggests when sending fails, as well as the contact address across the site.
 - [ ] **Fill in the company details** in `COMPANY` at the top of `src/build.py`: registered company name, company number, registered office address and ICO registration number. They currently show as `[placeholders]` in the footer, the privacy policy and the terms, and the build warns until they're all replaced. If the business won't be a limited company, reword the footer in `footer()` and the "Who we are" and "About us" sections of the privacy policy and terms.
 - [ ] **Name the email provider in the privacy policy** ("Who we share it with") once the mailbox is set up. Formspree and GitHub Pages are already named. Check Formspree's data processing terms match the transfer safeguard the policy describes.
 - [ ] **Have the legal pages reviewed** by a solicitor or a reputable template service. `privacy.html`, `terms.html` and `cookies.html` are careful first drafts, not legal advice.
@@ -212,7 +212,8 @@ Both forms send to one Formspree form, set once as `FORM_ENDPOINT` at the top of
 - **Consultation form** (`src/pages/consultation.html`): after validation, `assets/js/main.js` sends the answers in the background as JSON, then shows the on-page thank-you message. Values arrive readable (e.g. "Agent", "WhatsApp", "In London"). Fields hidden for the chosen enquirer type and empty fields are left out. The email subject is "Consultation request: <type> – <name>", and replying goes straight to the enquirer's email address.
 - **Newsletter sign-up** (footer, in `src/build.py`): sends the email address to the same Formspree form with the subject "Newsletter sign-up". Add these people to a mailing list by hand until a newsletter service is chosen.
 - **Spam:** both forms have a hidden `_gotcha` field. Formspree ignores any submission that fills it in.
-- **If sending fails,** the consultation form shows an error and suggests emailing instead, and the newsletter says to try again. Nothing pretends to have worked.
+- **If sending fails,** the consultation form shows an error and suggests emailing `hello@sandboxenglish.co.uk` instead, and the newsletter says to try again. Nothing pretends to have worked.
+- **⚠️ The email fallback isn't set up yet.** `hello@sandboxenglish.co.uk` doesn't receive mail, so anyone who follows the error message's advice to email would get a bounce. The same address appears in the footer, on the consultation page and in the legal pages. Set up the mailbox (see the launch checklist) and send it a test message.
 - **Without JavaScript,** the forms post normally and Formspree shows its own thank-you page.
 - **The claude.ai preview can't send forms** (it blocks other sites), so test on the GitHub Pages site.
 - **If a test shows an error,** check the form's settings on formspree.io: reCAPTCHA must be off for background (AJAX) submissions, and the free plan allows 50 submissions a month.
