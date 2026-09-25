@@ -56,6 +56,7 @@ def is_placeholder(value):
 
 NAV = [
     ("index.html#programme", "Programme"),
+    ("index.html#about", "About us"),
     ("index.html#safety", "Safety"),
     ("index.html#summer-life", "Summer life"),
     ("index.html#locations", "Locations"),
@@ -286,9 +287,9 @@ def footer():
         <h2 class="footer-title">Explore</h2>
         <ul>
           <li><a href="index.html#programme">The programme</a></li>
+          <li><a href="index.html#about">About us</a></li>
           <li><a href="index.html#summer-life">Summer life &amp; excursions</a></li>
           <li><a href="index.html#locations">Locations</a></li>
-          <li><a href="index.html#about">About us</a></li>
           <li><a href="index.html#faq">FAQs</a></li>
         </ul>
       </div>

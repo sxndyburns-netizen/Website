@@ -37,7 +37,7 @@ The site is deliberately small: three main pages, plus legal and utility pages l
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Everything families need, in sections the nav links to: who we work with, the programme (`#programme`), safety and welfare (`#safety`), a typical day (`#day`), summer life (`#summer-life`), excursions (`#excursions`), food (`#food`), locations (`#locations`), about the founder (`#about`), FAQs (`#faq`) |
+| `index.html` | Everything families need, in sections the nav links to: who we work with, the programme (`#programme`), about us and the founder (`#about`, "About us" in the nav), safety and welfare (`#safety`), a typical day (`#day`), summer life (`#summer-life`), excursions (`#excursions`), food (`#food`), locations (`#locations`), FAQs (`#faq`) |
 | `agents.html` | For agents (`#agents`) and group leaders (`#groups`), plus an FAQ for partners (`#agent-faq`) |
 | `consultation.html` | Consultation form. It shows extra questions for agents and group leaders, and needs a phone number when phone or WhatsApp is chosen. Pre-fills from `?type=parent\|agent\|group` and `?area=london\|around-london` |
 | `privacy.html`, `terms.html`, `cookies.html` | Privacy policy, terms of use and cookie policy |
