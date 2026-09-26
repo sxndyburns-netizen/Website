@@ -69,7 +69,7 @@ Both forms post to Formspree (`FORM_ENDPOINT` in `src/build.py`, `{{form_endpoin
 
 The README's **Launch checklist** is the single list of what is left, in priority order:
 1. **Blocking before go-live:** test the forms (connected to Formspree), the mailbox, the registered address, naming providers in the privacy policy, a legal review, the ICO fee, and social accounts. The domain (`https://sandboxenglish.co.uk`, GitHub Pages with HTTPS enforced) and `main` as the default branch are done. Keep the root `CNAME` file.
-2. **Before promoting:** accreditation, founder headshot, DSL training, written policies, a phone/WhatsApp number, booking and agent terms, insurance, Bing Webmaster Tools (Google Search Console is done; keep the `google-site-verification` TXT record in DNS).
+2. **Before promoting:** accreditation, founder headshot, DSL training, written policies, a phone/WhatsApp number, booking and agent terms, and insurance. Google Search Console and Bing Webmaster Tools are done (keep the `google-site-verification` TXT record in DNS).
 3. **When venues and dates are confirmed:** name them, swap in venue photos, add dates, and update the rules in this file.
 4. **After the first summer:** real photos (with consent), testimonials, and removing "new school" wording.
 

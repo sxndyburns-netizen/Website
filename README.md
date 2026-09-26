@@ -180,7 +180,7 @@ These build trust with parents and agents.
 - [ ] **Arrange insurance** (public liability and any other cover a residential course for children needs) before quoting.
 - [ ] **State accreditation or membership honestly** once you have it (e.g. British Council, English UK). Don't add logos until they're granted.
 - [x] **Set up Google Search Console** and submit `https://sandboxenglish.co.uk/sitemap.xml`. Done on 26 September 2026: domain property verified through GoDaddy, sitemap submitted.
-- [ ] **Set up Bing Webmaster Tools** by importing from Google Search Console. Steps are in [Search engines](#search-engines-google-search-console-and-bing).
+- [x] **Set up Bing Webmaster Tools** and submit the sitemap. Done on 26 September 2026. Steps are in [Search engines](#search-engines-google-search-console-and-bing).
 - [x] **Check the share preview** by pasting the site link into WhatsApp and a social network. Checked in WhatsApp on 26 September 2026. The 1200×630 image is `assets/img/share.jpg`; if it changes, add something like `?v2` to the link when testing, because WhatsApp caches previews.
 
 ### 3. When venues and dates are confirmed
@@ -256,7 +256,7 @@ After the move:
 
 ## Search engines (Google Search Console and Bing)
 
-**Status:** Google Search Console is set up (domain property verified on 26 September 2026 with GoDaddy's automatic option, sitemap submitted). Bing is still to do (step 4).
+**Status:** Google Search Console is set up (domain property verified on 26 September 2026 with GoDaddy's automatic option, sitemap submitted). Bing Webmaster Tools is set up too, with the sitemap submitted.
 
 1. Go to [search.google.com/search-console](https://search.google.com/search-console), choose **Add property → Domain**, and enter `sandboxenglish.co.uk` (no `https://` or `www`). A Domain property covers every version of the address.
 2. Google shows a TXT record starting `google-site-verification=`. In GoDaddy's DNS, add a TXT record with Name `@` and that whole value, then press **Verify**. Leave the GitHub TXT record in place; both can exist.
