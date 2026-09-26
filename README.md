@@ -174,6 +174,11 @@ These build trust with parents and agents.
 - [x] **Name the Designated Safeguarding Lead** in the Safety section (Alexander Burns, also named in About, the FAQs and on the agents page).
 - [ ] **Get Alexander's DSL training** (a designated safeguarding lead course, often called Level 3).
 - [ ] **Write the safeguarding, anti-bullying, online safety and code-of-conduct policies** and have them ready to send, since the site promises them on request.
+- [ ] **Plan for 18-year-old students.** The age range is 8–18, so some students may be legally adults living alongside children. That brings extra safeguarding duties, which accreditation inspectors and agents will ask about. Cover it in the safeguarding policies:
+  - **Accommodation:** separate rooms for adult students, and usually separate corridors or areas from under-18s.
+  - **Code of conduct:** a code for adult students (contact with younger students, supervision, alcohol and going off site), signed before arrival.
+  - **Risk assessment:** a written risk assessment for having adults and children on the same course, reviewed each summer.
+  - **The website** doesn't mention any of this yet. Once the policies exist, consider a line in the Safety section or FAQs.
 - [ ] **Add a contact phone or WhatsApp number**, at least for agents and group leaders. Add it to the footer in `src/build.py` and the consultation page's sidebar.
 - [ ] **Have booking terms and conditions ready.** The terms of use say every booking has separate booking terms, sent with the quote.
 - [ ] **Write the agent terms** (commission, booking deadlines, payment schedule) so they can be confirmed in writing after a consultation, as the agents page promises.
@@ -203,7 +208,7 @@ This is advice to check with an immigration adviser (OISC-registered or a solici
 - **Why it matters.** Under the UK Immigration Rules (Appendix Visitor: Permitted Activities), a visitor may study for up to six months only at an **accredited institution**. Visitors may also take "recreational" courses of up to 30 days at any provider, but the rules specifically exclude English language training from that. This applies to students who come visa-free with an ETA as well as those who need a Standard Visitor visa. Nearly all Sandbox English students will be visitors, so without accreditation they may be unable to enrol lawfully, and agents are unlikely to book.
 - **Accreditation UK** (British Council with English UK) is the scheme agents and families recognise. Full accreditation normally needs a year of teaching English in the UK. New providers can apply for **provisional accreditation** after an inspection that shows they're ready to run courses to the scheme's standards. Summer centres are normally inspected while their courses are running.
 - **Timing.** Contact Accreditation UK now to confirm the route for a brand-new, summer-only provider: what must be in place before inspection (company, venues, staff, policies, insurance), the fees, and whether provisional accreditation can be granted before the first students arrive in 2028. If it can't, ask whether a first summer is possible at all, for example only for UK-resident students, or in partnership with an already accredited provider.
-- **Other accepted bodies.** The rules also accept some other inspection bodies (for example ISI or BAC). Ask the adviser which one suits a residential summer school for young people aged 8–18 (mostly under-18s, with some 18-year-old adults).
+- **Other accepted bodies.** The rules also accept some other inspection bodies (for example ISI or BAC). Ask the adviser which one suits a residential summer school for young people aged 8–18 (mostly under-18s, potentially with some 18-year-old adults).
 - **On the website.** Never claim or imply accreditation until it's granted. The visa FAQ on the home page doesn't mention accreditation. Update it once you have it.
 
 ## Forms (Formspree)
