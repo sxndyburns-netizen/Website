@@ -1,6 +1,6 @@
 # Sandbox English Summer School — website
 
-Marketing website for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for young people aged 8–17 in London or the area around London, whichever the family or agent chooses. **The first summer is 2028.** The site will live at **sandboxenglish.co.uk**.
+Marketing website for **Sandbox English** (trading as **Sandbox English Summer School**), a residential English summer school for young people aged 8–18 in London or the area around London, whichever the family or agent chooses. **The first summer is 2028.** The site will live at **sandboxenglish.co.uk**.
 
 The site is for **parents, agents and group leaders**. Its job is to get them to **book a free consultation**. No prices are published: every quote is tailored after the consultation.
 
@@ -130,7 +130,7 @@ Sandbox English has no photos of its own yet. The current photos are free stock 
 
 ## Confirmed facts (use freely)
 
-- First summer: **2028**. Ages **8–17**. Residential. Stays of **one to six weeks**.
+- First summer: **2028**. Ages **8–18**. Residential. Stays of **one to six weeks**.
 - **One programme**, with students grouped on site by age and English level. **Small classes** (no fixed number is published). A placement test before arrival and a speaking check on day one. Groups are reviewed during the course.
 - **15 hours of English lessons a week.**
 - **Two excursions a week**, chosen from many options and tailored to what parents and agents want. Every trip includes free time and a packed lunch.
@@ -203,7 +203,7 @@ This is advice to check with an immigration adviser (OISC-registered or a solici
 - **Why it matters.** Under the UK Immigration Rules (Appendix Visitor: Permitted Activities), a visitor may study for up to six months only at an **accredited institution**. Visitors may also take "recreational" courses of up to 30 days at any provider, but the rules specifically exclude English language training from that. This applies to students who come visa-free with an ETA as well as those who need a Standard Visitor visa. Nearly all Sandbox English students will be visitors, so without accreditation they may be unable to enrol lawfully, and agents are unlikely to book.
 - **Accreditation UK** (British Council with English UK) is the scheme agents and families recognise. Full accreditation normally needs a year of teaching English in the UK. New providers can apply for **provisional accreditation** after an inspection that shows they're ready to run courses to the scheme's standards. Summer centres are normally inspected while their courses are running.
 - **Timing.** Contact Accreditation UK now to confirm the route for a brand-new, summer-only provider: what must be in place before inspection (company, venues, staff, policies, insurance), the fees, and whether provisional accreditation can be granted before the first students arrive in 2028. If it can't, ask whether a first summer is possible at all, for example only for UK-resident students, or in partnership with an already accredited provider.
-- **Other accepted bodies.** The rules also accept some other inspection bodies (for example ISI or BAC). Ask the adviser which one suits a residential summer school for under-18s.
+- **Other accepted bodies.** The rules also accept some other inspection bodies (for example ISI or BAC). Ask the adviser which one suits a residential summer school for young people aged 8–18 (mostly under-18s, with some 18-year-old adults).
 - **On the website.** Never claim or imply accreditation until it's granted. The visa FAQ on the home page doesn't mention accreditation. Update it once you have it.
 
 ## Forms (Formspree)

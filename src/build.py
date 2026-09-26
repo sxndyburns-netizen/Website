@@ -315,7 +315,7 @@ def footer():
         <a class="brand" href="./" aria-label="{SITE_NAME} home">
           {brand(on_navy=True)}
         </a>
-        <p class="footer-note">A residential English summer school for young people aged 8–17, in London or the area around it: you choose. Launching summer 2028.</p>
+        <p class="footer-note">A residential English summer school for young people aged 8–18, in London or the area around it: you choose. Launching summer 2028.</p>
         <p class="footer-note"><a href="mailto:{EMAIL}">{EMAIL}</a><br>@sandboxenglish</p>
         <div class="socials">
           {social}
@@ -379,7 +379,7 @@ STRUCTURED_DATA = {
     "email": EMAIL,
     "logo": SITE_URL + "/assets/img/favicon.svg",
     "image": SITE_URL + "/assets/img/share.jpg",
-    "description": "Residential English summer school for ages 8–17, in London or the area around London, from summer 2028.",
+    "description": "Residential English summer school for ages 8–18, in London or the area around London, from summer 2028.",
     "founder": {"@type": "Person", "name": "Alexander Burns"},
     "sameAs": [url for _, _, url in SOCIAL],
 }
@@ -412,7 +412,7 @@ def page(filename, meta, body):
   <meta property="og:url" content="{SITE_URL}/{path}">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
-  <meta property="og:image" content="{SITE_URL}/assets/img/share.jpg">
+  <meta property="og:image" content="{SITE_URL}/{versioned("assets/img/share.jpg")}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
