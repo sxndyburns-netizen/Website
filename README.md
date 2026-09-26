@@ -188,14 +188,31 @@ These build trust with parents and agents.
 - [x] **Set up Bing Webmaster Tools** and submit the sitemap. Done on 26 September 2026. Steps are in [Search engines](#search-engines-google-search-console-and-bing).
 - [x] **Check the share preview** by pasting the site link into WhatsApp and a social network. Checked in WhatsApp on 26 September 2026. The 1200×630 image is `assets/img/share.jpg`; if it changes, add something like `?v2` to the link when testing, because WhatsApp caches previews.
 
-### 3. When venues and dates are confirmed
+### 3. Before taking the first booking or payment
+
+The plan is secure online forms, e-signatures and a payment link sent with each quote (no custom booking system), with every course treated as a package under the Package Travel Regulations 2018, so all customer money is held in trust. See [Bookings and payments](#bookings-and-payments). This is general guidance: confirm it with a solicitor and an accountant.
+
+- [ ] **Don't take any deposit until accreditation lets you enrol visitors lawfully**, or the booking terms promise a full refund if you can't. See [Accreditation and visas](#accreditation-and-visas).
+- [ ] **Confirm the package-travel position with a solicitor** while the booking terms are reviewed. The booking terms and pre-contract information must include the package-travel wording and say how families' money is protected and by whom. Airport transfers aren't flights, so ATOL shouldn't apply, but check.
+- [ ] **Choose the trust arrangement** for customer payments. The recommended route is a trust payment company (e.g. Trust My Travel or Protected Trust Services), whose payment pages put money straight into trust. The alternatives are Travel Trust Association (TTA) membership or your own trust account with an independent trustee. Ask each provider the questions under [Choosing a trust provider](#choosing-a-trust-provider).
+- [ ] **Plan the working capital.** Money in trust is only released once each student's course has finished, so venue deposits, staff, insurance and marketing must be paid from your own funds (unless the trust provider allows supplier payments). Estimate what you'll spend before summer 2028 and how it's funded, then set the deposit and balance dates.
+- [ ] **Set the payment schedule in the booking terms**: deposit on booking, balance due a set time before arrival (e.g. 6–8 weeks), cancellation charges and how refunds are paid. Add how quickly agents must pass on families' payments to the agent terms.
+- [ ] **Open the business bank accounts**: a UK business current account, plus a multi-currency account with euro account details (e.g. Wise Business) for released money and paying suppliers. Customer payments must go straight into trust, never into these accounts first.
+- [ ] **Ask the accountant about VAT**, including the Tour Operators' Margin Scheme, and how to account for money held in trust (it isn't income until it's released).
+- [ ] **Choose the booking form and e-signature tools.** The form collects student details, emergency contacts, medical and dietary needs, consents (photos, trips, free time) and travel details. Check each tool stores data in the UK or EU, offers a data processing agreement and two-factor login, and doesn't add cookies to this site.
+- [ ] **Do a data protection impact assessment** for booking data (children's medical information is special category data), and write a retention and deletion policy.
+- [ ] **Update the privacy policy** to name the trust/payment provider and the form and e-signature tools, and the cookie policy if any of them are embedded on this site.
+- [ ] **Test a booking end to end** before the first real one: form, signature, a deposit in pounds and in euros (card, iDEAL and SEPA transfer), a balance payment and a refund.
+- [ ] **Once it's live, update the site**: add the payment protection to the README's "Confirmed facts", consider a line saying families' payments are held in trust, and add "Complete your booking" to the consultation page's "What to expect". Don't mention any of this on the site before then.
+
+### 4. When venues and dates are confirmed
 
 - [ ] **Name the venues** on the home page (`#locations`) and in the FAQs, and replace the regional location photos with real photos of the venues (with permission).
 - [ ] **Add course dates** and update the "When does it start?" and "Where will the course take place?" FAQs.
 - [ ] **Update `CLAUDE.md` and the "Confirmed facts" section** of this README, so the no-venue rule is lifted and new facts can be used.
 - [ ] **Add location pre-fill links** for the confirmed venues, and update the consultation form's "Preferred area" options if needed.
 
-### 4. After the first summer
+### 5. After the first summer
 
 - [ ] **Replace stock photos with real ones** from the first summer. Get written parental consent, and keep to the rule that no child's face is visible.
 - [ ] **Add testimonials** from parents, agents and group leaders, with their permission.
@@ -210,6 +227,44 @@ This is advice to check with an immigration adviser (OISC-registered or a solici
 - **Timing.** Contact Accreditation UK now to confirm the route for a brand-new, summer-only provider: what must be in place before inspection (company, venues, staff, policies, insurance), the fees, and whether provisional accreditation can be granted before the first students arrive in 2028. If it can't, ask whether a first summer is possible at all, for example only for UK-resident students, or in partnership with an already accredited provider.
 - **Other accepted bodies.** The rules also accept some other inspection bodies (for example ISI or BAC). Ask the adviser which one suits a residential summer school for young people aged 8–18 (mostly under-18s, potentially with some 18-year-old adults).
 - **On the website.** Never claim or imply accreditation until it's granted. The visa FAQ on the home page doesn't mention accreditation. Update it once you have it.
+
+## Bookings and payments
+
+**Status: planned, nothing set up yet.** This is general guidance to confirm with a solicitor and an accountant. It is not legal or financial advice.
+
+**The setup.** After the consultation and the quote, the family or agent gets a link to a secure booking form, signs the booking terms online, and pays through a payment link. There's no custom booking system. The marketing site stays static with no prices, because each quote and payment link is sent privately.
+
+**Customer money is held in trust.** Every course is treated as a package under the Package Travel Regulations 2018, so families' payments must be protected against the business failing. The chosen method is a trust: each payment goes straight into a trust account and stays there until that student's course has been fully performed.
+
+**How a booking is paid:**
+1. **Quote accepted.** Send the booking terms and the booking form link. The pre-contract information says the money is protected and by whom.
+2. **Deposit** (card, iDEAL or SEPA transfer) goes straight into trust, recorded against that booking. The place is confirmed.
+3. **Balance invoice**, due a set time before arrival (e.g. 6–8 weeks), is also paid into trust.
+4. **Before the course,** the venue, staff and other costs are paid from the business's own working capital, unless the trust provider allows supplier payments from trust.
+5. **The course runs.** The money stays in trust.
+6. **Course completed.** Once the student has finished and gone home, the completed bookings are confirmed and the money is released to the business account.
+7. **Cancellations** are refunded from trust. Any cancellation charge the booking terms allow is released to the business.
+8. **If the business fails,** the trustee refunds families from the trust.
+
+Agents who collect money from families pay it on to Sandbox English, and that payment goes into trust too.
+
+### Choosing a trust provider
+
+| Route | How it works | Watch out for |
+| --- | --- | --- |
+| **Trust payment company** (recommended; e.g. Trust My Travel, Protected Trust Services) | Families pay through the company's payment pages or bank details, so money lands in trust automatically. It replaces Stripe as the payment link | Transaction fees, currencies, and whether supplier payments are allowed |
+| **Travel Trust Association (TTA)** | Membership of a trade body whose members protect money in trust accounts, with an independent trustee. Its logo reassures families and agents | Membership fees, joining checks and ongoing rules |
+| **Own trust account** | A designated trust account at your bank, with an independent trustee (usually a solicitor or accountant) who approves each release | The most admin, and you'd need a card-payment setup that pays into the trust account |
+
+Ask each provider:
+1. Can families and agents pay in euros (including SEPA transfers), and can payouts be in pounds and euros?
+2. Can money be released before the course to pay suppliers for these bookings, such as the venue?
+3. What are the fees for each transaction and payout, and is there a setup fee?
+4. How do refunds and cancellation charges work, and how soon is money released after a course ends?
+
+**Bank accounts.** A UK business current account, plus a multi-currency account with euro account details (e.g. Wise Business) to receive released money, hold euros and pay suppliers. Customer payments never go into these accounts first. Money held with e-money providers like Wise is safeguarded, not covered by the FSCS, so move it to the main bank regularly.
+
+**Card payments.** UK law doesn't allow a surcharge on consumer card payments, so card costs are built into pricing.
 
 ## Forms (Formspree)
 
