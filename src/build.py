@@ -390,7 +390,11 @@ if not is_placeholder(COMPANY["name"]):
 def page(filename, meta, body):
     title, description = attr(meta["title"]), attr(meta["description"])
     path = "" if filename == "index.html" else filename
-    robots = '\n  <meta name="robots" content="noindex">' if meta.get("robots") == "noindex" else ""
+    noindex = meta.get("robots") == "noindex"
+    robots = '\n  <meta name="robots" content="noindex">' if noindex else ""
+    # Pages kept out of search (404, credits) get no canonical link: the 404 page is served
+    # at any mistyped address, so it has no single address of its own.
+    canonical = "" if noindex else f'\n  <link rel="canonical" href="{SITE_URL}/{path}">'
     ld = ""
     if filename == "index.html":
         ld = '\n  <script type="application/ld+json">' + json.dumps(STRUCTURED_DATA, ensure_ascii=False) + "</script>"
@@ -401,8 +405,7 @@ def page(filename, meta, body):
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
   <meta name="description" content="{description}">{robots}
-  <meta name="theme-color" content="#14213d">
-  <link rel="canonical" href="{SITE_URL}/{path}">
+  <meta name="theme-color" content="#14213d">{canonical}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{SITE_NAME}">
   <meta property="og:locale" content="en_GB">
@@ -536,7 +539,8 @@ def main():
     print("wrote credits.html")
 
     urls = [f"{SITE_URL}/" if name == "index.html" else f"{SITE_URL}/{name}"
-            for name, meta in pages if meta.get("robots") != "noindex"]
+            for name, meta in sorted(pages, key=lambda p: p[0] != "index.html")
+            if meta.get("robots") != "noindex"]
     sitemap = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
     write_text(ROOT / "sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sitemap}\n</urlset>\n')
     write_text(ROOT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")

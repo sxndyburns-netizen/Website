@@ -179,7 +179,7 @@ These build trust with parents and agents.
 - [ ] **Write the agent terms** (commission, booking deadlines, payment schedule) so they can be confirmed in writing after a consultation, as the agents page promises.
 - [ ] **Arrange insurance** (public liability and any other cover a residential course for children needs) before quoting.
 - [ ] **State accreditation or membership honestly** once you have it (e.g. British Council, English UK). Don't add logos until they're granted.
-- [ ] **Set up Google Search Console** (and Bing Webmaster Tools) and submit `https://sandboxenglish.co.uk/sitemap.xml`.
+- [ ] **Set up Google Search Console** (and Bing Webmaster Tools) and submit `https://sandboxenglish.co.uk/sitemap.xml`. Steps are in [Search engines](#search-engines-google-search-console-and-bing).
 - [x] **Check the share preview** by pasting the site link into WhatsApp and a social network. Checked in WhatsApp on 26 September 2026. The 1200×630 image is `assets/img/share.jpg`; if it changes, add something like `?v2` to the link when testing, because WhatsApp caches previews.
 
 ### 3. When venues and dates are confirmed
@@ -252,6 +252,15 @@ After the move:
 - If Formspree restricts which sites can submit, add `sandboxenglish.co.uk`.
 - Search engines should use the new address. Canonical links, the sitemap, `robots.txt` and the share image already use `https://sandboxenglish.co.uk`.
 - The site now sits at the domain root, so the `/favicon.ico` fallback and `404.html` work for every mistyped address.
+
+## Search engines (Google Search Console and Bing)
+
+1. Go to [search.google.com/search-console](https://search.google.com/search-console), choose **Add property → Domain**, and enter `sandboxenglish.co.uk` (no `https://` or `www`). A Domain property covers every version of the address.
+2. Google shows a TXT record starting `google-site-verification=`. In GoDaddy's DNS, add a TXT record with Name `@` and that whole value, then press **Verify**. Leave the GitHub TXT record in place; both can exist.
+3. In Search Console, open **Sitemaps** and submit `https://sandboxenglish.co.uk/sitemap.xml`.
+4. For Bing, sign in at [bing.com/webmasters](https://www.bing.com/webmasters) and choose **Import from Google Search Console**. This copies the site and sitemap across.
+
+The sitemap lists the public pages (home first). The photo credits and 404 pages are kept out of search with `noindex` and have no canonical link. Keep the verification TXT records in DNS, or the properties become unverified.
 
 ## Recommendations and next steps
 
