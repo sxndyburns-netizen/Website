@@ -180,7 +180,7 @@ These build trust with parents and agents.
 - [ ] **Arrange insurance** (public liability and any other cover a residential course for children needs) before quoting.
 - [ ] **State accreditation or membership honestly** once you have it (e.g. British Council, English UK). Don't add logos until they're granted.
 - [ ] **Set up Google Search Console** (and Bing Webmaster Tools) and submit `https://sandboxenglish.co.uk/sitemap.xml`.
-- [ ] **Check the share preview** by pasting the site link into WhatsApp and a social network. The 1200×630 image is `assets/img/share.jpg`.
+- [x] **Check the share preview** by pasting the site link into WhatsApp and a social network. Checked in WhatsApp on 26 September 2026. The 1200×630 image is `assets/img/share.jpg`; if it changes, add something like `?v2` to the link when testing, because WhatsApp caches previews.
 
 ### 3. When venues and dates are confirmed
 
