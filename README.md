@@ -162,7 +162,7 @@ These are blocking. Launching without them would lose enquiries or break UK law.
 - [ ] **Register with the ICO and pay the data protection fee**, unless exempt. Most organisations that handle personal data must do this. Check at [ico.org.uk/fee](https://ico.org.uk/for-organisations/data-protection-fee/).
 - [x] **Check the cookie policy is still true** once the forms are connected. The background (JavaScript) submission sets no cookies. Without JavaScript, visitors see Formspree's own confirmation page. `cookies.html` explains both.
 - [ ] **Create the social accounts** @sandboxenglish on Instagram, Facebook and YouTube (the footer links to them), or remove any you won't use from `SOCIAL` in `src/build.py`.
-- [ ] **Point the domain at the site.** GoDaddy DNS records and GitHub steps are in [Going live](#going-live-on-sandboxenglishcouk). The `CNAME` file is ready. Then check `https://sandboxenglish.co.uk` loads with the padlock (HTTPS).
+- [x] **Point the domain at the site.** Live at `https://sandboxenglish.co.uk` since 26 September 2026: GoDaddy DNS points at GitHub Pages, the domain is verified on GitHub, and HTTPS is enforced. Setup details are in [Going live](#going-live-on-sandboxenglishcouk).
 - [x] **Make `main` the default branch** on GitHub (Settings → General). GitHub Pages should publish from `main`.
 
 ### 2. Strongly recommended before promoting the site
@@ -221,6 +221,8 @@ Both forms send to one Formspree form, set once as `FORM_ENDPOINT` at the top of
 To change provider, update `FORM_ENDPOINT`, the privacy policy ("Who we share it with") and, if the provider sets cookies or loads scripts, `cookies.html`. Apart from form submissions, the site makes no third-party requests, and the cookie policy says so.
 
 ## Going live on sandboxenglish.co.uk
+
+**Status: done.** The site is live at `https://sandboxenglish.co.uk` with HTTPS enforced, and `www` and the old `sxndyburns-netizen.github.io/Website/` address redirect there. The steps below are kept for reference, for example if the DNS ever needs redoing.
 
 The domain is registered with **GoDaddy**. GitHub Pages publishes `main` from the root folder. The `CNAME` file in the repo root tells GitHub the site's domain; don't delete it.
 
