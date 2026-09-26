@@ -162,7 +162,7 @@ These are blocking. Launching without them would lose enquiries or break UK law.
 - [ ] **Register with the ICO and pay the data protection fee**, unless exempt. Most organisations that handle personal data must do this. Check at [ico.org.uk/fee](https://ico.org.uk/for-organisations/data-protection-fee/).
 - [x] **Check the cookie policy is still true** once the forms are connected. The background (JavaScript) submission sets no cookies. Without JavaScript, visitors see Formspree's own confirmation page. `cookies.html` explains both.
 - [ ] **Create the social accounts** @sandboxenglish on Instagram, Facebook and YouTube (the footer links to them), or remove any you won't use from `SOCIAL` in `src/build.py`.
-- [ ] **Point the domain at the site.** See [Going live](#going-live-on-sandboxenglishcouk). Then check `https://sandboxenglish.co.uk` loads with the padlock (HTTPS).
+- [ ] **Point the domain at the site.** GoDaddy DNS records and GitHub steps are in [Going live](#going-live-on-sandboxenglishcouk). The `CNAME` file is ready. Then check `https://sandboxenglish.co.uk` loads with the padlock (HTTPS).
 - [x] **Make `main` the default branch** on GitHub (Settings → General). GitHub Pages should publish from `main`.
 
 ### 2. Strongly recommended before promoting the site
@@ -222,13 +222,34 @@ To change provider, update `FORM_ENDPOINT`, the privacy policy ("Who we share it
 
 ## Going live on sandboxenglish.co.uk
 
-1. On GitHub, go to Settings → Pages and publish from `main`, root folder.
-2. In the same screen, add the custom domain `sandboxenglish.co.uk` and follow GitHub's DNS instructions at your domain registrar (A records for the bare domain, a CNAME for `www`).
-3. Once the certificate is issued, tick **Enforce HTTPS**.
+The domain is registered with **GoDaddy**. GitHub Pages publishes `main` from the root folder. The `CNAME` file in the repo root tells GitHub the site's domain; don't delete it.
 
-Canonical links, the sitemap, `robots.txt` and the share image already use `https://sandboxenglish.co.uk`.
+**1. Verify the domain with GitHub** (recommended, stops anyone else claiming it on GitHub). On GitHub, click your profile picture → Settings → Pages → **Add a domain**, enter `sandboxenglish.co.uk`, and copy the TXT record it shows. Add it in GoDaddy (step 2), then press **Verify**.
 
-GitHub Pages serves `404.html` automatically. Its links are relative, so it works for mistyped top-level addresses (e.g. `/wrong-page`). Deeper mistyped paths may show it without styling.
+**2. DNS records in GoDaddy** (My Products → sandboxenglish.co.uk → DNS):
+
+| Type | Name | Value | Notes |
+| --- | --- | --- | --- |
+| A | `@` | `185.199.108.153` | Delete GoDaddy's existing `@` A records first (the parked page, e.g. `3.33.130.190`, `15.197.148.33`) |
+| A | `@` | `185.199.109.153` | |
+| A | `@` | `185.199.110.153` | |
+| A | `@` | `185.199.111.153` | |
+| AAAA | `@` | `2606:50c0:8000::153` (and `8001`, `8002`, `8003`) | Optional, for IPv6 |
+| CNAME | `www` | `sxndyburns-netizen.github.io` | Replace GoDaddy's default `www` record |
+| TXT | `_github-pages-challenge-sxndyburns-netizen` | (the code GitHub gives you) | From step 1 |
+
+Also turn off any GoDaddy **domain forwarding** or Website Builder site for this domain. Leave MX records alone (they're for email, set up separately).
+
+**3. Tell GitHub Pages.** In the repo, Settings → Pages → Custom domain should show `sandboxenglish.co.uk` (from the `CNAME` file). Wait for the DNS check to pass (minutes to a few hours).
+
+**4. Tick "Enforce HTTPS"** once GitHub has issued the certificate. This can take up to 24 hours after DNS works. Then check `https://sandboxenglish.co.uk` and `https://www.sandboxenglish.co.uk` both load with the padlock (www redirects to the bare domain).
+
+**Order matters:** change the DNS before the `CNAME` file reaches `main`. As soon as GitHub knows the domain, it redirects the old `sxndyburns-netizen.github.io/Website/` address there, so pointing the domain at GitHub first avoids a gap.
+
+After the move:
+- If Formspree restricts which sites can submit, add `sandboxenglish.co.uk`.
+- Search engines should use the new address. Canonical links, the sitemap, `robots.txt` and the share image already use `https://sandboxenglish.co.uk`.
+- The site now sits at the domain root, so the `/favicon.ico` fallback and `404.html` work for every mistyped address.
 
 ## Recommendations and next steps
 
